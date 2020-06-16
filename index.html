@@ -77,9 +77,11 @@
 </ul>
 </li>
 <li><a class="reference internal" href="#peaks-detection">Peaks detection</a></li>
-<li><a class="reference internal" href="#artefact-removal">Artefact removal</a></li>
+<li><a class="reference internal" href="#artefact-correction">Artefact correction</a></li>
+<li><a class="reference internal" href="#interactive-visualization">Interactive visualization</a></li>
 <li><a class="reference internal" href="#heartrate-variability">Heartrate variability</a></li>
 <li><a class="reference internal" href="#development">Development</a></li>
+<li><a class="reference internal" href="#contributors">Contributors</a></li>
 <li><a class="reference internal" href="#acknowledgements">Acknowledgements</a></li>
 <li><a class="reference internal" href="#references">References</a></li>
 </ul>
@@ -224,15 +226,13 @@ It can easily interface with <a class="reference external" href="https://www.psy
 <img alt="https://github.com/embodied-computation-group/systole/raw/master/Images/recording.png" src="https://github.com/embodied-computation-group/systole/raw/master/Images/recording.png" />
 </div>
 </div>
-<div class="section" id="artefact-removal">
-<h1>Artefact removal<a class="headerlink" href="#artefact-removal" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="artefact-correction">
+<h1>Artefact correction<a class="headerlink" href="#artefact-correction" title="Permalink to this headline">¶</a></h1>
 <p>Systole implements the artefact rejection method recently proposed by Lipponen &amp; Tarvainen (2019) <a class="footnote-reference brackets" href="#id4" id="id2">2</a>.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">systole</span> <span class="kn">import</span> <span class="n">import_rr</span><span class="p">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">systole</span> <span class="kn">import</span> <span class="n">simulate_rr</span>
 <span class="kn">from</span> <span class="nn">systole.plotting</span> <span class="kn">import</span> <span class="n">plot_subspaces</span>
 
-<span class="n">rr</span> <span class="o">=</span> <span class="n">import_rr</span><span class="p">()</span><span class="o">.</span><span class="n">rr</span><span class="p">[:</span><span class="mi">100</span><span class="p">]</span>
-<span class="n">rr</span><span class="p">[</span><span class="mi">20</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1600</span>  <span class="c1"># Add missed beat</span>
-
+<span class="n">rr</span> <span class="o">=</span> <span class="n">simulate_rr</span><span class="p">()</span>
 <span class="n">plot_subspaces</span><span class="p">(</span><span class="n">rr</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -240,11 +240,18 @@ It can easily interface with <a class="reference external" href="https://www.psy
 <img alt="https://github.com/embodied-computation-group/systole/raw/master/Images/subspaces.png" src="https://github.com/embodied-computation-group/systole/raw/master/Images/subspaces.png" />
 </div>
 </div>
+<div class="section" id="interactive-visualization">
+<h1>Interactive visualization<a class="headerlink" href="#interactive-visualization" title="Permalink to this headline">¶</a></h1>
+<p>Systole integrates a set of functions for interactive data visualization based on <a class="reference external" href="https://plotly.com/">Plotly</a>.</p>
+<div class="figure align-center">
+<img alt="https://github.com/embodied-computation-group/systole/raw/master/Images/systole.gif" src="https://github.com/embodied-computation-group/systole/raw/master/Images/systole.gif" />
+</div>
+</div>
 <div class="section" id="heartrate-variability">
 <h1>Heartrate variability<a class="headerlink" href="#heartrate-variability" title="Permalink to this headline">¶</a></h1>
 <p>Systole supports basic time-domain, frequency-domain and non-linear extraction indices.</p>
 <p>All time-domain and non-linear indices have been tested against Kubios HVR 2.2 (&lt;<a class="reference external" href="https://www.kubios.com">https://www.kubios.com</a>&gt;). The frequency-domain indices can slightly differ. We recommend to always check your results against another software.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">systole.hrv</span> <span class="kn">import</span> <span class="n">plot_psd</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">systole.plotting</span> <span class="kn">import</span> <span class="n">plot_psd</span>
 
 <span class="n">plot_psd</span><span class="p">(</span><span class="n">rr</span><span class="p">)</span>
 </pre></div>
@@ -258,6 +265,12 @@ It can easily interface with <a class="reference external" href="https://www.psy
 <p>This module was created and is maintained by Nicolas Legrand and Micah Allen (ECG group, <a class="reference external" href="https://the-ecg.org/">https://the-ecg.org/</a>). If you want to contribute, feel free to contact one of the contributors, open an issue or submit a pull request.</p>
 <p>This program is provided with NO WARRANTY OF ANY KIND.</p>
 </div>
+<div class="section" id="contributors">
+<h1>Contributors<a class="headerlink" href="#contributors" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>Jan C. Brammer (<a class="reference external" href="mailto:jan&#46;c&#46;brammer&#37;&#52;&#48;gmail&#46;com">jan<span>&#46;</span>c<span>&#46;</span>brammer<span>&#64;</span>gmail<span>&#46;</span>com</a>)</p></li>
+</ul>
+</div>
 <div class="section" id="acknowledgements">
 <h1>Acknowledgements<a class="headerlink" href="#acknowledgements" title="Permalink to this headline">¶</a></h1>
 <p>This software and the ECG are supported by a Lundbeckfonden Fellowship (R272-2017-4345), and the AIAS-COFUND II fellowship programme that is supported by the Marie Skłodowska-Curie actions under the European Union’s Horizon 2020 (Grant agreement no 754513), and the Aarhus University Research Foundation.</p>
@@ -265,6 +278,7 @@ It can easily interface with <a class="reference external" href="https://www.psy
 <ul class="simple">
 <li><p>HeartPy: <a class="reference external" href="https://python-heart-rate-analysis-toolkit.readthedocs.io/en/latest/">https://python-heart-rate-analysis-toolkit.readthedocs.io/en/latest/</a></p></li>
 <li><p>hrv: <a class="reference external" href="https://github.com/rhenanbartels/hrv">https://github.com/rhenanbartels/hrv</a></p></li>
+<li><p>pyHVR: <a class="reference external" href="https://pyhrv.readthedocs.io/en/latest/index.html">https://pyhrv.readthedocs.io/en/latest/index.html</a></p></li>
 <li><p>ECG-detector: <a class="reference external" href="https://github.com/berndporr/py-ecg-detectors">https://github.com/berndporr/py-ecg-detectors</a></p></li>
 <li><p>Pingouin: <a class="reference external" href="https://pingouin-stats.org/">https://pingouin-stats.org/</a></p></li>
 </ul>
