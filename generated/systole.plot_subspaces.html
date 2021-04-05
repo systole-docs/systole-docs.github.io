@@ -3,17 +3,24 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>systole.plot_subspaces &#8212; systole 0.1.1 documentation</title>
-    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>systole.plot_subspaces &#8212; systole 0.1.3 documentation</title>
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/jupyter-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/thebelab.css" />
     <link rel="stylesheet" type="text/css" href="../_static/gallery.css" />
     <link rel="stylesheet" type="text/css" href="../_static/gallery-binder.css" />
     <link rel="stylesheet" type="text/css" href="../_static/gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery-rendered-html.css" />
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/language_data.js"></script>
+    <script src="../_static/thebelab-helper.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
 <meta charset='utf-8'>
@@ -114,18 +121,33 @@
 <h1>systole.plot_subspaces<a class="headerlink" href="#systole-plot-subspaces" title="Permalink to this headline">¶</a></h1>
 <dl class="py function">
 <dt id="systole.plot_subspaces">
-<code class="sig-prename descclassname">systole.</code><code class="sig-name descname">plot_subspaces</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rr</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/systole/plotly.html#plot_subspaces"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#systole.plot_subspaces" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">systole.</span></code><code class="sig-name descname"><span class="pre">plot_subspaces</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rr</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">,</span> </span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.20)"><span class="pre">numpy.ndarray</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c1</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">float</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">0.17</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c2</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">float</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">0.13</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xlim</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">float</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">10.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ylim</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">float</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">5.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">matplotlib.axes._axes.Axes</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">(10,</span> <span class="pre">5)</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">matplotlib.axes._axes.Axes</span><a class="reference internal" href="../_modules/systole/plotting.html#plot_subspaces"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#systole.plot_subspaces" title="Permalink to this definition">¶</a></dt>
 <dd><p>Plot hrv subspace as described by Lipponen &amp; Tarvainen (2019).</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>rr</strong><span class="classifier">1d array-like</span></dt><dd><p>The dataframe containing the recording.</p>
+<dd class="field-odd"><dl>
+<dt><strong>rr</strong><span class="classifier">list or np.ndarray</span></dt><dd><p>Array of RR intervals or subspace1. If subspace1 is provided, subspace2
+and 3 must also be provided.</p>
+</dd>
+<dt><strong>c1</strong><span class="classifier">float</span></dt><dd><p>Fixed variable controling the slope of the threshold lines. Default is
+0.13.</p>
+</dd>
+<dt><strong>c2</strong><span class="classifier">float</span></dt><dd><p>Fixed variable controling the intersect of the threshold lines. Default
+is 0.17.</p>
+</dd>
+<dt><strong>xlim</strong><span class="classifier">float</span></dt><dd><p>Absolute range of the x axis. Default is 10.</p>
+</dd>
+<dt><strong>ylim</strong><span class="classifier">float</span></dt><dd><p>Absolute range of the y axis. Default is 5.</p>
+</dd>
+<dt><strong>ax</strong><span class="classifier"><a class="reference external" href="https://matplotlib.org/api/axes_api.html#matplotlib.axes.Axes" title="(in Matplotlib v3.4.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">matplotlib.axes.Axes</span></code></a> or None</span></dt><dd><p>Where to draw the plot. Default is <em>None</em> (create a new figure).</p>
+</dd>
+<dt><strong>figsize</strong><span class="classifier">tuple</span></dt><dd><p>Figure size. Default set to <cite>(10, 5)</cite></p>
 </dd>
 </dl>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><dl>
-<dt><strong>fig</strong><span class="classifier"><cite>go.Figure</cite></span></dt><dd><p>The figure.</p>
+<dt><strong>ax</strong><span class="classifier"><a class="reference external" href="https://matplotlib.org/api/axes_api.html#matplotlib.axes.Axes" title="(in Matplotlib v3.4.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">matplotlib.axes.Axes</span></code></a></span></dt><dd><p>The matplotlib axes containing the plot.</p>
 </dd>
 </dl>
 </dd>
@@ -153,8 +175,8 @@ classification. Journal of Medical Engineering &amp; Technology, 43(3),
       
     </p>
     <p>
-        &copy; Copyright 2020, Nicolas Legrand.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.3.<br/>
+        &copy; Copyright 2021, Nicolas Legrand.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.5.3.<br/>
     </p>
   </div>
 </footer>

@@ -3,17 +3,24 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>systole.interpolate_clipping &#8212; systole 0.1.1 documentation</title>
-    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>systole.interpolate_clipping &#8212; systole 0.1.3 documentation</title>
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/jupyter-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/thebelab.css" />
     <link rel="stylesheet" type="text/css" href="../_static/gallery.css" />
     <link rel="stylesheet" type="text/css" href="../_static/gallery-binder.css" />
     <link rel="stylesheet" type="text/css" href="../_static/gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery-rendered-html.css" />
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/language_data.js"></script>
+    <script src="../_static/thebelab-helper.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
 <meta charset='utf-8'>
@@ -114,12 +121,14 @@
 <h1>systole.interpolate_clipping<a class="headerlink" href="#systole-interpolate-clipping" title="Permalink to this headline">¶</a></h1>
 <dl class="py function">
 <dt id="systole.interpolate_clipping">
-<code class="sig-prename descclassname">systole.</code><code class="sig-name descname">interpolate_clipping</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">signal</span></em>, <em class="sig-param"><span class="n">threshold</span><span class="o">=</span><span class="default_value">255</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/systole/detection.html#interpolate_clipping"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#systole.interpolate_clipping" title="Permalink to this definition">¶</a></dt>
-<dd><p>Interoplate clipping segment.</p>
+<code class="sig-prename descclassname"><span class="pre">systole.</span></code><code class="sig-name descname"><span class="pre">interpolate_clipping</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">,</span> </span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.20)"><span class="pre">numpy.ndarray</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">255</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.20)"><span class="pre">numpy.ndarray</span></a><a class="reference internal" href="../_modules/systole/detection.html#interpolate_clipping"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#systole.interpolate_clipping" title="Permalink to this definition">¶</a></dt>
+<dd><p>Interoplate clipping artefacts.</p>
+<p>This function removes all data points equalling the provided threshold
+and re-creates the missing segments using cubic spline interpolation.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>signal</strong><span class="classifier">1d array-like</span></dt><dd><p>Noisy signal.</p>
+<dt><strong>signal</strong><span class="classifier">np.ndarray or list</span></dt><dd><p>Noisy signal.</p>
 </dd>
 <dt><strong>threshold</strong><span class="classifier">int</span></dt><dd><p>Threshold of clipping artefact.</p>
 </dd>
@@ -127,26 +136,42 @@
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
-<dt><strong>clean_signal</strong><span class="classifier">1d array-like</span></dt><dd><p>Interpolated signal.</p>
+<dt><strong>clean_signal</strong><span class="classifier">np.ndarray</span></dt><dd><p>Interpolated signal.</p>
 </dd>
 </dl>
 </dd>
 </dl>
 <p class="rubric">Notes</p>
 <p>Correct signal segment reaching recording threshold (default is 255)
-using a cubic spline interpolation. Adapted from <a class="footnote-reference brackets" href="#id2" id="id1">1</a>.</p>
+using a cubic spline interpolation. Adapted from <a class="reference internal" href="#rfcf28d1d6d10-1" id="id1">[1]</a>.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>If clipping artefact is found at the edge of the signal, this
 function will decrement the first/last value to allow interpolation,
-which can lead to incorrect estimation.</p>
+which can result in incorrect estimation.</p>
 </div>
 <p class="rubric">References</p>
-<dl class="footnote brackets">
-<dt class="label" id="id2"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dl class="citation">
+<dt class="label" id="rfcf28d1d6d10-1"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
 <dd><p><a class="reference external" href="https://python-heart-rate-analysis-toolkit.readthedocs.io/en/latest/">https://python-heart-rate-analysis-toolkit.readthedocs.io/en/latest/</a></p>
 </dd>
 </dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">systole</span> <span class="kn">import</span> <span class="n">import_ppg</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">systole.detection</span> <span class="kn">import</span> <span class="n">interpolate_clipping</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">import_ppg</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">clean_signal</span> <span class="o">=</span> <span class="n">interpolate_clipping</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">ppg</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">())</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">time</span><span class="p">,</span> <span class="n">clean_signal</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#F15854&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">time</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">ppg</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#5DA5DA&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">255</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time (s)&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;PPG level (a.u)&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="figure align-default">
+<img alt="../_images/systole-interpolate_clipping-11.png" class="plot-directive" src="../_images/systole-interpolate_clipping-11.png" />
+</div>
 </dd></dl>
 
 </div>
@@ -163,8 +188,8 @@ which can lead to incorrect estimation.</p>
       
     </p>
     <p>
-        &copy; Copyright 2020, Nicolas Legrand.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.3.<br/>
+        &copy; Copyright 2021, Nicolas Legrand.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.5.3.<br/>
     </p>
   </div>
 </footer>

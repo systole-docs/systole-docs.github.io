@@ -3,17 +3,24 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>systole.rr_artefacts &#8212; systole 0.1.1 documentation</title>
-    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>systole.rr_artefacts &#8212; systole 0.1.3 documentation</title>
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/jupyter-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/thebelab.css" />
     <link rel="stylesheet" type="text/css" href="../_static/gallery.css" />
     <link rel="stylesheet" type="text/css" href="../_static/gallery-binder.css" />
     <link rel="stylesheet" type="text/css" href="../_static/gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery-rendered-html.css" />
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/language_data.js"></script>
+    <script src="../_static/thebelab-helper.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
 <meta charset='utf-8'>
@@ -114,7 +121,7 @@
 <h1>systole.rr_artefacts<a class="headerlink" href="#systole-rr-artefacts" title="Permalink to this headline">¶</a></h1>
 <dl class="py function">
 <dt id="systole.rr_artefacts">
-<code class="sig-prename descclassname">systole.</code><code class="sig-name descname">rr_artefacts</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rr</span></em>, <em class="sig-param"><span class="n">c1</span><span class="o">=</span><span class="default_value">0.13</span></em>, <em class="sig-param"><span class="n">c2</span><span class="o">=</span><span class="default_value">0.17</span></em>, <em class="sig-param"><span class="n">alpha</span><span class="o">=</span><span class="default_value">5.2</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/systole/detection.html#rr_artefacts"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#systole.rr_artefacts" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">systole.</span></code><code class="sig-name descname"><span class="pre">rr_artefacts</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rr</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">,</span> </span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.20)"><span class="pre">numpy.ndarray</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c1</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">float</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">0.13</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c2</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">float</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">0.17</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">float</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">5.2</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.20)"><span class="pre">numpy.ndarray</span></a><span class="p"><span class="pre">]</span></span><a class="reference internal" href="../_modules/systole/detection.html#rr_artefacts"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#systole.rr_artefacts" title="Permalink to this definition">¶</a></dt>
 <dd><p>Artefacts detection from RR time series using the subspaces approach
 proposed by Lipponen &amp; Tarvainen (2019).</p>
 <dl class="field-list simple">
@@ -123,10 +130,10 @@ proposed by Lipponen &amp; Tarvainen (2019).</p>
 <dt><strong>rr</strong><span class="classifier">1d array-like</span></dt><dd><p>Array of RR intervals.</p>
 </dd>
 <dt><strong>c1</strong><span class="classifier">float</span></dt><dd><p>Fixed variable controling the slope of the threshold lines. Default is
-0.13.</p>
+<cite>0.13</cite>.</p>
 </dd>
 <dt><strong>c2</strong><span class="classifier">float</span></dt><dd><p>Fixed variable controling the intersect of the threshold lines. Default
-is 0.17.</p>
+is <cite>0.17</cite>.</p>
 </dd>
 <dt><strong>alpha</strong><span class="classifier">float</span></dt><dd><p>Scaling factor used to normalize the RR intervals first deviation.</p>
 </dd>
@@ -134,7 +141,7 @@ is 0.17.</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
-<dt><strong>artefacts</strong><span class="classifier">dictionnary</span></dt><dd><p>Dictionnary storing the parameters of RR artefacts rejection. All the
+<dt><strong>artefacts</strong><span class="classifier">dict</span></dt><dd><p>Dictionnary storing the parameters of RR artefacts rejection. All the
 vectors outputed have the same length as the provided RR time serie:</p>
 <ul class="simple">
 <li><dl class="simple">
@@ -198,17 +205,27 @@ vectors outputed have the same length as the provided RR time serie:</p>
 </dd>
 </dl>
 <p class="rubric">Notes</p>
-<p>This function will use the method proposed by Lipponen &amp; Tarvainen (2019)
-to detect ectopic beats, long, shorts, missed and extra RR intervals.</p>
+<p>This function will use the method proposed by <a class="reference internal" href="#r68430b5703fc-1" id="id1">[1]</a> to detect ectopic beats,
+long, shorts, missed and extra RR intervals.</p>
 <p class="rubric">References</p>
 <dl class="citation">
-<dt class="label" id="r68430b5703fc-1"><span class="brackets">1</span></dt>
+<dt class="label" id="r68430b5703fc-1"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
 <dd><p>Lipponen, J. A., &amp; Tarvainen, M. P. (2019). A robust algorithm for
 heart rate variability time series artefact correction using novel
 beat classification. Journal of Medical Engineering &amp; Technology,
 43(3), 173–181. <a class="reference external" href="https://doi.org/10.1080/03091902.2019.1640306">https://doi.org/10.1080/03091902.2019.1640306</a></p>
 </dd>
 </dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">systole</span> <span class="kn">import</span> <span class="n">simulate_rr</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">systole.detection</span> <span class="kn">import</span> <span class="n">rr_artefacts</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rr</span> <span class="o">=</span> <span class="n">simulate_rr</span><span class="p">()</span>  <span class="c1"># Simulate RR time series</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">artefacts</span> <span class="o">=</span> <span class="n">rr_artefacts</span><span class="p">(</span><span class="n">rr</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">artefacts</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+<span class="go">dict_keys([&#39;subspace1&#39;, &#39;subspace2&#39;, &#39;subspace3&#39;, &#39;mRR&#39;, &#39;ectopic&#39;, &#39;long&#39;,</span>
+<span class="go">&#39;short&#39;, &#39;missed&#39;, &#39;extra&#39;, &#39;threshold1&#39;, &#39;threshold2&#39;])</span>
+</pre></div>
+</div>
 </dd></dl>
 
 </div>
@@ -225,8 +242,8 @@ beat classification. Journal of Medical Engineering &amp; Technology,
       
     </p>
     <p>
-        &copy; Copyright 2020, Nicolas Legrand.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.3.<br/>
+        &copy; Copyright 2021, Nicolas Legrand.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.5.3.<br/>
     </p>
   </div>
 </footer>

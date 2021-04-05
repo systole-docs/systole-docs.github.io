@@ -1,0 +1,6 @@
+﻿systole.interpolate\_bads
+=========================
+
+.. currentmodule:: systole
+
+.. autofunction:: interpolate_bads

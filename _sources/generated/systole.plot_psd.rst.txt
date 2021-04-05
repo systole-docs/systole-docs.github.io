@@ -1,0 +1,6 @@
+﻿systole.plot\_psd
+=================
+
+.. currentmodule:: systole
+
+.. autofunction:: plot_psd

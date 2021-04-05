@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>systole.plotting.plot_raw &#8212; systole 0.1.3 documentation</title>
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/jupyter-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/thebelab.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/gallery-rendered-html.css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/thebelab-helper.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="../../_static/js/jquery-1.11.0.min.js "></script>
+<script type="text/javascript" src="../../_static/js/jquery-fix.js "></script>
+<script type="text/javascript" src="../../_static/bootstrap-3.3.7/js/bootstrap.min.js "></script>
+<script type="text/javascript" src="../../_static/bootstrap-sphinx.js "></script>
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../index.html"><span><img src="../../_static/logo.png"></span>
+          systole</a>
+        <span class="navbar-text navbar-version pull-left"><b></b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="../../api.html">Functions</a></li>
+                <li><a href="../../auto_examples/index.html">Tutorials</a></li>
+                <li><a href="https://github.com/embodied-computation-group/systole">GitHub</a></li>
+                <li><a href="../../changelog.html">What's new</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"></ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">systole.plotting.plot_raw</a></li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+              
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="../../_sources/generated/plotting/systole.plotting.plot_raw.rst.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  <div class="section" id="systole-plotting-plot-raw">
+<h1>systole.plotting.plot_raw<a class="headerlink" href="#systole-plotting-plot-raw" title="Permalink to this headline">¶</a></h1>
+<dl class="py function">
+<dt id="systole.plotting.plot_raw">
+<code class="sig-prename descclassname"><span class="pre">systole.plotting.</span></code><code class="sig-name descname"><span class="pre">plot_raw</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">pandas.core.frame.DataFrame</span><span class="p"><span class="pre">,</span> </span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.20)"><span class="pre">numpy.ndarray</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sfreq</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">75</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'ppg'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ecg_method</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'hamilton'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">matplotlib.axes._axes.Axes</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">(13,</span> <span class="pre">5)</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">matplotlib.axes._axes.Axes</span><a class="reference internal" href="../../_modules/systole/plotting.html#plot_raw"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#systole.plotting.plot_raw" title="Permalink to this definition">¶</a></dt>
+<dd><p>Visualization of PPG signal and systolic peaks detection.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl>
+<dt><strong>signal</strong><span class="classifier"><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.2.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code></a> or <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.20)"><code class="xref py py-class docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a></span></dt><dd><p>Dataframe of PPG or ECG signal in the long format. If a data frame is
+provided, it should contain at least one <code class="docutils literal notranslate"><span class="pre">'time'</span></code> and one colum for
+signal(either <code class="docutils literal notranslate"><span class="pre">'ppg'</span></code> or <code class="docutils literal notranslate"><span class="pre">'ecg'</span></code>). If an array is provided, it will
+automatically create a DataFrame using the array as signal and
+<code class="docutils literal notranslate"><span class="pre">sfreq</span></code> as sampling frequency.</p>
+</dd>
+<dt><strong>sfreq</strong><span class="classifier">int</span></dt><dd><p>Signal sampling frequency. Default is set to 75 Hz.</p>
+</dd>
+<dt><strong>type</strong><span class="classifier">str</span></dt><dd><p>The type of signal provided. Can be <code class="docutils literal notranslate"><span class="pre">'ppg'</span></code> (pulse oximeter) or
+<code class="docutils literal notranslate"><span class="pre">'ecg'</span></code> (electrocardiography). The peak detection algorithm used
+depend on the type of signal provided.</p>
+</dd>
+<dt><strong>ecg_method</strong><span class="classifier">str</span></dt><dd><p>Peak detection algorithm used by the
+<a class="reference internal" href="../detection/systole.detection.ecg_peaks.html#systole.detection.ecg_peaks" title="systole.detection.ecg_peaks"><code class="xref py py-func docutils literal notranslate"><span class="pre">systole.detection.ecg_peaks()</span></code></a> function. Can be one of the
+following: <cite>‘hamilton’</cite>, <cite>‘christov’</cite>, <cite>‘engelse-zeelenberg’</cite>,
+<cite>‘pan-tompkins’</cite>, <cite>‘wavelet-transform’</cite>, <cite>‘moving-average’</cite>. The
+default is <cite>‘hamilton’</cite>.</p>
+</dd>
+<dt><strong>figsize</strong><span class="classifier">tuple</span></dt><dd><p>Figure size. Default set to <cite>(13, 5)</cite>.</p>
+</dd>
+<dt><strong>**kwargs</strong><span class="classifier">keyword arguments</span></dt><dd><p>Additional arguments will be passed to
+<cite>:py:func:systole.detection.oxi_peaks()</cite> or
+<cite>:py:func:systole.detection.ecg_peaks()</cite>, depending on the type
+of data.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl>
+<dt><strong>ax</strong><span class="classifier"><a class="reference external" href="https://matplotlib.org/api/axes_api.html#matplotlib.axes.Axes" title="(in Matplotlib v3.4.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">matplotlib.axes.Axes</span></code></a></span></dt><dd><p>The matplotlib axes containing the plot.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="systole.plotting.plot_events.html#systole.plotting.plot_events" title="systole.plotting.plot_events"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_events</span></code></a>, <a class="reference internal" href="systole.plotting.plot_subspaces.html#systole.plotting.plot_subspaces" title="systole.plotting.plot_subspaces"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_subspaces</span></code></a>, <a class="reference internal" href="systole.plotting.plot_events.html#systole.plotting.plot_events" title="systole.plotting.plot_events"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_events</span></code></a>, <a class="reference internal" href="systole.plotting.plot_psd.html#systole.plotting.plot_psd" title="systole.plotting.plot_psd"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_psd</span></code></a>, <a class="reference internal" href="systole.plotting.plot_oximeter.html#systole.plotting.plot_oximeter" title="systole.plotting.plot_oximeter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_oximeter</span></code></a></dt><dd></dd>
+</dl>
+</div>
+<p class="rubric">Examples</p>
+<p>Plotting PPG recording.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">systole</span> <span class="kn">import</span> <span class="n">import_ppg</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">systole.plotting</span> <span class="kn">import</span> <span class="n">plot_raw</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Import PPG recording as pandas data frame</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ppg</span> <span class="o">=</span> <span class="n">import_ppg</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Only use the first 60 seconds for demonstration</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ppg</span> <span class="o">=</span> <span class="n">ppg</span><span class="p">[</span><span class="n">ppg</span><span class="o">.</span><span class="n">time</span><span class="o">&lt;</span><span class="mi">60</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plot_raw</span><span class="p">(</span><span class="n">ppg</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="figure align-default">
+<img alt="../../_images/systole-plotting-plot_raw-1.png" class="plot-directive" src="../../_images/systole-plotting-plot_raw-1.png" />
+</div>
+<p>Plotting ECG recording.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">systole</span> <span class="kn">import</span> <span class="n">import_dataset1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">systole.plotting</span> <span class="kn">import</span> <span class="n">plot_raw</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Import PPG recording as pandas data frame</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ecg</span> <span class="o">=</span> <span class="n">import_dataset1</span><span class="p">(</span><span class="n">modalities</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;ECG&#39;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Only use the first 60 seconds for demonstration</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ecg</span> <span class="o">=</span> <span class="n">ecg</span><span class="p">[</span><span class="n">ecg</span><span class="o">.</span><span class="n">time</span><span class="o">&lt;</span><span class="mi">60</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plot_raw</span><span class="p">(</span><span class="n">ecg</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s1">&#39;ecg&#39;</span><span class="p">,</span> <span class="n">sfreq</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">ecg_method</span><span class="o">=</span><span class="s1">&#39;pan-tompkins&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="figure align-default">
+<img alt="../../_images/systole-plotting-plot_raw-2.png" class="plot-directive" src="../../_images/systole-plotting-plot_raw-2.png" />
+</div>
+</dd></dl>
+
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2020-2021, Nicolas Legrand.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.5.3.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

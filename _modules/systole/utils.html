@@ -3,17 +3,24 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>systole.utils &#8212; systole 0.1.1 documentation</title>
-    <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>systole.utils &#8212; systole 0.1.3 documentation</title>
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/jupyter-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/thebelab.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/gallery.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/gallery-binder.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/gallery-rendered-html.css" />
     <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/language_data.js"></script>
+    <script src="../../_static/thebelab-helper.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
 <meta charset='utf-8'>
@@ -106,18 +113,25 @@
   <h1>Source code for systole.utils</h1><div class="highlight"><pre>
 <span></span><span class="c1"># Author: Nicolas Legrand &lt;nicolas.legrand@cfin.au.dk&gt;</span>
 
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Union</span>
+
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">scipy.interpolate</span> <span class="kn">import</span> <span class="n">interp1d</span>
 
 
-<div class="viewcode-block" id="norm_triggers"><a class="viewcode-back" href="../../generated/systole.norm_triggers.html#systole.norm_triggers">[docs]</a><span class="k">def</span> <span class="nf">norm_triggers</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="s1">&#39;higher&#39;</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Turns noisy triggers into unique boolean.</span>
+<div class="viewcode-block" id="norm_triggers"><a class="viewcode-back" href="../../generated/utils/systole.utils.norm_triggers.html#systole.norm_triggers">[docs]</a><span class="k">def</span> <span class="nf">norm_triggers</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span>
+    <span class="n">threshold</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="n">n</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="n">direction</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;higher&quot;</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
+    <span class="sd">&quot;&quot;&quot;Turns noisy triggers into boolean.</span>
 
 <span class="sd">    Keep the first trigger and set to 0 the n following values.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    x : 1d array-like</span>
+<span class="sd">    x : np.ndarray or list</span>
 <span class="sd">        The triggers to convert.</span>
 <span class="sd">    threshold : float</span>
 <span class="sd">        Threshold for triggering values. Default is 1.</span>
@@ -129,45 +143,47 @@
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    y : 1d array-like</span>
-<span class="sd">        The filterd triggers</span>
+<span class="sd">    y : np.ndarray</span>
+<span class="sd">        The filterd triggers array.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;x must be a Numpy array&#39;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;x must be a Numpy array&quot;</span><span class="p">)</span>
 
-    <span class="k">if</span> <span class="n">direction</span> <span class="o">==</span> <span class="s1">&#39;higher&#39;</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">direction</span> <span class="o">==</span> <span class="s2">&quot;higher&quot;</span><span class="p">:</span>
         <span class="n">y</span> <span class="o">=</span> <span class="n">x</span> <span class="o">&gt;=</span> <span class="n">threshold</span>
-    <span class="k">elif</span> <span class="n">direction</span> <span class="o">==</span> <span class="s1">&#39;lower&#39;</span><span class="p">:</span>
+    <span class="k">elif</span> <span class="n">direction</span> <span class="o">==</span> <span class="s2">&quot;lower&quot;</span><span class="p">:</span>
         <span class="n">y</span> <span class="o">=</span> <span class="n">x</span> <span class="o">&lt;=</span> <span class="n">threshold</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Invalid direction&#39;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Invalid direction&quot;</span><span class="p">)</span>
 
     <span class="c1"># Keep only the first trigger in window size</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)):</span>
         <span class="k">if</span> <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>
             <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="o">-</span> <span class="n">i</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">:</span>  <span class="c1"># If close to the end</span>
-                <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">:]</span> <span class="o">=</span> <span class="kc">False</span>
+                <span class="n">y</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">:]</span> <span class="o">=</span> <span class="kc">False</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+                <span class="n">y</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">:</span> <span class="n">i</span> <span class="o">+</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
     <span class="k">return</span> <span class="n">y</span></div>
 
 
-<div class="viewcode-block" id="time_shift"><a class="viewcode-back" href="../../generated/systole.time_shift.html#systole.time_shift">[docs]</a><span class="k">def</span> <span class="nf">time_shift</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">events</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="s1">&#39;after&#39;</span><span class="p">):</span>
+<div class="viewcode-block" id="time_shift"><a class="viewcode-back" href="../../generated/utils/systole.utils.time_shift.html#systole.time_shift">[docs]</a><span class="k">def</span> <span class="nf">time_shift</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span> <span class="n">events</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span> <span class="n">order</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;after&quot;</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Return the delay between x and events.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    x : 1d array-like</span>
+<span class="sd">    x : np.ndarray or list</span>
 <span class="sd">        Timing of reference events.</span>
-<span class="sd">    events : 1d array-like</span>
+<span class="sd">    events : np.ndarray or list</span>
 <span class="sd">        Timing of events of heartrateest.</span>
 <span class="sd">    order : str</span>
 <span class="sd">        Consider event occurung before of after baseline. Default is &#39;after&#39;.</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    time_shift : 1d array-like</span>
-<span class="sd">        The delay between X and events (a.u)</span>
+<span class="sd">    time_shift : np.ndarray</span>
+<span class="sd">        The delay between X and events (a.u).</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
         <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
@@ -181,16 +197,18 @@
         <span class="c1"># Event timing</span>
         <span class="n">lag</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">e</span> <span class="o">-</span> <span class="n">r</span><span class="p">)</span>
 
-    <span class="k">return</span> <span class="n">lag</span></div>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">lag</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="heart_rate"><a class="viewcode-back" href="../../generated/systole.heart_rate.html#systole.heart_rate">[docs]</a><span class="k">def</span> <span class="nf">heart_rate</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">sfreq</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;rr&#39;</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;cubic&#39;</span><span class="p">):</span>
+<div class="viewcode-block" id="heart_rate"><a class="viewcode-back" href="../../generated/utils/systole.utils.heart_rate.html#systole.heart_rate">[docs]</a><span class="k">def</span> <span class="nf">heart_rate</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span> <span class="n">sfreq</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">,</span> <span class="n">unit</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;rr&quot;</span><span class="p">,</span> <span class="n">kind</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;cubic&quot;</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
     <span class="sd">&quot;&quot;&quot;Transform peaks data into heart rate time series.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    x : 1d array-like</span>
-<span class="sd">        Boolean vector of heartbeat detection.</span>
+<span class="sd">    x : np.ndarray or list</span>
+<span class="sd">        Boolean vector of peaks detection.</span>
 <span class="sd">    sfreq : int</span>
 <span class="sd">        Sampling frequency.</span>
 <span class="sd">    unit : str</span>
@@ -201,9 +219,9 @@
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    heartrate : 1d array-like</span>
+<span class="sd">    heartrate : np.ndarray</span>
 <span class="sd">        The heart rate frequency.</span>
-<span class="sd">    time : 1d array-like</span>
+<span class="sd">    time : np.ndarray</span>
 <span class="sd">        Time array.</span>
 
 <span class="sd">    Notes</span>
@@ -216,42 +234,45 @@
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
         <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="p">((</span><span class="n">x</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">x</span> <span class="o">==</span> <span class="mi">0</span><span class="p">))</span><span class="o">.</span><span class="n">all</span><span class="p">():</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Input vector should only contain 0 and 1&#39;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Input vector should only contain 0 and 1&quot;</span><span class="p">)</span>
 
     <span class="c1"># Find peak indices</span>
     <span class="n">peaks_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">x</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 
     <span class="c1"># Create time vector (seconds):</span>
-    <span class="n">time</span> <span class="o">=</span> <span class="p">(</span><span class="n">peaks_idx</span><span class="o">/</span><span class="n">sfreq</span><span class="p">)[</span><span class="mi">1</span><span class="p">:]</span>
+    <span class="n">time</span> <span class="o">=</span> <span class="p">(</span><span class="n">peaks_idx</span> <span class="o">/</span> <span class="n">sfreq</span><span class="p">)[</span><span class="mi">1</span><span class="p">:]</span>
 
     <span class="n">rr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">peaks_idx</span><span class="p">)</span>
 
     <span class="c1"># R-R heartratevals (in miliseconds)</span>
     <span class="n">heartrate</span> <span class="o">=</span> <span class="p">(</span><span class="n">rr</span> <span class="o">/</span> <span class="n">sfreq</span><span class="p">)</span> <span class="o">*</span> <span class="mi">1000</span>
-    <span class="k">if</span> <span class="n">unit</span> <span class="o">==</span> <span class="s1">&#39;bpm&#39;</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">unit</span> <span class="o">==</span> <span class="s2">&quot;bpm&quot;</span><span class="p">:</span>
         <span class="c1"># Beats per minutes</span>
-        <span class="n">heartrate</span> <span class="o">=</span> <span class="p">(</span><span class="mi">60000</span> <span class="o">/</span> <span class="n">heartrate</span><span class="p">)</span>
+        <span class="n">heartrate</span> <span class="o">=</span> <span class="mi">60000</span> <span class="o">/</span> <span class="n">heartrate</span>
 
     <span class="c1"># Use the peaks vector as time input</span>
-    <span class="n">new_time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">/</span><span class="n">sfreq</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="n">sfreq</span><span class="p">)</span>
+    <span class="n">new_time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">/</span> <span class="n">sfreq</span><span class="p">,</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">sfreq</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">kind</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
         <span class="c1"># Interpolate</span>
-        <span class="n">f</span> <span class="o">=</span> <span class="n">interp1d</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">heartrate</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="n">kind</span><span class="p">,</span> <span class="n">bounds_error</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-                     <span class="n">fill_value</span><span class="o">=</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">))</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="n">interp1d</span><span class="p">(</span>
+            <span class="n">time</span><span class="p">,</span> <span class="n">heartrate</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="n">kind</span><span class="p">,</span> <span class="n">bounds_error</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+        <span class="p">)</span>
         <span class="n">heartrate</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">new_time</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">heartrate</span><span class="p">,</span> <span class="n">new_time</span></div>
 
 
-<div class="viewcode-block" id="to_angles"><a class="viewcode-back" href="../../generated/systole.to_angles.html#systole.to_angles">[docs]</a><span class="k">def</span> <span class="nf">to_angles</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">events</span><span class="p">):</span>
+<div class="viewcode-block" id="to_angles"><a class="viewcode-back" href="../../generated/utils/systole.utils.to_angles.html#systole.to_angles">[docs]</a><span class="k">def</span> <span class="nf">to_angles</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span> <span class="n">events</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Angular values of events according to x cycle peaks.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    x : list or 1d array-like</span>
+<span class="sd">    x : np.ndarray or list</span>
 <span class="sd">        The reference time serie. Time points can be unevenly spaced.</span>
-<span class="sd">    events : list or 1d array-like</span>
+<span class="sd">    events : np.ndarray or list</span>
 <span class="sd">        The events time serie.</span>
 
 <span class="sd">    Returns</span>
@@ -259,10 +280,8 @@
 <span class="sd">    ang : numpy array</span>
 <span class="sd">        The angular value of events in the cycle of interest (radians).</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">events</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
-        <span class="n">events</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">events</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">events</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">events</span><span class="p">)</span>
 
     <span class="c1"># If data is provided in bollean format</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="nb">any</span><span class="p">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">):</span>
@@ -272,7 +291,7 @@
     <span class="n">ang</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># Where to store angular data</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">events</span><span class="p">:</span>
 
-        <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">&gt;=</span> <span class="n">x</span><span class="o">.</span><span class="n">min</span><span class="p">())</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">x</span><span class="o">.</span><span class="n">max</span><span class="p">()):</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">&gt;=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">x</span><span class="p">)):</span>
 
             <span class="c1"># Length of current R-R interval</span>
             <span class="n">ln</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">x</span> <span class="o">&gt;</span> <span class="n">i</span><span class="p">])</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">x</span> <span class="o">&lt;=</span> <span class="n">i</span><span class="p">])</span>
@@ -281,16 +300,25 @@
             <span class="n">i</span> <span class="o">-=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">x</span> <span class="o">&lt;=</span> <span class="n">i</span><span class="p">])</span>
 
             <span class="c1"># Convert into radian [0 to pi*2]</span>
-            <span class="n">ang</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">i</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="n">ln</span><span class="p">)</span>
+            <span class="n">ang</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">i</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="n">ln</span><span class="p">)</span>
 
-        <span class="k">elif</span> <span class="n">i</span> <span class="o">==</span> <span class="n">x</span><span class="o">.</span><span class="n">max</span><span class="p">():</span>
+        <span class="k">elif</span> <span class="n">i</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
             <span class="n">ang</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mf">0.0</span><span class="p">)</span>
 
-    <span class="k">return</span> <span class="n">ang</span></div>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">ang</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="to_epochs"><a class="viewcode-back" href="../../generated/systole.to_epochs.html#systole.to_epochs">[docs]</a><span class="k">def</span> <span class="nf">to_epochs</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">events</span><span class="p">,</span> <span class="n">sfreq</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">tmin</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">tmax</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">event_val</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-              <span class="n">sigma</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">apply_baseline</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">reject</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="to_epochs"><a class="viewcode-back" href="../../generated/utils/systole.utils.to_epochs.html#systole.to_epochs">[docs]</a><span class="k">def</span> <span class="nf">to_epochs</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span>
+    <span class="n">events</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span>
+    <span class="n">sfreq</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">,</span>
+    <span class="n">tmin</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">,</span>
+    <span class="n">tmax</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">10.0</span><span class="p">,</span>
+    <span class="n">event_val</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="n">apply_baseline</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">]]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="n">verbose</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">reject</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Epoch signal based on events indices.</span>
 
 <span class="sd">    Parameters</span>
@@ -312,7 +340,7 @@
 <span class="sd">        mean). If *None*, no baseline is applied.</span>
 <span class="sd">    verbose : boolean</span>
 <span class="sd">        If True, will return warnings if epoc are droped.</span>
-<span class="sd">    reject : 1d array-like or None</span>
+<span class="sd">    reject : np.ndarray or None</span>
 <span class="sd">        Segments of the signal that should be rejected.</span>
 
 <span class="sd">    Returns</span>
@@ -321,8 +349,10 @@
 <span class="sd">        Event * Time array.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">events</span><span class="p">):</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;The length of the event and signal vector</span>
-<span class="s2">                                shoul match exactly&quot;&quot;&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="sd">&quot;&quot;&quot;The length of the event and signal vector</span>
+<span class="sd">                                shoul match exactly&quot;&quot;&quot;</span>
+        <span class="p">)</span>
     <span class="c1"># To numpy array</span>
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
         <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
@@ -337,55 +367,63 @@
         <span class="n">reject</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
 
     <span class="n">rejected</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="n">epochs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span>
-                <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">events</span><span class="p">),</span> <span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">tmin</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">tmax</span><span class="p">))</span> <span class="o">*</span> <span class="n">sfreq</span><span class="p">)))</span>
+    <span class="n">epochs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">events</span><span class="p">),</span> <span class="nb">int</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">tmin</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">tmax</span><span class="p">))</span> <span class="o">*</span> <span class="n">sfreq</span><span class="p">)))</span>
     <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">ev</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">events</span><span class="p">):</span>
 
         <span class="c1"># Security check (epochs is not outside signal limits)</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">ev</span><span class="o">+</span><span class="nb">round</span><span class="p">(</span><span class="n">tmin</span><span class="o">*</span><span class="n">sfreq</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">ev</span><span class="o">+</span><span class="nb">round</span><span class="p">(</span><span class="n">tmax</span><span class="o">*</span><span class="n">sfreq</span><span class="p">)</span> <span class="o">&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)):</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">ev</span> <span class="o">+</span> <span class="nb">round</span><span class="p">(</span><span class="n">tmin</span> <span class="o">*</span> <span class="n">sfreq</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">ev</span> <span class="o">+</span> <span class="nb">round</span><span class="p">(</span><span class="n">tmax</span> <span class="o">*</span> <span class="n">sfreq</span><span class="p">)</span> <span class="o">&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)):</span>
             <span class="k">if</span> <span class="n">verbose</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
-                <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Drop 1 epoch due to signal limits.&#39;</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Drop 1 epoch due to signal limits.&quot;</span><span class="p">)</span>
             <span class="n">rejected</span> <span class="o">+=</span> <span class="mi">1</span>
             <span class="n">epochs</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
 
         <span class="c1"># Security check (trial contain bad peak)</span>
-        <span class="k">elif</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">reject</span><span class="p">[</span><span class="n">ev</span><span class="o">+</span><span class="nb">round</span><span class="p">(</span><span class="n">tmin</span><span class="o">*</span><span class="n">sfreq</span><span class="p">):</span><span class="n">ev</span><span class="o">+</span><span class="nb">round</span><span class="p">(</span><span class="n">tmax</span><span class="o">*</span><span class="n">sfreq</span><span class="p">)]):</span>
+        <span class="k">elif</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">reject</span><span class="p">[</span><span class="n">ev</span> <span class="o">+</span> <span class="nb">round</span><span class="p">(</span><span class="n">tmin</span> <span class="o">*</span> <span class="n">sfreq</span><span class="p">)</span> <span class="p">:</span> <span class="n">ev</span> <span class="o">+</span> <span class="nb">round</span><span class="p">(</span><span class="n">tmax</span> <span class="o">*</span> <span class="n">sfreq</span><span class="p">)]):</span>
             <span class="k">if</span> <span class="n">verbose</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
-                <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Drop 1 epoch due to artefact.&#39;</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Drop 1 epoch due to artefact.&quot;</span><span class="p">)</span>
             <span class="n">rejected</span> <span class="o">+=</span> <span class="mi">1</span>
             <span class="n">epochs</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">trial</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">ev</span><span class="o">+</span><span class="nb">round</span><span class="p">(</span><span class="n">tmin</span><span class="o">*</span><span class="n">sfreq</span><span class="p">):</span><span class="n">ev</span><span class="o">+</span><span class="nb">round</span><span class="p">(</span><span class="n">tmax</span><span class="o">*</span><span class="n">sfreq</span><span class="p">)]</span>
+            <span class="n">trial</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">ev</span> <span class="o">+</span> <span class="nb">round</span><span class="p">(</span><span class="n">tmin</span> <span class="o">*</span> <span class="n">sfreq</span><span class="p">)</span> <span class="p">:</span> <span class="n">ev</span> <span class="o">+</span> <span class="nb">round</span><span class="p">(</span><span class="n">tmax</span> <span class="o">*</span> <span class="n">sfreq</span><span class="p">)]</span>
             <span class="k">if</span> <span class="n">apply_baseline</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="n">epochs</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">trial</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">apply_baseline</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
-                    <span class="n">baseline</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">ev</span><span class="o">+</span><span class="nb">round</span><span class="p">(</span><span class="n">apply_baseline</span><span class="o">*</span><span class="n">sfreq</span><span class="p">)]</span>
+                    <span class="n">baseline</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">ev</span> <span class="o">+</span> <span class="nb">round</span><span class="p">(</span><span class="n">apply_baseline</span> <span class="o">*</span> <span class="n">sfreq</span><span class="p">)]</span>
                 <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">apply_baseline</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
-                    <span class="n">low</span> <span class="o">=</span> <span class="n">ev</span><span class="o">+</span><span class="nb">round</span><span class="p">(</span><span class="n">apply_baseline</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">sfreq</span><span class="p">)</span>
-                    <span class="n">high</span> <span class="o">=</span> <span class="n">ev</span><span class="o">+</span><span class="nb">round</span><span class="p">(</span><span class="n">apply_baseline</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">sfreq</span><span class="p">)</span>
+                    <span class="n">low</span> <span class="o">=</span> <span class="n">ev</span> <span class="o">+</span> <span class="nb">round</span><span class="p">(</span><span class="n">apply_baseline</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">sfreq</span><span class="p">)</span>
+                    <span class="n">high</span> <span class="o">=</span> <span class="n">ev</span> <span class="o">+</span> <span class="nb">round</span><span class="p">(</span><span class="n">apply_baseline</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">sfreq</span><span class="p">)</span>
                     <span class="n">baseline</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">low</span><span class="p">:</span><span class="n">high</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
                 <span class="n">epochs</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">trial</span> <span class="o">-</span> <span class="n">baseline</span>
 
     <span class="c1"># Print % of rejected items</span>
     <span class="k">if</span> <span class="p">(</span><span class="n">rejected</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">verbose</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">rejected</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; trial(s) droped due to inconsistent recording&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">rejected</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; trial(s) droped due to inconsistent recording&quot;</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">epochs</span></div>
 
 
-<span class="k">def</span> <span class="nf">simulate_rr</span><span class="p">(</span><span class="n">n_rr</span><span class="o">=</span><span class="mi">350</span><span class="p">,</span> <span class="n">extra_idx</span><span class="o">=</span><span class="p">[</span><span class="mi">50</span><span class="p">],</span> <span class="n">missed_idx</span><span class="o">=</span><span class="p">[</span><span class="mi">100</span><span class="p">],</span> <span class="n">short_idx</span><span class="o">=</span><span class="p">[</span><span class="mi">150</span><span class="p">],</span>
-                <span class="n">long_idx</span><span class="o">=</span><span class="p">[</span><span class="mi">200</span><span class="p">],</span> <span class="n">ectopic1_idx</span><span class="o">=</span><span class="p">[</span><span class="mi">250</span><span class="p">],</span> <span class="n">ectopic2_idx</span><span class="o">=</span><span class="p">[</span><span class="mi">300</span><span class="p">],</span>
-                <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">as_peaks</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">artefacts</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; RR time series simulation with artefacts.</span>
+<div class="viewcode-block" id="simulate_rr"><a class="viewcode-back" href="../../generated/utils/systole.utils.simulate_rr.html#systole.simulate_rr">[docs]</a><span class="k">def</span> <span class="nf">simulate_rr</span><span class="p">(</span>
+    <span class="n">n_rr</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">350</span><span class="p">,</span>
+    <span class="n">extra_idx</span><span class="p">:</span> <span class="n">List</span> <span class="o">=</span> <span class="p">[</span><span class="mi">50</span><span class="p">],</span>
+    <span class="n">missed_idx</span><span class="p">:</span> <span class="n">List</span> <span class="o">=</span> <span class="p">[</span><span class="mi">100</span><span class="p">],</span>
+    <span class="n">short_idx</span><span class="p">:</span> <span class="n">List</span> <span class="o">=</span> <span class="p">[</span><span class="mi">150</span><span class="p">],</span>
+    <span class="n">long_idx</span><span class="p">:</span> <span class="n">List</span> <span class="o">=</span> <span class="p">[</span><span class="mi">200</span><span class="p">],</span>
+    <span class="n">ectopic1_idx</span><span class="p">:</span> <span class="n">List</span> <span class="o">=</span> <span class="p">[</span><span class="mi">250</span><span class="p">],</span>
+    <span class="n">ectopic2_idx</span><span class="p">:</span> <span class="n">List</span> <span class="o">=</span> <span class="p">[</span><span class="mi">300</span><span class="p">],</span>
+    <span class="n">random_state</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">42</span><span class="p">,</span>
+    <span class="n">as_peaks</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">artefacts</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;RR time series simulation with artefacts.</span>
 
-<span class="sd">     n_rr : int</span>
+<span class="sd">    n_rr : int</span>
 <span class="sd">        Number of RR intervals. Default is 350.</span>
 <span class="sd">    extra_idx : list</span>
 <span class="sd">        Index of extra interval. Default is [50].</span>
-<span class="sd">     missed_idx : list</span>
+<span class="sd">    missed_idx : list</span>
 <span class="sd">        Index of missed interval. Default is [100].</span>
-<span class="sd">     short_idx : list</span>
+<span class="sd">    short_idx : list</span>
 <span class="sd">        Index of short interval. Default is [150].</span>
 <span class="sd">    long_idx : list</span>
 <span class="sd">        Index of long interval. Default is [200].</span>
@@ -400,14 +438,14 @@
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    rr : 1d array-like</span>
+<span class="sd">    rr : np.ndarray</span>
 <span class="sd">        The RR time series.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">random_state</span><span class="p">)</span>
 
     <span class="n">rr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
-        <span class="p">[</span><span class="mi">800</span> <span class="o">+</span> <span class="mi">50</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="o">.</span><span class="mi">6</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span>
-            <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n_rr</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">))])</span>
+        <span class="p">[</span><span class="mi">800</span> <span class="o">+</span> <span class="mi">50</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n_rr</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">))]</span>
+    <span class="p">)</span>
 
     <span class="k">if</span> <span class="n">artefacts</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
 
@@ -415,7 +453,7 @@
         <span class="k">if</span> <span class="n">extra_idx</span><span class="p">:</span>
             <span class="n">n_extra</span> <span class="o">=</span> <span class="mi">0</span>
             <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">extra_idx</span><span class="p">:</span>
-                <span class="n">rr</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="n">n_extra</span><span class="p">]</span> <span class="o">-=</span> <span class="mi">100</span>
+                <span class="n">rr</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="n">n_extra</span><span class="p">]</span> <span class="o">-=</span> <span class="mi">100</span>
                 <span class="n">rr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">rr</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
                 <span class="n">n_extra</span> <span class="o">+=</span> <span class="mi">1</span>
 
@@ -440,24 +478,87 @@
         <span class="c1"># Add ectopic beat type 1 (NPN)</span>
         <span class="k">if</span> <span class="n">ectopic1_idx</span><span class="p">:</span>
             <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">ectopic1_idx</span><span class="p">:</span>
-                <span class="n">rr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*=</span> <span class="o">.</span><span class="mi">7</span>
-                <span class="n">rr</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">*=</span> <span class="mf">1.3</span>
+                <span class="n">rr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*=</span> <span class="mf">0.7</span>
+                <span class="n">rr</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">*=</span> <span class="mf">1.3</span>
 
         <span class="c1"># Add ectopic beat type 2 (PNP)</span>
         <span class="k">if</span> <span class="n">ectopic2_idx</span><span class="p">:</span>
             <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">ectopic2_idx</span><span class="p">:</span>
                 <span class="n">rr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*=</span> <span class="mf">1.3</span>
-                <span class="n">rr</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">*=</span> <span class="o">.</span><span class="mi">7</span>
+                <span class="n">rr</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">*=</span> <span class="mf">0.7</span>
 
     <span class="c1"># Transform to peaks vector if needed</span>
     <span class="k">if</span> <span class="n">as_peaks</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
-        <span class="n">peaks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">rint</span><span class="p">(</span><span class="n">rr</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">))[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mi">50</span><span class="p">)</span>
+        <span class="n">peaks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">rint</span><span class="p">(</span><span class="n">rr</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">))[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">50</span><span class="p">)</span>
         <span class="n">peaks</span><span class="p">[(</span><span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">rint</span><span class="p">(</span><span class="n">rr</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)))]</span> <span class="o">=</span> <span class="mi">1</span>
         <span class="n">peaks</span> <span class="o">=</span> <span class="n">peaks</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">bool</span><span class="p">)</span>
         <span class="n">peaks</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
         <span class="k">return</span> <span class="n">peaks</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">rr</span>
+        <span class="k">return</span> <span class="n">rr</span></div>
+
+
+<div class="viewcode-block" id="to_neighbour"><a class="viewcode-back" href="../../generated/utils/systole.utils.to_neighbour.html#systole.to_neighbour">[docs]</a><span class="k">def</span> <span class="nf">to_neighbour</span><span class="p">(</span>
+    <span class="n">signal</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">peaks</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">kind</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;max&quot;</span><span class="p">,</span> <span class="n">size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Replace peaks with max/min neighbour in a given window.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    signal : np.ndarray</span>
+<span class="sd">        Signal used to maximize/minimize peaks.</span>
+<span class="sd">    peaks: np.ndarray</span>
+<span class="sd">        Boolean vector of peaks position.</span>
+<span class="sd">    kind : str</span>
+<span class="sd">        Can be &#39;max&#39; or &#39;min&#39;.</span>
+<span class="sd">    size : int</span>
+<span class="sd">        Size of the time window used to find max/min (samples).</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    new_peaks: np.ndarray</span>
+<span class="sd">        Boolean vector of peaks position.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">new_peaks</span> <span class="o">=</span> <span class="n">peaks</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">pk</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">peaks</span><span class="p">)[</span><span class="mi">0</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="n">kind</span> <span class="o">==</span> <span class="s2">&quot;max&quot;</span><span class="p">:</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="n">signal</span><span class="p">[</span><span class="n">pk</span> <span class="o">-</span> <span class="n">size</span> <span class="p">:</span> <span class="n">pk</span> <span class="o">+</span> <span class="n">size</span><span class="p">]</span><span class="o">.</span><span class="n">argmax</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="n">kind</span> <span class="o">==</span> <span class="s2">&quot;min&quot;</span><span class="p">:</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="n">signal</span><span class="p">[</span><span class="n">pk</span> <span class="o">-</span> <span class="n">size</span> <span class="p">:</span> <span class="n">pk</span> <span class="o">+</span> <span class="n">size</span><span class="p">]</span><span class="o">.</span><span class="n">argmin</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Invalid argument, kind should be &quot;</span> <span class="s2">&quot;max&quot;</span> <span class="s2">&quot; or &quot;</span> <span class="s2">&quot;min&quot;</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+
+        <span class="n">new_peaks</span><span class="p">[</span><span class="n">pk</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">new_peaks</span><span class="p">[</span><span class="n">pk</span> <span class="o">+</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">size</span><span class="p">)]</span> <span class="o">=</span> <span class="kc">True</span>
+
+    <span class="k">return</span> <span class="n">new_peaks</span></div>
+
+
+<div class="viewcode-block" id="to_rr"><a class="viewcode-back" href="../../generated/utils/systole.utils.to_rr.html#systole.to_rr">[docs]</a><span class="k">def</span> <span class="nf">to_rr</span><span class="p">(</span><span class="n">peaks</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span> <span class="n">sfreq</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Convert peaks index to intervals time series (RR, beat-to-beat...).</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    peaks : np.ndarray or list</span>
+<span class="sd">        Either a boolean array or sample index. Default is *boolean*. If the</span>
+<span class="sd">        input array does not only contain 0 or 1, will automatically try sample</span>
+<span class="sd">        index.</span>
+<span class="sd">    sfreq : int</span>
+<span class="sd">        The sampling frequency (default is 1000 Hz).</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    rr : np.ndarray</span>
+<span class="sd">        Interval time series (in miliseconds).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">peaks</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+        <span class="n">peaks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">peaks</span><span class="p">)</span>
+    <span class="k">if</span> <span class="p">((</span><span class="n">peaks</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">peaks</span> <span class="o">==</span> <span class="mi">0</span><span class="p">))</span><span class="o">.</span><span class="n">all</span><span class="p">():</span>
+        <span class="n">rr</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">peaks</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span> <span class="o">/</span> <span class="n">sfreq</span><span class="p">)</span> <span class="o">*</span> <span class="mi">1000</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">rr</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">peaks</span><span class="p">)</span> <span class="o">/</span> <span class="n">sfreq</span><span class="p">)</span> <span class="o">*</span> <span class="mi">1000</span>
+
+    <span class="k">return</span> <span class="n">rr</span></div>
 </pre></div>
 
     </div>
@@ -471,8 +572,8 @@
       
     </p>
     <p>
-        &copy; Copyright 2020, Nicolas Legrand.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.3.<br/>
+        &copy; Copyright 2018-2021, Nicolas Legrand.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.5.3.<br/>
     </p>
   </div>
 </footer>

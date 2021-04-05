@@ -1,0 +1,6 @@
+﻿systole.simulate\_rr
+====================
+
+.. currentmodule:: systole
+
+.. autofunction:: simulate_rr

@@ -3,17 +3,19 @@
 <html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>systole.recording.Oximeter &#8212; systole 0.1.1 documentation</title>
-    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../_static/gallery.css" />
     <link rel="stylesheet" type="text/css" href="../_static/gallery-binder.css" />
     <link rel="stylesheet" type="text/css" href="../_static/gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery-rendered-html.css" />
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/language_data.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
 <meta charset='utf-8'>
@@ -114,7 +116,7 @@
 <h1>systole.recording.Oximeter<a class="headerlink" href="#systole-recording-oximeter" title="Permalink to this headline">¶</a></h1>
 <dl class="py class">
 <dt id="systole.recording.Oximeter">
-<em class="property">class </em><code class="sig-prename descclassname">systole.recording.</code><code class="sig-name descname">Oximeter</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">serial</span></em>, <em class="sig-param"><span class="n">sfreq</span><span class="o">=</span><span class="default_value">75</span></em>, <em class="sig-param"><span class="n">add_channels</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/systole/recording.html#Oximeter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#systole.recording.Oximeter" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">systole.recording.</span></code><code class="sig-name descname"><span class="pre">Oximeter</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">serial</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sfreq</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">75</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_channels</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_format</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'2'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/systole/recording.html#Oximeter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#systole.recording.Oximeter" title="Permalink to this definition">¶</a></dt>
 <dd><p>Recording PPG signal with Nonin pulse oximeter.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -125,6 +127,11 @@
 </dd>
 <dt><strong>add_channels</strong><span class="classifier">int</span></dt><dd><p>If int, will create as many additionnal channels. If None, no
 additional channels created.</p>
+</dd>
+<dt><strong>data_format</strong><span class="classifier">str</span></dt><dd><p>Data format returned by the USB dongle (“2” or “7”). See
+<a class="reference external" href="https://www.nonin.com/wp-content/uploads/6000-7000-CP-7602-000-11_ENG.pdf">https://www.nonin.com/wp-content/uploads/6000-7000-CP-7602-000-11_ENG.pdf</a>
+for details. The pulse waveform value is automatically normalized and
+range between 0 and 255 both for data format “2” and “7”.</p>
 </dd>
 </dl>
 </dd>
@@ -138,7 +145,7 @@ USB port where the Nonin Pulse Oximeter is plugged.</p>
 </div>
 <p>This instance is then used to create an <a class="reference internal" href="#systole.recording.Oximeter" title="systole.recording.Oximeter"><code class="xref py py-func docutils literal notranslate"><span class="pre">Oximeter()</span></code></a> instance that
 will be used for the recording.</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ecgrecording</span> <span class="kn">import</span> <span class="n">Oximeter</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ecg.recording</span> <span class="kn">import</span> <span class="n">Oximeter</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">oximeter</span> <span class="o">=</span> <span class="n">Oximeter</span><span class="p">(</span><span class="n">serial</span><span class="o">=</span><span class="n">ser</span><span class="p">,</span> <span class="n">sfreq</span><span class="o">=</span><span class="mi">75</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -223,7 +230,7 @@ defalut value.</p>
 </dl>
 <dl class="py method">
 <dt id="systole.recording.Oximeter.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">serial</span></em>, <em class="sig-param"><span class="n">sfreq</span><span class="o">=</span><span class="default_value">75</span></em>, <em class="sig-param"><span class="n">add_channels</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/systole/recording.html#Oximeter.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#systole.recording.Oximeter.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">__init__</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">serial</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sfreq</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">75</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_channels</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_format</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'2'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/systole/recording.html#Oximeter.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#systole.recording.Oximeter.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
 </dd></dl>
 
@@ -234,40 +241,49 @@ defalut value.</p>
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#systole.recording.Oximeter.__init__" title="systole.recording.Oximeter.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(self, serial[, sfreq, add_channels])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#systole.recording.Oximeter.__init__" title="systole.recording.Oximeter.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(serial[, sfreq, add_channels, …])</p></td>
 <td><p>Initialize self.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_paquet</span></code>(self, paquet[, window])</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_paquet</span></code>(value[, window])</p></td>
 <td><p>Read a portion of data.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">check</span></code>(self, paquet)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">check</span></code>(paquet)</p></td>
 <td><p>Check if the provided paquet is correct</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">find_peaks</span></code>(self, \*\*kwargs)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">data_format2</span></code>(paquet)</p></td>
+<td><p>Extract pulse waveform value for data format 2.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">data_format7</span></code>(paquet)</p></td>
+<td><p>Extract pulse waveform value for data format 7.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">find_peaks</span></code>(**kwargs)</p></td>
 <td><p>Find peaks in recorded signal.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_events</span></code>(self[, ax])</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_events</span></code>([ax])</p></td>
 <td><p>Visualize the distribution of events stored in additional channels.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_hr</span></code>(self[, ax])</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_raw</span></code>([ax])</p></td>
 <td><p>Plot heartrate extracted from PPG recording.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_recording</span></code>(self[, ax])</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_recording</span></code>([ax])</p></td>
 <td><p>Plot recorded signal.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">read</span></code>(self, duration)</p></td>
-<td><p>Find start byte.</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">read</span></code>(duration)</p></td>
+<td><p>Read PPG signal for some amount of time.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">readInWaiting</span></code>(self[, stop])</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">readInWaiting</span></code>([stop])</p></td>
 <td><p>Read in wainting oxi data.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">save</span></code>(self, fname)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">reset</span></code>(serial[, sfreq, add_channels, data_format])</p></td>
+<td><p>Initialize/restart the recording instance.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">save</span></code>(fname)</p></td>
 <td><p>Save the recording instance.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">setup</span></code>(self[, read_duration, clear_peaks])</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">setup</span></code>([read_duration, clear_peaks, nAttempts])</p></td>
 <td><p>Find start byte and read a portion of signal.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">waitBeat</span></code>(self)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">waitBeat</span></code>()</p></td>
 <td><p>Read Oximeter until a heartbeat is detected.</p></td>
 </tr>
 </tbody>
@@ -289,7 +305,7 @@ defalut value.</p>
     </p>
     <p>
         &copy; Copyright 2020, Nicolas Legrand.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.3.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.5.3.<br/>
     </p>
   </div>
 </footer>
