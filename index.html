@@ -1,131 +1,228 @@
+
 <!DOCTYPE html>
 
 <html>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Installation &#8212; systole 0.1.3 documentation</title>
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    <title>Systole documentation &#8212; systole 0.2.0a documentation</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/basic.css" />
     <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="_static/jupyter-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="_static/thebelab.css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/style.css" />
+    <link rel="stylesheet" type="text/css" href="_static/gallery.css" />
     <link rel="stylesheet" type="text/css" href="_static/gallery.css" />
     <link rel="stylesheet" type="text/css" href="_static/gallery-binder.css" />
     <link rel="stylesheet" type="text/css" href="_static/gallery-dataframe.css" />
     <link rel="stylesheet" type="text/css" href="_static/gallery-rendered-html.css" />
-    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/thebelab-helper.js"></script>
+    <script src="_static/togglebutton.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-<meta charset='utf-8'>
-<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
-<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
-<meta name="apple-mobile-web-app-capable" content="yes">
-<script type="text/javascript" src="_static/js/jquery-1.11.0.min.js "></script>
-<script type="text/javascript" src="_static/js/jquery-fix.js "></script>
-<script type="text/javascript" src="_static/bootstrap-3.3.7/js/bootstrap.min.js "></script>
-<script type="text/javascript" src="_static/bootstrap-sphinx.js "></script>
+    <link rel="next" title="Installation" href="getting_started.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
 
-  </head><body>
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
 
-  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
-    <div class="container">
-      <div class="navbar-header">
-        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="#"><span><img src="_static/logo.png"></span>
-          systole</a>
-        <span class="navbar-text navbar-version pull-left"><b></b></span>
-      </div>
+  <div id="navbar-start">
+    
+    
 
-        <div class="collapse navbar-collapse nav-collapse">
-          <ul class="nav navbar-nav">
-            
-                <li><a href="api.html">Functions</a></li>
-                <li><a href="auto_examples/index.html">Tutorials</a></li>
-                <li><a href="https://github.com/embodied-computation-group/systole">GitHub</a></li>
-                <li><a href="changelog.html">What's new</a></li>
-            
-            
-              <li class="dropdown globaltoc-container">
-  <a role="button"
-     id="dLabelGlobalToc"
-     data-toggle="dropdown"
-     data-target="#"
-     href="#">Site <b class="caret"></b></a>
-  <ul class="dropdown-menu globaltoc"
-      role="menu"
-      aria-labelledby="dLabelGlobalToc"></ul>
-</li>
-              
-                <li class="dropdown">
-  <a role="button"
-     id="dLabelLocalToc"
-     data-toggle="dropdown"
-     data-target="#"
-     href="#">Page <b class="caret"></b></a>
-  <ul class="dropdown-menu localtoc"
-      role="menu"
-      aria-labelledby="dLabelLocalToc"><ul>
-<li><a class="reference internal" href="#">Installation</a></li>
-<li><a class="reference internal" href="#tutorial">Tutorial</a></li>
-<li><a class="reference internal" href="#recording">Recording</a></li>
-<li><a class="reference internal" href="#artefact-correction">Artefact correction</a></li>
-<li><a class="reference internal" href="#interactive-visualization">Interactive visualization</a></li>
-<li><a class="reference internal" href="#heartrate-variability">Heartrate variability</a></li>
-<li><a class="reference internal" href="#development">Development</a></li>
-<li><a class="reference internal" href="#contributors">Contributors</a></li>
-<li><a class="reference internal" href="#acknowledgements">Acknowledgements</a></li>
-<li><a class="reference internal" href="#references">References</a></li>
-</ul>
-</ul>
-</li>
-              
-            
-            
-              
-                
-              
-            
-            
-            
-            
-              <li class="hidden-sm">
-<div id="sourcelink">
-  <a href="_sources/index.rst.txt"
-     rel="nofollow">Source</a>
-</div></li>
-            
-          </ul>
+<a class="navbar-brand" href="https://systole-docs.github.io/">
+  <img src="_static/logo.png" class="logo" alt="logo">
+</a>
 
-          
-            
-<form class="navbar-form navbar-right" action="search.html" method="get">
- <div class="form-group">
-  <input type="text" name="q" class="form-control" placeholder="Search" />
- </div>
-  <input type="hidden" name="check_keywords" value="yes" />
-  <input type="hidden" name="area" value="default" />
-</form>
-          
-        </div>
-    </div>
+
+    
   </div>
 
-<div class="container">
-  <div class="row">
-    <div class="body col-md-12 content" role="main">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
       
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="getting_started.html">
+  Installation
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="auto_examples/index.html">
+  Gallery
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="tutorials.html">
+  Tutorials
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="api.html">
+  API reference
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="changelog.html">
+  Release notes
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/embodied-computation-group/systole" rel="noopener" target="_blank" title="GitHub">
+            <span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://twitter.com/visceral_mind" rel="noopener" target="_blank" title="Twitter">
+            <span><i class="fab fa-twitter-square"></i></span>
+            <label class="sr-only">Twitter</label>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://pypi.org/project/systole/" rel="noopener" target="_blank" title="Pypi">
+            <span><i class="fas fa-box"></i></span>
+            <label class="sr-only">Pypi</label>
+          </a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    
+  </div>
+</nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Systole documentation
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#acknowledgements">
+   Acknowledgements
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#development">
+   Development
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#contributors">
+   Contributors
+  </a>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
   <a class="reference external image-reference" href="https://github.com/embodied-computation-group/systole/blob/master/LICENSE"><img alt="https://img.shields.io/badge/License-GPL%20v3-blue.svg" src="https://img.shields.io/badge/License-GPL%20v3-blue.svg" /></a>
 <a class="reference external image-reference" href="https://badge.fury.io/py/systole"><img alt="https://badge.fury.io/py/systole.svg" src="https://badge.fury.io/py/systole.svg" /></a>
 <a class="reference external image-reference" href="https://zenodo.org/badge/latestdoi/219720901"><img alt="https://zenodo.org/badge/219720901.svg" src="https://zenodo.org/badge/219720901.svg" /></a>
@@ -143,90 +240,73 @@
 <p><strong>Systole</strong> is an open-source Python package providing simple tools to record and analyze, cardiac signals for psychophysiology.
 In particular, the package provides tools to pre-process, analyze, and synchronize cardiac data from psychophysiology research.
 This includes tools for data epoching, heart-rate variability, and synchronizing stimulus presentation with different cardiac phases via psychopy.</p>
-<p>The documentation can be found under the following <a class="reference external" href="https://systole-docs.github.io/">link</a>.</p>
-<div class="section" id="installation">
-<h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
-<p>Systole can be installed using pip:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pip install systole
-</pre></div>
+<div class="section" id="systole-documentation">
+<h1>Systole documentation<a class="headerlink" href="#systole-documentation" title="Permalink to this headline">¶</a></h1>
+<div class="sphinx-bs container pb-4 docutils">
+<div class="row docutils">
+<div class="d-flex col-lg-6 col-md-6 col-sm-6 col-xs-12 docutils">
+<div class="card w-100 shadow intro-card text-center docutils">
+<img alt="img-top" class="card-img-top" src="_images/forward-fast-solid.png" />
+<div class="card-header docutils">
+<p class="card-text">Getting started</p>
 </div>
-<p>The following packages are required to use Systole:</p>
-<ul class="simple">
-<li><p><a class="reference external" href="https://numpy.org/">Numpy</a> (&gt;=1.15)</p></li>
-<li><p><a class="reference external" href="https://www.scipy.org/">SciPy</a> (&gt;=1.3.0)</p></li>
-<li><p><a class="reference external" href="https://pandas.pydata.org/">Pandas</a> (&gt;=0.24)</p></li>
-<li><p><a class="reference external" href="https://matplotlib.org/">Matplotlib</a> (&gt;=3.0.2)</p></li>
-<li><p><a class="reference external" href="https://seaborn.pydata.org/">Seaborn</a> (&gt;=0.9.0)</p></li>
-<li><p><a class="reference external" href="https://github.com/berndporr/py-ecg-detectors">py-ecg-detectors</a> (&gt;=1.0.2)</p></li>
-</ul>
-<p>Interactive plotting functions and reports generation will also require the following packages to be installed:</p>
-<ul class="simple">
-<li><p><a class="reference external" href="https://plotly.com/">Plotly</a> (&gt;=4.8.0)</p></li>
-</ul>
+<div class="card-body docutils">
+<p class="card-text">New to <em>Systole</em>? Check out the getting started guides. They contain an
+introduction to <em>Systole’</em> main concepts and links to additional tutorials.</p>
 </div>
-<div class="section" id="tutorial">
-<h1>Tutorial<a class="headerlink" href="#tutorial" title="Permalink to this headline">¶</a></h1>
-<p>For an overview of all the recording functionalities, you can refer to the following examples:</p>
-<ul class="simple">
-<li><p>Recording</p></li>
-<li><p>Artefacts detection and artefacts correction</p></li>
-<li><p>Heart rate variability</p></li>
-</ul>
-<p>For an introduction to Systole and cardiac signal analysis, you can refer to the following tutorial:</p>
-<ul class="simple">
-<li><p>Introduction to cardiac signal analysis - <a class="reference external" href="https://colab.research.google.com/github/LegrandNico/Notebooks/blob/main/IntroductionCardiacSignalAnalysis.ipynb"><img alt="Colab badge" src="https://colab.research.google.com/assets/colab-badge.svg" /></a> - <a class="reference external" href="https://legrandnico.github.io/Notebooks/IntroductionCardiacSignalAnalysis.html">Jupyter Book</a></p></li>
-</ul>
-</div>
-<div class="section" id="recording">
-<h1>Recording<a class="headerlink" href="#recording" title="Permalink to this headline">¶</a></h1>
-<p>Systole natively supports recording of physiological signals from the following setups:
-* <a class="reference external" href="https://www.nonin.com/products/xpod/">Nonin 3012LP Xpod USB pulse oximeter</a> together with the <a class="reference external" href="https://www.nonin.com/products/8000s/">Nonin 8000SM ‘soft-clip’ fingertip sensors</a> (USB).
-* Remote Data Access (RDA) via BrainVision Recorder together with <a class="reference external" href="https://www.brainproducts.com/">Brain product ExG amplifier</a> (Ethernet).</p>
-</div>
-<div class="section" id="artefact-correction">
-<h1>Artefact correction<a class="headerlink" href="#artefact-correction" title="Permalink to this headline">¶</a></h1>
-<p>Systole implements systolic peak detection inspired by van Gent et al. (2019) <a class="footnote-reference brackets" href="#id4" id="id1">1</a> and the artefact rejection method recently proposed by Lipponen &amp; Tarvainen (2019) <a class="footnote-reference brackets" href="#id5" id="id2">2</a>.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">systole</span> <span class="kn">import</span> <span class="n">simulate_rr</span>
-<span class="kn">from</span> <span class="nn">systole.plotting</span> <span class="kn">import</span> <span class="n">plot_subspaces</span>
-
-<span class="n">rr</span> <span class="o">=</span> <span class="n">simulate_rr</span><span class="p">()</span>
-<span class="n">plot_subspaces</span><span class="p">(</span><span class="n">rr</span><span class="p">)</span>
-</pre></div>
-</div>
-<div class="figure align-center">
-<img alt="https://github.com/embodied-computation-group/systole/raw/master/Images/subspaces.png" src="https://github.com/embodied-computation-group/systole/raw/master/Images/subspaces.png" />
+<div class="card-footer docutils">
+<p class="card-text"><a class="sphinx-bs btn text-wrap btn-block btn-secondary stretched-link reference internal" href="getting_started.html"><span class="doc">To the getting started guides</span></a></p>
 </div>
 </div>
-<div class="section" id="interactive-visualization">
-<h1>Interactive visualization<a class="headerlink" href="#interactive-visualization" title="Permalink to this headline">¶</a></h1>
-<p>Systole integrates a set of functions for interactive data visualization based on <a class="reference external" href="https://plotly.com/">Plotly</a>.</p>
-<div class="figure align-center">
-<img alt="https://github.com/embodied-computation-group/systole/raw/master/Images/systole.gif" src="https://github.com/embodied-computation-group/systole/raw/master/Images/systole.gif" />
+</div>
+<div class="d-flex col-lg-6 col-md-6 col-sm-6 col-xs-12 docutils">
+<div class="card w-100 shadow intro-card text-center docutils">
+<img alt="img-top" class="card-img-top" src="_images/table-cells-large-solid.png" />
+<div class="card-header docutils">
+<p class="card-text">Example gallery</p>
+</div>
+<div class="card-body docutils">
+<p class="card-text">See this section for examples of using Systole in different ways.</p>
+</div>
+<div class="card-footer docutils">
+<p class="card-text"><a class="sphinx-bs btn text-wrap btn-block btn-secondary stretched-link reference internal" href="auto_examples/index.html"><span class="doc">To the example gallery</span></a></p>
 </div>
 </div>
-<div class="section" id="heartrate-variability">
-<h1>Heartrate variability<a class="headerlink" href="#heartrate-variability" title="Permalink to this headline">¶</a></h1>
-<p>Systole supports basic time-domain, frequency-domain and non-linear extraction indices.</p>
-<p>All time-domain and non-linear indices have been tested against Kubios HVR 2.2 (&lt;<a class="reference external" href="https://www.kubios.com">https://www.kubios.com</a>&gt;). The frequency-domain indices can slightly differ. We recommend to always check your results against another software.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">systole.plotting</span> <span class="kn">import</span> <span class="n">plot_psd</span>
-
-<span class="n">plot_psd</span><span class="p">(</span><span class="n">rr</span><span class="p">)</span>
-</pre></div>
 </div>
-<div class="figure align-center">
-<img alt="https://github.com/embodied-computation-group/systole/raw/master/Images/psd.png" src="https://github.com/embodied-computation-group/systole/raw/master/Images/psd.png" />
+<div class="d-flex col-lg-6 col-md-6 col-sm-6 col-xs-12 docutils">
+<div class="card w-100 shadow intro-card text-center docutils">
+<img alt="img-top" class="card-img-top" src="_images/tutorials.png" />
+<div class="card-header docutils">
+<p class="card-text">Tutorials</p>
+</div>
+<div class="card-body docutils">
+<p class="card-text">New to cardiac signal analysis? Want to see how you can use <em>Systole</em> when dealing
+with real-world problems? Check out the tutorial notebooks for an introduction to
+theoretical and practical aspects of physiological signal analysis for cognitive
+neuroscience.</p>
+</div>
+<div class="card-footer docutils">
+<p class="card-text"><a class="sphinx-bs btn text-wrap btn-block btn-secondary stretched-link reference internal" href="tutorials.html"><span class="doc">To the tutorial notebooks</span></a></p>
 </div>
 </div>
-<div class="section" id="development">
-<h1>Development<a class="headerlink" href="#development" title="Permalink to this headline">¶</a></h1>
-<p>This module was created and is maintained by Nicolas Legrand and Micah Allen (ECG group, <a class="reference external" href="https://the-ecg.org/">https://the-ecg.org/</a>). If you want to contribute, feel free to contact one of the developers, open an issue or submit a pull request.</p>
-<p>This program is provided with NO WARRANTY OF ANY KIND.</p>
 </div>
-<div class="section" id="contributors">
-<h1>Contributors<a class="headerlink" href="#contributors" title="Permalink to this headline">¶</a></h1>
-<ul class="simple">
-<li><p>Jan C. Brammer (<a class="reference external" href="mailto:jan&#46;c&#46;brammer&#37;&#52;&#48;gmail&#46;com">jan<span>&#46;</span>c<span>&#46;</span>brammer<span>&#64;</span>gmail<span>&#46;</span>com</a>)</p></li>
-</ul>
+<div class="d-flex col-lg-6 col-md-6 col-sm-6 col-xs-12 docutils">
+<div class="card w-100 shadow intro-card text-center docutils">
+<img alt="img-top" class="card-img-top" src="_images/code-solid.png" />
+<div class="card-header docutils">
+<p class="card-text">API reference</p>
+</div>
+<div class="card-body docutils">
+<p class="card-text">The reference guide contains a detailed description of the Systole API. The
+reference describes how the methods work and which parameters can be used.</p>
+</div>
+<div class="card-footer docutils">
+<p class="card-text"><a class="sphinx-bs btn text-wrap btn-block btn-secondary stretched-link reference internal" href="api.html"><span class="doc">To the reference guide</span></a></p>
+</div>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div class="section" id="acknowledgements">
 <h1>Acknowledgements<a class="headerlink" href="#acknowledgements" title="Permalink to this headline">¶</a></h1>
@@ -238,39 +318,60 @@ This includes tools for data epoching, heart-rate variability, and synchronizing
 <li><p>pyHVR: <a class="reference external" href="https://pyhrv.readthedocs.io/en/latest/index.html">https://pyhrv.readthedocs.io/en/latest/index.html</a></p></li>
 <li><p>ECG-detector: <a class="reference external" href="https://github.com/berndporr/py-ecg-detectors">https://github.com/berndporr/py-ecg-detectors</a></p></li>
 <li><p>Pingouin: <a class="reference external" href="https://pingouin-stats.org/">https://pingouin-stats.org/</a></p></li>
+<li><p>NeuroKit2: <a class="reference external" href="https://github.com/neuropsychology/NeuroKit">https://github.com/neuropsychology/NeuroKit</a></p></li>
 </ul>
 </div>
-<div class="section" id="references">
-<h1>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h1>
-<p><strong>Peak detection (PPG signal)</strong></p>
-<dl class="footnote brackets">
-<dt class="label" id="id4"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
-<dd><p>van Gent, P., Farah, H., van Nes, N., &amp; van Arem, B. (2019). HeartPy: A novel heart rate algorithm for the analysis of noisy signals. <em>Transportation Research Part F: Traffic Psychology and Behaviour, 66, 368–378</em>. <a class="reference external" href="https://doi.org/10.1016/j.trf.2019.09.015">https://doi.org/10.1016/j.trf.2019.09.015</a></p>
-</dd>
-</dl>
-<p><strong>Artefact detection and correction:</strong></p>
-<dl class="footnote brackets">
-<dt class="label" id="id5"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
-<dd><p>Lipponen, J. A., &amp; Tarvainen, M. P. (2019). A robust algorithm for heart rate variability time series artefact correction using novel beat classification. <em>Journal of Medical Engineering &amp; Technology, 43(3), 173–181</em>. <a class="reference external" href="https://doi.org/10.1080/03091902.2019.1640306">https://doi.org/10.1080/03091902.2019.1640306</a></p>
-</dd>
-</dl>
+<div class="section" id="development">
+<h1>Development<a class="headerlink" href="#development" title="Permalink to this headline">¶</a></h1>
+<p>This module was created and is maintained by Nicolas Legrand and Micah Allen (ECG group, <a class="reference external" href="https://the-ecg.org/">https://the-ecg.org/</a>). If you want to contribute, feel free to contact one of the developers, open an issue or submit a pull request.</p>
+<p>This program is provided with NO WARRANTY OF ANY KIND.</p>
+</div>
+<div class="section" id="contributors">
+<h1>Contributors<a class="headerlink" href="#contributors" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>Jan C. Brammer (<a class="reference external" href="mailto:jan&#46;c&#46;brammer&#37;&#52;&#48;gmail&#46;com">jan<span>&#46;</span>c<span>&#46;</span>brammer<span>&#64;</span>gmail<span>&#46;</span>com</a>)</p></li>
+<li><p>Gidon Levakov (<a class="reference external" href="mailto:gidonlevakov&#37;&#52;&#48;gmail&#46;com">gidonlevakov<span>&#64;</span>gmail<span>&#46;</span>com</a>)</p></li>
+<li><p>Peter Doggart (<a class="reference external" href="mailto:peter&#46;doggart&#37;&#52;&#48;pulseai&#46;io">peter<span>&#46;</span>doggart<span>&#64;</span>pulseai<span>&#46;</span>io</a>)</p></li>
+</ul>
+<hr class="docutils" />
+<p><a class="reference internal" href="https://github.com/embodied-computation-group/systole/raw/dev/Images/au_clinisk_logo.png"><img alt="AU" src="https://github.com/embodied-computation-group/systole/raw/dev/Images/au_clinisk_logo.png" style="width: 100%;" /></a> <a class="reference internal" href="https://github.com/embodied-computation-group/systole/raw/dev/Images/lundbeckfonden_logo.png"><img alt="lundbeck" src="https://github.com/embodied-computation-group/systole/raw/dev/Images/lundbeckfonden_logo.png" style="width: 10%;" /></a> <a class="reference internal" href="https://github.com/embodied-computation-group/systole/raw/dev/Images/LabLogo.png"><img alt="lab" src="https://github.com/embodied-computation-group/systole/raw/dev/Images/LabLogo.png" style="width: 20%;" /></a></p>
+<div class="toctree-wrapper compound">
+</div>
 </div>
 
 
+              </div>
+              
+              
+              <div class='prev-next-bottom'>
+                
+    <a class='right-next' id="next-link" href="getting_started.html" title="next page">Installation</a>
+
+              </div>
+              
+          </main>
+          
+
+      </div>
     </div>
-      
-  </div>
-</div>
-<footer class="footer">
+  
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  <footer class="footer mt-5 mt-md-0">
   <div class="container">
-    <p class="pull-right">
-      <a href="#">Back to top</a>
-      
-    </p>
-    <p>
-        &copy; Copyright 2020-2021, Nicolas Legrand.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.5.3.<br/>
-    </p>
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2020-2021, Nicolas Legrand.<br/>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.2.0.<br/>
+</p>
+    </div>
+    
   </div>
 </footer>
   </body>

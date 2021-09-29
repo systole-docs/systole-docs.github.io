@@ -47,7 +47,7 @@ Reading
 Recording and plotting your first time-series will only require 5 lines
 of code:
 
-.. GENERATED FROM PYTHON SOURCE LINES 24-39
+.. GENERATED FROM PYTHON SOURCE LINES 24-41
 
 .. code-block:: default
 
@@ -57,28 +57,24 @@ of code:
     import serial
 
     from systole.recording import Oximeter
+    from systole import serialSim
 
-    ser = serial.Serial("COM4")  # Add your USB port here
+    #ser = serial.Serial("COM4")  # Use this line for USB recording
+    ser = serialSim()  # Simulate a device
 
     # Open serial port, initialize and plot recording for Oximeter
     oxi = Oximeter(serial=ser).setup().read(duration=10)
 
     # The signal can be directly plotted using built-in functions.
-    oxi.plot_oximeter()
+    oxi.plot_raw(show_heart_rate=True, figsize=(13, 8))
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 40-43
-
-.. figure::  https://github.com/embodied-computation-group/systole/raw/master/Images/recording.png
-    :align:   center
-#############################################################################
-
-.. GENERATED FROM PYTHON SOURCE LINES 45-47
+.. GENERATED FROM PYTHON SOURCE LINES 42-44
 
 Interfacing with PsychoPy
 -------------------------
 
-.. GENERATED FROM PYTHON SOURCE LINES 47-69
+.. GENERATED FROM PYTHON SOURCE LINES 44-66
 
 .. code-block:: default
 
@@ -89,7 +85,7 @@ Interfacing with PsychoPy
     # of other instructions in the meantime.
 
     # Code 1 {}
-    oximeter.read(duration=10)
+    oxi.read(duration=10)
     # Code 2 {}
 
     # * The ``readInWaiting()`` method will only read the bytes temporally stored
@@ -101,24 +97,24 @@ Interfacing with PsychoPy
 
     tstart = time.time()
     while time.time() - tstart < 10:
-        oximeter.readInWaiting()
+        oxi.readInWaiting()
         # Insert code here {...}
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 70-73
+.. GENERATED FROM PYTHON SOURCE LINES 67-70
 
 Online detection
 ----------------
 Online heart beat detection, for cardiac-stimulus synchrony
 
-.. GENERATED FROM PYTHON SOURCE LINES 73-89
+.. GENERATED FROM PYTHON SOURCE LINES 70-86
 
 .. code-block:: default
 
 
 
-    # Open serial port
-    ser = serial.Serial("COM4")  # Change this value according to your setup
+    #ser = serial.Serial("COM4")  # Use this line for USB recording
+    ser = serialSim()  # Simulate a device
 
     # Create an Oxymeter instance and initialize recording
     oxi = Oximeter(serial=ser, sfreq=75, add_channels=4).setup()

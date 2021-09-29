@@ -1,115 +1,185 @@
+
 <!DOCTYPE html>
 
 <html>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>systole.correction &#8212; systole 0.1.3 documentation</title>
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
+    <title>systole.correction &#8212; systole 0.2.0a documentation</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/basic.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/jupyter-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/thebelab.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/style.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/gallery.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/gallery.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/gallery-binder.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/gallery-dataframe.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/gallery-rendered-html.css" />
-    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/thebelab-helper.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-<meta charset='utf-8'>
-<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
-<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
-<meta name="apple-mobile-web-app-capable" content="yes">
-<script type="text/javascript" src="../../_static/js/jquery-1.11.0.min.js "></script>
-<script type="text/javascript" src="../../_static/js/jquery-fix.js "></script>
-<script type="text/javascript" src="../../_static/bootstrap-3.3.7/js/bootstrap.min.js "></script>
-<script type="text/javascript" src="../../_static/bootstrap-sphinx.js "></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
 
-  </head><body>
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
 
-  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
-    <div class="container">
-      <div class="navbar-header">
-        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="../../index.html"><span><img src="../../_static/logo.png"></span>
-          systole</a>
-        <span class="navbar-text navbar-version pull-left"><b></b></span>
-      </div>
+  <div id="navbar-start">
+    
+    
 
-        <div class="collapse navbar-collapse nav-collapse">
-          <ul class="nav navbar-nav">
-            
-                <li><a href="../../api.html">Functions</a></li>
-                <li><a href="../../auto_examples/index.html">Tutorials</a></li>
-                <li><a href="https://github.com/embodied-computation-group/systole">GitHub</a></li>
-                <li><a href="../../changelog.html">What's new</a></li>
-            
-            
-              <li class="dropdown globaltoc-container">
-  <a role="button"
-     id="dLabelGlobalToc"
-     data-toggle="dropdown"
-     data-target="#"
-     href="../../index.html">Site <b class="caret"></b></a>
-  <ul class="dropdown-menu globaltoc"
-      role="menu"
-      aria-labelledby="dLabelGlobalToc"></ul>
-</li>
-              
-                <li class="dropdown">
-  <a role="button"
-     id="dLabelLocalToc"
-     data-toggle="dropdown"
-     data-target="#"
-     href="#">Page <b class="caret"></b></a>
-  <ul class="dropdown-menu localtoc"
-      role="menu"
-      aria-labelledby="dLabelLocalToc"></ul>
-</li>
-              
-            
-            
-              
-                
-              
-            
-            
-            
-            
-              <li class="hidden-sm"></li>
-            
-          </ul>
+<a class="navbar-brand" href="https://systole-docs.github.io/">
+  <img src="../../_static/logo.png" class="logo" alt="logo">
+</a>
 
-          
-            
-<form class="navbar-form navbar-right" action="../../search.html" method="get">
- <div class="form-group">
-  <input type="text" name="q" class="form-control" placeholder="Search" />
- </div>
-  <input type="hidden" name="check_keywords" value="yes" />
-  <input type="hidden" name="area" value="default" />
-</form>
-          
-        </div>
-    </div>
+
+    
   </div>
 
-<div class="container">
-  <div class="row">
-    <div class="body col-md-12 content" role="main">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
       
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../getting_started.html">
+  Installation
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../auto_examples/index.html">
+  Gallery
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../tutorials.html">
+  Tutorials
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../api.html">
+  API reference
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../changelog.html">
+  Release notes
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/embodied-computation-group/systole" rel="noopener" target="_blank" title="GitHub">
+            <span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://twitter.com/visceral_mind" rel="noopener" target="_blank" title="Twitter">
+            <span><i class="fab fa-twitter-square"></i></span>
+            <label class="sr-only">Twitter</label>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://pypi.org/project/systole/" rel="noopener" target="_blank" title="Pypi">
+            <span><i class="fas fa-box"></i></span>
+            <label class="sr-only">Pypi</label>
+          </a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    
+  </div>
+</nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
   <h1>Source code for systole.correction</h1><div class="highlight"><pre>
 <span></span><span class="c1"># Author: Nicolas Legrand &lt;nicolas.legrand@cfin.au.dk&gt;</span>
 
@@ -119,6 +189,7 @@
 <span class="kn">from</span> <span class="nn">scipy.interpolate</span> <span class="kn">import</span> <span class="n">interp1d</span>
 
 <span class="kn">from</span> <span class="nn">systole.detection</span> <span class="kn">import</span> <span class="n">rr_artefacts</span>
+<span class="kn">from</span> <span class="nn">systole.utils</span> <span class="kn">import</span> <span class="n">input_conversion</span>
 
 
 <div class="viewcode-block" id="correct_extra"><a class="viewcode-back" href="../../generated/correction/systole.correction.correct_extra.html#systole.correction.correct_extra">[docs]</a><span class="k">def</span> <span class="nf">correct_extra</span><span class="p">(</span><span class="n">rr</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span> <span class="n">idx</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
@@ -217,30 +288,42 @@
     <span class="n">short_correction</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
     <span class="n">long_correction</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
     <span class="n">ectopic_correction</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">n_iterations</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="n">input_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;rr_ms&quot;</span><span class="p">,</span>
+    <span class="n">verbose</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]]:</span>
     <span class="sd">&quot;&quot;&quot;Correct long and short beats using interpolation.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    rr : 1d array-like</span>
+<span class="sd">    rr : np.ndarray</span>
 <span class="sd">        RR intervals (ms).</span>
-<span class="sd">    correct_extra : boolean</span>
-<span class="sd">      If `True`, correct extra beats in the RR time series.</span>
-<span class="sd">    correct_missed : boolean</span>
-<span class="sd">      If `True`, correct missed beats in the RR time series.</span>
-<span class="sd">    correct_short : boolean</span>
-<span class="sd">      If `True`, correct short beats in the RR time series.</span>
-<span class="sd">    correct_long : boolean</span>
-<span class="sd">      If `True`, correct long beats in the RR time series.</span>
-<span class="sd">    correct_ectopic : boolean</span>
-<span class="sd">      If `True`, correct ectopic beats in the RR time series.</span>
+<span class="sd">    extra_correction : bool</span>
+<span class="sd">      If `True` (deault), correct extra beats in the RR time series.</span>
+<span class="sd">    missed_correction : bool</span>
+<span class="sd">      If `True` (deault), correct missed beats in the RR time series.</span>
+<span class="sd">    short_correction : bool</span>
+<span class="sd">      If `True` (deault), correct short beats in the RR time series.</span>
+<span class="sd">    long_correction : bool</span>
+<span class="sd">      If `True` (deault), correct long beats in the RR time series.</span>
+<span class="sd">    ectopic_correction : bool</span>
+<span class="sd">      If `True` (deault), correct ectopic beats in the RR time series.</span>
+<span class="sd">    n_iterations : int</span>
+<span class="sd">        How many time to repeat the detection-correction process. Defaults to `2`.</span>
+<span class="sd">    input_type : str</span>
+<span class="sd">        The type of input vector. Default is `&quot;rr_ms&quot;` (a boolean vector where</span>
+<span class="sd">        `1` represents the occurrence of R waves or systolic peaks).</span>
+<span class="sd">        Can also be `&quot;peaks_idx&quot;`, the idexs of samples where a peaks is detected,</span>
+<span class="sd">        `&quot;peaks&quot;`, or `&quot;rr_s&quot;` for vectors of RR intervals expressed in seconds.</span>
+<span class="sd">    verbose : bool</span>
+<span class="sd">        Control the verbosity of the function. Defaults to `True`.</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">    correction : dictionnary</span>
 <span class="sd">        The corrected RR time series and the number of artefacts corrected:</span>
 
-<span class="sd">        * clean_rr: 1d array-like</span>
+<span class="sd">        * clean_rr: np.ndarray</span>
 <span class="sd">            The corrected RR time-serie.</span>
 <span class="sd">        * ectopic: int</span>
 <span class="sd">            The number of ectopic beats corrected.</span>
@@ -252,56 +335,107 @@
 <span class="sd">            The number of extra beats corrected.</span>
 <span class="sd">        * missed: int</span>
 <span class="sd">            The number of missed beats corrected.</span>
+
+<span class="sd">    See also</span>
+<span class="sd">    --------</span>
+<span class="sd">    correct_peaks</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">rr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">rr</span><span class="p">)</span>
 
+    <span class="k">if</span> <span class="n">input_type</span> <span class="o">!=</span> <span class="s2">&quot;rr_ms&quot;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">input_type</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;peaks&quot;</span><span class="p">,</span> <span class="s2">&quot;rr_s&quot;</span><span class="p">,</span> <span class="s2">&quot;peaks_idx&quot;</span><span class="p">]:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Invalid input type&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">rr</span> <span class="o">=</span> <span class="n">input_conversion</span><span class="p">(</span><span class="n">rr</span><span class="p">,</span> <span class="n">input_type</span><span class="o">=</span><span class="n">input_type</span><span class="p">,</span> <span class="n">output_type</span><span class="o">=</span><span class="s2">&quot;rr_ms&quot;</span><span class="p">)</span>
+
     <span class="n">clean_rr</span> <span class="o">=</span> <span class="n">rr</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-    <span class="n">nEctopic</span><span class="p">,</span> <span class="n">nShort</span><span class="p">,</span> <span class="n">nLong</span><span class="p">,</span> <span class="n">nExtra</span><span class="p">,</span> <span class="n">nMissed</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
 
     <span class="n">artefacts</span> <span class="o">=</span> <span class="n">rr_artefacts</span><span class="p">(</span><span class="n">clean_rr</span><span class="p">)</span>
 
-    <span class="c1"># Correct missed beats</span>
-    <span class="k">if</span> <span class="n">missed_correction</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">artefacts</span><span class="p">[</span><span class="s2">&quot;missed&quot;</span><span class="p">]):</span>
-            <span class="k">for</span> <span class="n">this_id</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">artefacts</span><span class="p">[</span><span class="s2">&quot;missed&quot;</span><span class="p">])[</span><span class="mi">0</span><span class="p">]:</span>
-                <span class="n">this_id</span> <span class="o">+=</span> <span class="n">nMissed</span>
-                <span class="n">clean_rr</span> <span class="o">=</span> <span class="n">correct_missed</span><span class="p">(</span><span class="n">clean_rr</span><span class="p">,</span> <span class="n">this_id</span><span class="p">)</span>
-                <span class="n">nMissed</span> <span class="o">+=</span> <span class="mi">1</span>
-        <span class="n">artefacts</span> <span class="o">=</span> <span class="n">rr_artefacts</span><span class="p">(</span><span class="n">clean_rr</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Cleaning the RR interval time series using </span><span class="si">{</span><span class="n">n_iterations</span><span class="si">}</span><span class="s2"> iterations.&quot;</span><span class="p">)</span>
 
-    <span class="c1"># Correct extra beats</span>
-    <span class="k">if</span> <span class="n">extra_correction</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">artefacts</span><span class="p">[</span><span class="s2">&quot;extra&quot;</span><span class="p">]):</span>
-            <span class="k">for</span> <span class="n">this_id</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">artefacts</span><span class="p">[</span><span class="s2">&quot;extra&quot;</span><span class="p">])[</span><span class="mi">0</span><span class="p">]:</span>
-                <span class="n">this_id</span> <span class="o">-=</span> <span class="n">nExtra</span>
-                <span class="n">clean_rr</span> <span class="o">=</span> <span class="n">correct_missed</span><span class="p">(</span><span class="n">clean_rr</span><span class="p">,</span> <span class="n">this_id</span><span class="p">)</span>
-                <span class="n">nExtra</span> <span class="o">+=</span> <span class="mi">1</span>
-        <span class="n">artefacts</span> <span class="o">=</span> <span class="n">rr_artefacts</span><span class="p">(</span><span class="n">clean_rr</span><span class="p">)</span>
+    <span class="n">nEctopic</span><span class="p">,</span> <span class="n">nShort</span><span class="p">,</span> <span class="n">nLong</span><span class="p">,</span> <span class="n">nExtra</span><span class="p">,</span> <span class="n">nMissed</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
 
-    <span class="c1"># Correct ectopic beats</span>
-    <span class="k">if</span> <span class="n">ectopic_correction</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">artefacts</span><span class="p">[</span><span class="s2">&quot;ectopic&quot;</span><span class="p">]):</span>
-            <span class="c1"># Also correct the beat before</span>
-            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">artefacts</span><span class="p">[</span><span class="s2">&quot;ectopic&quot;</span><span class="p">])[</span><span class="mi">0</span><span class="p">]:</span>
-                <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">artefacts</span><span class="p">[</span><span class="s2">&quot;ectopic&quot;</span><span class="p">])):</span>
-                    <span class="n">artefacts</span><span class="p">[</span><span class="s2">&quot;ectopic&quot;</span><span class="p">][</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
-            <span class="n">this_id</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">artefacts</span><span class="p">[</span><span class="s2">&quot;ectopic&quot;</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span>
-            <span class="n">clean_rr</span> <span class="o">=</span> <span class="n">interpolate_bads</span><span class="p">(</span><span class="n">clean_rr</span><span class="p">,</span> <span class="p">[</span><span class="n">this_id</span><span class="p">])</span>
-            <span class="n">nEctopic</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">artefacts</span><span class="p">[</span><span class="s2">&quot;ectopic&quot;</span><span class="p">])</span>  <span class="c1"># type: ignore</span>
+    <span class="c1"># Loop across n_iterations and perform the requested corrections</span>
+    <span class="k">for</span> <span class="n">n_it</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_iterations</span><span class="p">):</span>
 
-    <span class="c1"># Correct short beats</span>
-    <span class="k">if</span> <span class="n">short_correction</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">artefacts</span><span class="p">[</span><span class="s2">&quot;short&quot;</span><span class="p">]):</span>
-            <span class="n">this_id</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">artefacts</span><span class="p">[</span><span class="s2">&quot;short&quot;</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span>
-            <span class="n">clean_rr</span> <span class="o">=</span> <span class="n">interpolate_bads</span><span class="p">(</span><span class="n">clean_rr</span><span class="p">,</span> <span class="n">this_id</span><span class="p">)</span>
-            <span class="n">nShort</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">this_id</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot; - Iteration </span><span class="si">{</span><span class="n">n_it</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2"> - &quot;</span><span class="p">)</span>
 
-    <span class="c1"># Correct long beats</span>
-    <span class="k">if</span> <span class="n">long_correction</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">artefacts</span><span class="p">[</span><span class="s2">&quot;long&quot;</span><span class="p">]):</span>
-            <span class="n">this_id</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">artefacts</span><span class="p">[</span><span class="s2">&quot;long&quot;</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span>
-            <span class="n">clean_rr</span> <span class="o">=</span> <span class="n">interpolate_bads</span><span class="p">(</span><span class="n">clean_rr</span><span class="p">,</span> <span class="n">this_id</span><span class="p">)</span>
-            <span class="n">nLong</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">this_id</span><span class="p">)</span>
+        <span class="c1"># Correct missed beats</span>
+        <span class="k">if</span> <span class="n">missed_correction</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">artefacts</span><span class="p">[</span><span class="s2">&quot;missed&quot;</span><span class="p">]):</span>
+                <span class="n">this_nmissed</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># How many corrected missed beat this iteration</span>
+                <span class="k">for</span> <span class="n">this_id</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">artefacts</span><span class="p">[</span><span class="s2">&quot;missed&quot;</span><span class="p">])[</span><span class="mi">0</span><span class="p">]:</span>
+                    <span class="n">this_id</span> <span class="o">+=</span> <span class="p">(</span>
+                        <span class="n">this_nmissed</span>  <span class="c1"># Adjust idx according to previous corrections</span>
+                    <span class="p">)</span>
+                    <span class="n">clean_rr</span> <span class="o">=</span> <span class="n">correct_missed</span><span class="p">(</span><span class="n">clean_rr</span><span class="p">,</span> <span class="n">this_id</span><span class="p">)</span>
+                    <span class="n">this_nmissed</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;... correcting </span><span class="si">{</span><span class="n">this_nmissed</span><span class="si">}</span><span class="s2"> missed interval(s).&quot;</span><span class="p">)</span>
+                <span class="n">nMissed</span> <span class="o">+=</span> <span class="n">this_nmissed</span>  <span class="c1"># Update the total of corrected missed beats</span>
+                <span class="n">artefacts</span> <span class="o">=</span> <span class="n">rr_artefacts</span><span class="p">(</span><span class="n">clean_rr</span><span class="p">)</span>
+
+        <span class="c1"># Correct extra beats</span>
+        <span class="k">if</span> <span class="n">extra_correction</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">artefacts</span><span class="p">[</span><span class="s2">&quot;extra&quot;</span><span class="p">]):</span>
+                <span class="n">this_nextra</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># How many corrected extra beat this iteration</span>
+                <span class="k">for</span> <span class="n">this_id</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">artefacts</span><span class="p">[</span><span class="s2">&quot;extra&quot;</span><span class="p">])[</span><span class="mi">0</span><span class="p">]:</span>
+                    <span class="n">this_id</span> <span class="o">-=</span> <span class="p">(</span>
+                        <span class="n">this_nextra</span>  <span class="c1"># Adjust idx according to previous corrections</span>
+                    <span class="p">)</span>
+                    <span class="n">clean_rr</span> <span class="o">=</span> <span class="n">correct_extra</span><span class="p">(</span><span class="n">clean_rr</span><span class="p">,</span> <span class="n">this_id</span><span class="p">)</span>
+                    <span class="n">this_nextra</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;... correcting </span><span class="si">{</span><span class="n">this_nextra</span><span class="si">}</span><span class="s2"> extra interval(s).&quot;</span><span class="p">)</span>
+                <span class="n">nExtra</span> <span class="o">+=</span> <span class="n">this_nextra</span>  <span class="c1"># Update the total of corrected missed beats</span>
+                <span class="n">artefacts</span> <span class="o">=</span> <span class="n">rr_artefacts</span><span class="p">(</span><span class="n">clean_rr</span><span class="p">)</span>
+
+        <span class="c1"># Correct ectopic beats</span>
+        <span class="k">if</span> <span class="n">ectopic_correction</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">artefacts</span><span class="p">[</span><span class="s2">&quot;ectopic&quot;</span><span class="p">]):</span>
+                <span class="c1"># Also correct the beat before</span>
+                <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">artefacts</span><span class="p">[</span><span class="s2">&quot;ectopic&quot;</span><span class="p">])[</span><span class="mi">0</span><span class="p">]:</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">artefacts</span><span class="p">[</span><span class="s2">&quot;ectopic&quot;</span><span class="p">])):</span>
+                        <span class="n">artefacts</span><span class="p">[</span><span class="s2">&quot;ectopic&quot;</span><span class="p">][</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+                <span class="n">this_id</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">artefacts</span><span class="p">[</span><span class="s2">&quot;ectopic&quot;</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="n">clean_rr</span> <span class="o">=</span> <span class="n">interpolate_bads</span><span class="p">(</span><span class="n">clean_rr</span><span class="p">,</span> <span class="p">[</span><span class="n">this_id</span><span class="p">])</span>
+                <span class="n">this_nectopic</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">artefacts</span><span class="p">[</span><span class="s2">&quot;ectopic&quot;</span><span class="p">])</span>  <span class="c1"># type: ignore</span>
+                <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;... correcting </span><span class="si">{</span><span class="n">this_nectopic</span><span class="si">}</span><span class="s2"> ectopic interval(s).&quot;</span><span class="p">)</span>
+                <span class="n">artefacts</span> <span class="o">=</span> <span class="n">rr_artefacts</span><span class="p">(</span><span class="n">clean_rr</span><span class="p">)</span>
+                <span class="n">nEctopic</span> <span class="o">+=</span> <span class="p">(</span>
+                    <span class="n">this_nectopic</span>  <span class="c1"># Update the total number of corrected ectopic beats</span>
+                <span class="p">)</span>
+
+        <span class="c1"># Correct short beats</span>
+        <span class="k">if</span> <span class="n">short_correction</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">artefacts</span><span class="p">[</span><span class="s2">&quot;short&quot;</span><span class="p">]):</span>
+                <span class="n">this_nshort</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># How many corrected short beat this iteration</span>
+                <span class="n">this_id</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">artefacts</span><span class="p">[</span><span class="s2">&quot;short&quot;</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="n">clean_rr</span> <span class="o">=</span> <span class="n">interpolate_bads</span><span class="p">(</span><span class="n">clean_rr</span><span class="p">,</span> <span class="n">this_id</span><span class="p">)</span>
+                <span class="n">this_nshort</span> <span class="o">+=</span> <span class="n">this_id</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;... correcting </span><span class="si">{</span><span class="n">this_nshort</span><span class="si">}</span><span class="s2"> short interval(s).&quot;</span><span class="p">)</span>
+                <span class="n">artefacts</span> <span class="o">=</span> <span class="n">rr_artefacts</span><span class="p">(</span><span class="n">clean_rr</span><span class="p">)</span>
+                <span class="n">nShort</span> <span class="o">+=</span> <span class="p">(</span>
+                    <span class="n">this_nshort</span>  <span class="c1"># Update the total number of corrected short beats</span>
+                <span class="p">)</span>
+
+        <span class="c1"># Correct long beats</span>
+        <span class="k">if</span> <span class="n">long_correction</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">artefacts</span><span class="p">[</span><span class="s2">&quot;long&quot;</span><span class="p">]):</span>
+                <span class="n">this_nlong</span> <span class="o">=</span> <span class="mi">0</span>
+                <span class="n">this_id</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">artefacts</span><span class="p">[</span><span class="s2">&quot;long&quot;</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="n">clean_rr</span> <span class="o">=</span> <span class="n">interpolate_bads</span><span class="p">(</span><span class="n">clean_rr</span><span class="p">,</span> <span class="n">this_id</span><span class="p">)</span>
+                <span class="n">this_nlong</span> <span class="o">+=</span> <span class="n">this_id</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;... correcting </span><span class="si">{</span><span class="n">this_nlong</span><span class="si">}</span><span class="s2"> long interval(s).&quot;</span><span class="p">)</span>
+                <span class="n">artefacts</span> <span class="o">=</span> <span class="n">rr_artefacts</span><span class="p">(</span><span class="n">clean_rr</span><span class="p">)</span>
+                <span class="n">nLong</span> <span class="o">+=</span> <span class="n">this_nlong</span>  <span class="c1"># Update the total number of corrected long beats</span>
 
     <span class="k">return</span> <span class="p">{</span>
         <span class="s2">&quot;clean_rr&quot;</span><span class="p">:</span> <span class="n">clean_rr</span><span class="p">,</span>
@@ -315,141 +449,195 @@
 
 <div class="viewcode-block" id="correct_peaks"><a class="viewcode-back" href="../../generated/correction/systole.correction.correct_peaks.html#systole.correction.correct_peaks">[docs]</a><span class="k">def</span> <span class="nf">correct_peaks</span><span class="p">(</span>
     <span class="n">peaks</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span>
+    <span class="n">input_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;peaks&quot;</span><span class="p">,</span>
     <span class="n">extra_correction</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
     <span class="n">missed_correction</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">n_iterations</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="n">verbose</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]]:</span>
     <span class="sd">&quot;&quot;&quot;Correct long, short, extra, missed and ectopic beats in peaks vector.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    peaks : 1d array-like</span>
+<span class="sd">    peaks : np.ndarray</span>
 <span class="sd">        Boolean vector of peaks.</span>
+<span class="sd">    input_type : str</span>
+<span class="sd">            The type of input vector. Defaults to `&quot;rr_ms&quot;` for vectors of RR</span>
+<span class="sd">            intervals, or  interbeat intervals (IBI), expressed in milliseconds.</span>
+<span class="sd">            Can also be a boolean vector where `1` represents the occurrence of</span>
+<span class="sd">            R waves or systolic peakspeaks vector `&quot;rr_s&quot;` or IBI expressed in</span>
+<span class="sd">            seconds.</span>
+<span class="sd">    extra_correction : bool</span>
+<span class="sd">      If `True` (default), correct extra peaks in the peaks time series.</span>
+<span class="sd">    missed_correction : bool</span>
+<span class="sd">      If `True` (default), correct missed peaks in the peaks time series.</span>
+<span class="sd">    n_iterations : int</span>
+<span class="sd">        How many time to repeat the detection-correction process. Defaults to `2`.</span>
+<span class="sd">    verbose : bool</span>
+<span class="sd">        Control the verbosity of the function. Defaults to `True`.</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">    correction : dictionnary</span>
 <span class="sd">        The corrected RR time series and the number of artefacts corrected:</span>
 
-<span class="sd">        * clean_peaks: 1d array-like</span>
+<span class="sd">        * clean_peaks: np.ndarray</span>
 <span class="sd">            The corrected boolean time-serie.</span>
-<span class="sd">        * ectopic: int</span>
-<span class="sd">            The number of ectopic beats corrected.</span>
-<span class="sd">        * short: int</span>
-<span class="sd">            The number of short beats corrected.</span>
-<span class="sd">        * long: int</span>
-<span class="sd">            The number of long beats corrcted.</span>
 <span class="sd">        * extra: int</span>
 <span class="sd">            The number of extra beats corrected.</span>
 <span class="sd">        * missed: int</span>
 <span class="sd">            The number of missed beats corrected.</span>
+
+<span class="sd">    See also</span>
+<span class="sd">    --------</span>
+<span class="sd">    correct_rr</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    This function wil operate at the `peaks` vector level to keep the length of the</span>
+<span class="sd">    signal constant after peaks correction.</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">peaks</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
-        <span class="n">peaks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">peaks</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span>
+
+    <span class="n">peaks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">peaks</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">input_type</span> <span class="o">!=</span> <span class="s2">&quot;peaks&quot;</span><span class="p">:</span>
+        <span class="n">peaks</span> <span class="o">=</span> <span class="n">input_conversion</span><span class="p">(</span><span class="n">peaks</span><span class="p">,</span> <span class="n">input_type</span><span class="p">,</span> <span class="n">output_type</span><span class="o">=</span><span class="s2">&quot;peaks&quot;</span><span class="p">)</span>
 
     <span class="n">clean_peaks</span> <span class="o">=</span> <span class="n">peaks</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-    <span class="n">nEctopic</span><span class="p">,</span> <span class="n">nShort</span><span class="p">,</span> <span class="n">nLong</span><span class="p">,</span> <span class="n">nExtra</span><span class="p">,</span> <span class="n">nMissed</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
+    <span class="n">nExtra</span><span class="p">,</span> <span class="n">nMissed</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
 
-    <span class="n">artefacts</span> <span class="o">=</span> <span class="n">rr_artefacts</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">clean_peaks</span><span class="p">)[</span><span class="mi">0</span><span class="p">]))</span>
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Cleaning the peaks vector using </span><span class="si">{</span><span class="n">n_iterations</span><span class="si">}</span><span class="s2"> iterations.&quot;</span><span class="p">)</span>
 
-    <span class="c1"># Correct missed beats</span>
-    <span class="k">if</span> <span class="n">missed_correction</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">artefacts</span><span class="p">[</span><span class="s2">&quot;missed&quot;</span><span class="p">]):</span>
-            <span class="k">for</span> <span class="n">this_id</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">artefacts</span><span class="p">[</span><span class="s2">&quot;missed&quot;</span><span class="p">])[</span><span class="mi">0</span><span class="p">]:</span>
-                <span class="n">this_id</span> <span class="o">+=</span> <span class="n">nMissed</span>
-                <span class="n">clean_peaks</span> <span class="o">=</span> <span class="n">correct_missed_peaks</span><span class="p">(</span><span class="n">clean_peaks</span><span class="p">,</span> <span class="n">this_id</span><span class="p">)</span>
-                <span class="n">nMissed</span> <span class="o">+=</span> <span class="mi">1</span>
-        <span class="n">artefacts</span> <span class="o">=</span> <span class="n">rr_artefacts</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">clean_peaks</span><span class="p">)[</span><span class="mi">0</span><span class="p">]))</span>
+    <span class="k">for</span> <span class="n">n_it</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_iterations</span><span class="p">):</span>
 
-    <span class="c1"># Correct extra beats</span>
-    <span class="k">if</span> <span class="n">extra_correction</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">artefacts</span><span class="p">[</span><span class="s2">&quot;extra&quot;</span><span class="p">]):</span>
-            <span class="k">for</span> <span class="n">this_id</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">artefacts</span><span class="p">[</span><span class="s2">&quot;extra&quot;</span><span class="p">])[</span><span class="mi">0</span><span class="p">]:</span>
-                <span class="n">this_id</span> <span class="o">-=</span> <span class="n">nExtra</span>
-                <span class="n">clean_peaks</span> <span class="o">=</span> <span class="n">correct_extra_peaks</span><span class="p">(</span><span class="n">clean_peaks</span><span class="p">,</span> <span class="n">this_id</span><span class="p">)</span>
-                <span class="n">nExtra</span> <span class="o">+=</span> <span class="mi">1</span>
-        <span class="n">artefacts</span> <span class="o">=</span> <span class="n">rr_artefacts</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">clean_peaks</span><span class="p">)[</span><span class="mi">0</span><span class="p">]))</span>
+        <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot; - Iteration </span><span class="si">{</span><span class="n">n_it</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2"> - &quot;</span><span class="p">)</span>
+
+        <span class="c1"># Correct extra peaks</span>
+        <span class="k">if</span> <span class="n">extra_correction</span><span class="p">:</span>
+
+            <span class="c1"># Artefact detection</span>
+            <span class="n">artefacts</span> <span class="o">=</span> <span class="n">rr_artefacts</span><span class="p">(</span><span class="n">clean_peaks</span><span class="p">,</span> <span class="n">input_type</span><span class="o">=</span><span class="s2">&quot;peaks&quot;</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">artefacts</span><span class="p">[</span><span class="s2">&quot;extra&quot;</span><span class="p">]):</span>
+
+                <span class="n">peaks_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">clean_peaks</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">:]</span>
+
+                <span class="c1"># Convert the RR interval idx to sample idx</span>
+                <span class="n">extra_idx</span> <span class="o">=</span> <span class="n">peaks_idx</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">artefacts</span><span class="p">[</span><span class="s2">&quot;extra&quot;</span><span class="p">])[</span><span class="mi">0</span><span class="p">]]</span>
+
+                <span class="c1"># Number of extra peaks to correct</span>
+                <span class="n">this_nextra</span> <span class="o">=</span> <span class="n">artefacts</span><span class="p">[</span><span class="s2">&quot;extra&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+                <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;... correcting </span><span class="si">{</span><span class="n">this_nextra</span><span class="si">}</span><span class="s2"> extra peak(s).&quot;</span><span class="p">)</span>
+
+                <span class="n">nExtra</span> <span class="o">+=</span> <span class="n">this_nextra</span>
+
+                <span class="c1"># Removing peak n+1 to correct RR interval n</span>
+                <span class="n">clean_peaks</span><span class="p">[</span><span class="n">extra_idx</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+
+                <span class="n">artefacts</span> <span class="o">=</span> <span class="n">rr_artefacts</span><span class="p">(</span><span class="n">clean_peaks</span><span class="p">,</span> <span class="n">input_type</span><span class="o">=</span><span class="s2">&quot;peaks&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Correct missed peaks</span>
+        <span class="k">if</span> <span class="n">missed_correction</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">artefacts</span><span class="p">[</span><span class="s2">&quot;missed&quot;</span><span class="p">]):</span>
+
+                <span class="n">peaks_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">clean_peaks</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">:]</span>
+
+                <span class="c1"># Convert the RR interval idx to sample idx</span>
+                <span class="n">missed_idx</span> <span class="o">=</span> <span class="n">peaks_idx</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">artefacts</span><span class="p">[</span><span class="s2">&quot;missed&quot;</span><span class="p">])[</span><span class="mi">0</span><span class="p">]]</span>
+
+                <span class="c1"># Number of missed peaks to correct</span>
+                <span class="n">this_nmissed</span> <span class="o">=</span> <span class="n">artefacts</span><span class="p">[</span><span class="s2">&quot;missed&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+                <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;... correcting </span><span class="si">{</span><span class="n">this_nmissed</span><span class="si">}</span><span class="s2"> missed peak(s).&quot;</span><span class="p">)</span>
+
+                <span class="n">nMissed</span> <span class="o">+=</span> <span class="n">this_nmissed</span>
+
+                <span class="c1"># Correct missed peaks using sample index</span>
+                <span class="k">for</span> <span class="n">this_idx</span> <span class="ow">in</span> <span class="n">missed_idx</span><span class="p">:</span>
+                    <span class="n">clean_peaks</span> <span class="o">=</span> <span class="n">correct_missed_peaks</span><span class="p">(</span><span class="n">clean_peaks</span><span class="p">,</span> <span class="n">this_idx</span><span class="p">)</span>
+
+                <span class="c1"># Artefact detection</span>
+                <span class="n">artefacts</span> <span class="o">=</span> <span class="n">rr_artefacts</span><span class="p">(</span><span class="n">clean_peaks</span><span class="p">,</span> <span class="n">input_type</span><span class="o">=</span><span class="s2">&quot;peaks&quot;</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="p">{</span>
         <span class="s2">&quot;clean_peaks&quot;</span><span class="p">:</span> <span class="n">clean_peaks</span><span class="p">,</span>
-        <span class="s2">&quot;ectopic&quot;</span><span class="p">:</span> <span class="n">nEctopic</span><span class="p">,</span>
-        <span class="s2">&quot;short&quot;</span><span class="p">:</span> <span class="n">nShort</span><span class="p">,</span>
-        <span class="s2">&quot;long&quot;</span><span class="p">:</span> <span class="n">nLong</span><span class="p">,</span>
         <span class="s2">&quot;extra&quot;</span><span class="p">:</span> <span class="n">nExtra</span><span class="p">,</span>
         <span class="s2">&quot;missed&quot;</span><span class="p">:</span> <span class="n">nMissed</span><span class="p">,</span>
     <span class="p">}</span></div>
 
 
 <div class="viewcode-block" id="correct_missed_peaks"><a class="viewcode-back" href="../../generated/correction/systole.correction.correct_missed_peaks.html#systole.correction.correct_missed_peaks">[docs]</a><span class="k">def</span> <span class="nf">correct_missed_peaks</span><span class="p">(</span><span class="n">peaks</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span> <span class="n">idx</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Correct missed beats by adding a new RR interval.</span>
+    <span class="sd">&quot;&quot;&quot;Correct missed peaks in boolean peak vector.</span>
+
+<span class="sd">    The new peak is placed in the middle of the previous interval.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    peaks : 1d array-like</span>
+<span class="sd">    peaks : np.ndarray</span>
 <span class="sd">        Boolean vector of peaks.</span>
 <span class="sd">    idx : int</span>
-<span class="sd">        Index of the missed RR interval.</span>
+<span class="sd">        Index of the peaks corresponding to the missed RR interval. The new peaks will</span>
+<span class="sd">        be placed between this one and the previous one.</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    clean_peaks : 1d array-like</span>
+<span class="sd">    clean_peaks : np.ndarray</span>
 <span class="sd">        Corrected boolean vector of peaks.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">peaks</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
-        <span class="n">peaks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">peaks</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span>
+    <span class="n">peaks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">peaks</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">peaks</span><span class="p">[</span><span class="n">idx</span><span class="p">]:</span>
+        <span class="k">raise</span> <span class="p">(</span><span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The index provided does not match with a peaks.&quot;</span><span class="p">))</span>
 
     <span class="n">clean_peaks</span> <span class="o">=</span> <span class="n">peaks</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-    <span class="n">index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">clean_peaks</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="c1"># The index of the previous peak</span>
+    <span class="n">previous_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">clean_peaks</span><span class="p">[:</span><span class="n">idx</span><span class="p">])[</span><span class="mi">0</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 
     <span class="c1"># Estimate new interval</span>
-    <span class="n">interval</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">((</span><span class="n">index</span><span class="p">[</span><span class="n">idx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">index</span><span class="p">[</span><span class="n">idx</span><span class="p">])</span> <span class="o">/</span> <span class="mi">2</span><span class="p">))</span>
+    <span class="n">interval</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">idx</span> <span class="o">-</span> <span class="n">previous_idx</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
 
     <span class="c1"># Add peak in vector</span>
-    <span class="n">clean_peaks</span><span class="p">[</span><span class="n">index</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">+</span> <span class="n">interval</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
-
-    <span class="k">return</span> <span class="n">clean_peaks</span></div>
-
-
-<div class="viewcode-block" id="correct_extra_peaks"><a class="viewcode-back" href="../../generated/correction/systole.correction.correct_extra_peaks.html#systole.correction.correct_extra_peaks">[docs]</a><span class="k">def</span> <span class="nf">correct_extra_peaks</span><span class="p">(</span><span class="n">peaks</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span> <span class="n">idx</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Correct extra beats by removing peak.</span>
-
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    peaks : 1d array-like</span>
-<span class="sd">        Boolean vector of peaks.</span>
-<span class="sd">    idx : int</span>
-<span class="sd">        Index of the missed RR interval.</span>
-
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">    clean_peaks : 1d array-like</span>
-<span class="sd">        Corrected boolean vector of peaks.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">peaks</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
-        <span class="n">peaks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">peaks</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span>
-
-    <span class="n">clean_peaks</span> <span class="o">=</span> <span class="n">peaks</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-    <span class="n">index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">clean_peaks</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-
-    <span class="c1"># Remove peak in vector</span>
-    <span class="n">clean_peaks</span><span class="p">[</span><span class="n">index</span><span class="p">[</span><span class="n">idx</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">clean_peaks</span><span class="p">[</span><span class="n">previous_idx</span> <span class="o">+</span> <span class="n">interval</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
 
     <span class="k">return</span> <span class="n">clean_peaks</span></div>
 </pre></div>
 
+              </div>
+              
+              
+              <div class='prev-next-bottom'>
+                
+
+              </div>
+              
+          </main>
+          
+
+      </div>
     </div>
-      
-  </div>
-</div>
-<footer class="footer">
+  
+  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  <footer class="footer mt-5 mt-md-0">
   <div class="container">
-    <p class="pull-right">
-      <a href="#">Back to top</a>
-      
-    </p>
-    <p>
-        &copy; Copyright 2018-2021, Nicolas Legrand.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.5.3.<br/>
-    </p>
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2020-2021, Nicolas Legrand.<br/>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.2.0.<br/>
+</p>
+    </div>
+    
   </div>
 </footer>
   </body>

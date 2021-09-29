@@ -6,8 +6,8 @@
 
 .. _general_examples:
 
-Tutorials
-=========
+Example gallery
+===============
 
 This section demonstrates some of the basic functionality of **systole**.
 If you want to see the tutorials in action, you can also click on the link below and navigate to the ``tutorials/`` folder to launch one of the interactive Jupyter notebooks.
@@ -41,48 +41,6 @@ If you want to see the tutorials in action, you can also click on the link below
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="The pipeline of physiological recording can often benefiit from interactive data visualization ...">
-
-.. only:: html
-
- .. figure:: /auto_examples/images/thumb/sphx_glr_plot_InteractiveVisualizations_thumb.png
-     :alt: Interactive visualization
-
-     :ref:`sphx_glr_auto_examples_plot_InteractiveVisualizations.py`
-
-.. raw:: html
-
-    </div>
-
-
-.. toctree::
-   :hidden:
-
-   /auto_examples/plot_InteractiveVisualizations
-
-.. raw:: html
-
-    <div class="sphx-glr-thumbcontainer" tooltip="Here, we describe two method for artefacts and outliers correction, after detection using the m...">
-
-.. only:: html
-
- .. figure:: /auto_examples/images/thumb/sphx_glr_plot_ArtefactsCorrection_thumb.png
-     :alt: Outliers and ectobeats correction
-
-     :ref:`sphx_glr_auto_examples_plot_ArtefactsCorrection.py`
-
-.. raw:: html
-
-    </div>
-
-
-.. toctree::
-   :hidden:
-
-   /auto_examples/plot_ArtefactsCorrection
-
-.. raw:: html
-
     <div class="sphx-glr-thumbcontainer" tooltip="This example show how to record PPG signals using the `Nonin 3012LP Xpod USB pulse oximeter &lt;ht...">
 
 .. only:: html
@@ -101,6 +59,27 @@ If you want to see the tutorials in action, you can also click on the link below
    :hidden:
 
    /auto_examples/plot_InstantaneousHeartRate
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="This example describes artefacts correction peaks vectors.">
+
+.. only:: html
+
+ .. figure:: /auto_examples/images/thumb/sphx_glr_plot_PeaksCorrection_thumb.png
+     :alt: Detecting and correcting artefacts in peaks vector
+
+     :ref:`sphx_glr_auto_examples_plot_PeaksCorrection.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /auto_examples/plot_PeaksCorrection
 
 .. raw:: html
 
@@ -143,6 +122,27 @@ If you want to see the tutorials in action, you can also click on the link below
    :hidden:
 
    /auto_examples/plot_HeartBeatEvokedArpeggios
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="This example describes artefacts correction in RR time series.">
+
+.. only:: html
+
+ .. figure:: /auto_examples/images/thumb/sphx_glr_plot_RRCorrection_thumb.png
+     :alt: Detecting and correcting artefacts in RR time series
+
+     :ref:`sphx_glr_auto_examples_plot_RRCorrection.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /auto_examples/plot_RRCorrection
 .. raw:: html
 
     <div class="sphx-glr-clear"></div>
