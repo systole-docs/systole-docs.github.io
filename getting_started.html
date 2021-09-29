@@ -4,7 +4,8 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Installation &#8212; systole 0.2.0a documentation</title>
     
   <link href="_static/css/theme.css" rel="stylesheet" />
@@ -241,7 +242,7 @@
               
               <div>
                 
-  <div class="section" id="installation">
+  <section id="installation">
 <h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
 <p>Systole can be installed using pip:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pip install systole
@@ -260,16 +261,16 @@
 <ul class="simple">
 <li><p><a class="reference external" href="https://docs.bokeh.org/en/latest/index.html#">Bokeh</a> (&gt;=2.3.3)</p></li>
 </ul>
-</div>
-<div class="section" id="recording">
+</section>
+<section id="recording">
 <h1>Recording<a class="headerlink" href="#recording" title="Permalink to this headline">¶</a></h1>
 <p>Systole natively supports recording of physiological signals from the following setups:
 * <a class="reference external" href="https://www.nonin.com/products/xpod/">Nonin 3012LP Xpod USB pulse oximeter</a> together with the <a class="reference external" href="https://www.nonin.com/products/8000s/">Nonin 8000SM ‘soft-clip’ fingertip sensors</a> (USB).
 * Remote Data Access (RDA) via BrainVision Recorder together with <a class="reference external" href="https://www.brainproducts.com/">Brain product ExG amplifier</a> (Ethernet).</p>
-</div>
-<div class="section" id="features-extraction">
+</section>
+<section id="features-extraction">
 <h1>Features extraction<a class="headerlink" href="#features-extraction" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="cardiac-cycles">
+<section id="cardiac-cycles">
 <h2>Cardiac cycles<a class="headerlink" href="#cardiac-cycles" title="Permalink to this headline">¶</a></h2>
 <p>Systole implements fast systolic peak detection for both photoplesthymography (PPG) and electrocardiography (ECG).</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">systole</span> <span class="kn">import</span> <span class="n">simulate_rr</span>
@@ -279,20 +280,20 @@
 <span class="n">plot_subspaces</span><span class="p">(</span><span class="n">rr</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="figure align-center">
+<figure class="align-center">
 <img alt="https://github.com/embodied-computation-group/systole/raw/master/Images/subspaces.png" src="https://github.com/embodied-computation-group/systole/raw/master/Images/subspaces.png" />
-</div>
-</div>
-<div class="section" id="artefacts-correction">
+</figure>
+</section>
+<section id="artefacts-correction">
 <h2>Artefacts correction<a class="headerlink" href="#artefacts-correction" title="Permalink to this headline">¶</a></h2>
 <p>Artefacts can be detected and corrected in the RR interval time serie or the peaks vector following the algorythm proposed by Lipponen &amp; Tarvainen (2019).</p>
-</div>
-</div>
-<div class="section" id="heartrate-variability">
+</section>
+</section>
+<section id="heartrate-variability">
 <h1>Heartrate variability<a class="headerlink" href="#heartrate-variability" title="Permalink to this headline">¶</a></h1>
 <p>Systole implemetns basic time-domain, frequency-domain and non-linear HRV indices.</p>
-</div>
-<div class="section" id="interactive-reports">
+</section>
+<section id="interactive-reports">
 <h1>Interactive reports<a class="headerlink" href="#interactive-reports" title="Permalink to this headline">¶</a></h1>
 <p>Systole integrates a set of functions for interactive data visualization based on <a class="reference external" href="https://docs.bokeh.org/en/latest/index.html#">Bokeh</a>.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">systole.plots</span> <span class="kn">import</span> <span class="n">plot_frequency</span>
@@ -300,10 +301,10 @@
 <span class="n">plot_psd</span><span class="p">(</span><span class="n">rr</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="figure align-center">
+<figure class="align-center">
 <img alt="https://github.com/embodied-computation-group/systole/raw/master/Images/psd.png" src="https://github.com/embodied-computation-group/systole/raw/master/Images/psd.png" />
-</div>
-</div>
+</figure>
+</section>
 
 
               </div>

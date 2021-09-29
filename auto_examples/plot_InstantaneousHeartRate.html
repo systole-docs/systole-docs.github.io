@@ -4,7 +4,8 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Instantaneous Heart Rate &#8212; systole 0.2.0a documentation</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
@@ -52,8 +53,6 @@
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Detecting and correcting artefacts in peaks vector" href="plot_PeaksCorrection.html" />
-    <link rel="prev" title="Outliers and artefacts detection" href="plot_ArtefactsDetection.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -93,7 +92,7 @@
  </a>
 </li>
 
-<li class="toctree-l1 current active nav-item">
+<li class="toctree-l1 nav-item">
  <a class="reference internal nav-link" href="index.html">
   Gallery
  </a>
@@ -164,49 +163,7 @@
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
   <div class="bd-toc-item active">
-    <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="plot_ArtefactsDetection.html">
-   Outliers and artefacts detection
-  </a>
- </li>
-</ul>
-<ul class="current nav bd-sidenav">
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Instantaneous Heart Rate
-  </a>
- </li>
-</ul>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="plot_PeaksCorrection.html">
-   Detecting and correcting artefacts in peaks vector
-  </a>
- </li>
-</ul>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="Tutorial_recording.html">
-   Recording PPG signal
-  </a>
- </li>
-</ul>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="plot_HeartBeatEvokedArpeggios.html">
-   Heartbeat Evoked Arpeggios
-  </a>
- </li>
-</ul>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="plot_RRCorrection.html">
-   Detecting and correcting artefacts in RR time series
-  </a>
- </li>
-</ul>
-
+    
   </div>
 </nav>
             </div>
@@ -261,7 +218,7 @@
 <p>Click <a class="reference internal" href="#sphx-glr-download-auto-examples-plot-instantaneousheartrate-py"><span class="std std-ref">here</span></a>
 to download the full example code</p>
 </div>
-<div class="sphx-glr-example-title section" id="instantaneous-heart-rate">
+<section class="sphx-glr-example-title" id="instantaneous-heart-rate">
 <span id="sphx-glr-auto-examples-plot-instantaneousheartrate-py"></span><h1>Instantaneous Heart Rate<a class="headerlink" href="#instantaneous-heart-rate" title="Permalink to this headline">¶</a></h1>
 <p>This example show how to record PPG signals using the <a class="reference external" href="https://www.nonin.com/products/xpod/">Nonin 3012LP
 Xpod USB pulse oximeter</a> and the <a class="reference external" href="https://www.nonin.com/products/8000s/">Nonin
@@ -280,7 +237,7 @@ plotted.</p>
 <span class="kn">from</span> <span class="nn">systole.plots</span> <span class="kn">import</span> <span class="n">plot_raw</span><span class="p">,</span> <span class="n">plot_rr</span>
 </pre></div>
 </div>
-<div class="section" id="recording">
+<section id="recording">
 <h2>Recording<a class="headerlink" href="#recording" title="Permalink to this headline">¶</a></h2>
 <p>For the demonstration purpose, here we simulate data acquisition through
 the pulse oximeter using pre-recorded signal.</p>
@@ -305,8 +262,8 @@ oximeter is plugged in.</p>
 &lt;systole.recording.Oximeter object at 0x00000298F18E5188&gt;
 </pre></div>
 </div>
-</div>
-<div class="section" id="plotting">
+</section>
+<section id="plotting">
 <h2>Plotting<a class="headerlink" href="#plotting" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">signal</span></a><span class="p">,</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">peaks</span></a> <span class="o">=</span> <span class="n">ppg_peaks</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">oxi</span><span class="o">.</span><span class="n">recording</span><span class="p">,</span> <span class="n">sfreq</span><span class="o">=</span><span class="mi">75</span><span class="p">)</span>
 
@@ -334,8 +291,8 @@ oximeter is plugged in.</p>
 </div>
 </div>
 <p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
-</div>
-</div>
+</section>
+</section>
 
 
               </div>
@@ -343,8 +300,6 @@ oximeter is plugged in.</p>
               
               <div class='prev-next-bottom'>
                 
-    <a class='left-prev' id="prev-link" href="plot_ArtefactsDetection.html" title="previous page">Outliers and artefacts detection</a>
-    <a class='right-next' id="next-link" href="plot_PeaksCorrection.html" title="next page">Detecting and correcting artefacts in peaks vector</a>
 
               </div>
               

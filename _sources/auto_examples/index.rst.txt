@@ -20,119 +20,14 @@ If you want to see the tutorials in action, you can also click on the link below
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="This example shows how to detect ectopic, missed, extra, slow and long long from RR or pulse ra...">
-
-.. only:: html
-
- .. figure:: /auto_examples/images/thumb/sphx_glr_plot_ArtefactsDetection_thumb.png
-     :alt: Outliers and artefacts detection
-
-     :ref:`sphx_glr_auto_examples_plot_ArtefactsDetection.py`
-
-.. raw:: html
-
-    </div>
-
-
-.. toctree::
-   :hidden:
-
-   /auto_examples/plot_ArtefactsDetection
-
-.. raw:: html
-
-    <div class="sphx-glr-thumbcontainer" tooltip="This example show how to record PPG signals using the `Nonin 3012LP Xpod USB pulse oximeter &lt;ht...">
-
-.. only:: html
-
- .. figure:: /auto_examples/images/thumb/sphx_glr_plot_InstantaneousHeartRate_thumb.png
-     :alt: Instantaneous Heart Rate
-
-     :ref:`sphx_glr_auto_examples_plot_InstantaneousHeartRate.py`
-
-.. raw:: html
-
-    </div>
-
-
-.. toctree::
-   :hidden:
-
-   /auto_examples/plot_InstantaneousHeartRate
-
-.. raw:: html
-
-    <div class="sphx-glr-thumbcontainer" tooltip="This example describes artefacts correction peaks vectors.">
-
-.. only:: html
-
- .. figure:: /auto_examples/images/thumb/sphx_glr_plot_PeaksCorrection_thumb.png
-     :alt: Detecting and correcting artefacts in peaks vector
-
-     :ref:`sphx_glr_auto_examples_plot_PeaksCorrection.py`
-
-.. raw:: html
-
-    </div>
-
-
-.. toctree::
-   :hidden:
-
-   /auto_examples/plot_PeaksCorrection
-
-.. raw:: html
-
-    <div class="sphx-glr-thumbcontainer" tooltip="Recording PPG signal">
-
-.. only:: html
-
- .. figure:: /auto_examples/images/thumb/sphx_glr_Tutorial_recording_thumb.png
-     :alt: Recording PPG signal
-
-     :ref:`sphx_glr_auto_examples_Tutorial_recording.py`
-
-.. raw:: html
-
-    </div>
-
-
-.. toctree::
-   :hidden:
-
-   /auto_examples/Tutorial_recording
-
-.. raw:: html
-
     <div class="sphx-glr-thumbcontainer" tooltip="This tutorial illustrates how to use the Oximeter class to trigger stimuli at different phases ...">
 
 .. only:: html
 
- .. figure:: /auto_examples/images/thumb/sphx_glr_plot_HeartBeatEvokedArpeggios_thumb.png
-     :alt: Heartbeat Evoked Arpeggios
+ .. figure:: /auto_examples/images/thumb/sphx_glr_plot_HeartBeatrpeggios_thumb.png
+     :alt: Heartbeat Evoked Arpeggios (cardiac-contingent stimuli)
 
-     :ref:`sphx_glr_auto_examples_plot_HeartBeatEvokedArpeggios.py`
-
-.. raw:: html
-
-    </div>
-
-
-.. toctree::
-   :hidden:
-
-   /auto_examples/plot_HeartBeatEvokedArpeggios
-
-.. raw:: html
-
-    <div class="sphx-glr-thumbcontainer" tooltip="This example describes artefacts correction in RR time series.">
-
-.. only:: html
-
- .. figure:: /auto_examples/images/thumb/sphx_glr_plot_RRCorrection_thumb.png
-     :alt: Detecting and correcting artefacts in RR time series
-
-     :ref:`sphx_glr_auto_examples_plot_RRCorrection.py`
+     :ref:`sphx_glr_auto_examples_plot_HeartBeatrpeggios.py`
 
 .. raw:: html
 
@@ -142,7 +37,7 @@ If you want to see the tutorials in action, you can also click on the link below
 .. toctree::
    :hidden:
 
-   /auto_examples/plot_RRCorrection
+   /auto_examples/plot_HeartBeatrpeggios
 .. raw:: html
 
     <div class="sphx-glr-clear"></div>

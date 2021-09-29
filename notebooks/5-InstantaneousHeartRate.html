@@ -4,7 +4,8 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Instantaneous and evoked heart rate &#8212; systole 0.2.0a documentation</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
@@ -595,7 +596,7 @@ if &#39;google.colab&#39; in sys.modules:
   }
 }(window));</script></div>
 </div>
-<div class="section" id="instantaneous-and-evoked-heart-rate">
+<section id="instantaneous-and-evoked-heart-rate">
 <h1>Instantaneous and evoked heart rate<a class="headerlink" href="#instantaneous-and-evoked-heart-rate" title="Permalink to this headline">¶</a></h1>
 <p>This tutorial will cover instantaneous heart rate and evoked heart rate analysis. In the previous section, we  analyzed the heart rate variability as a property that can be observed in longer cardiac recordings and that might reflect the influence of the sympathetic and/or the parasympathetic nervous system on behavior. This approach has been widely used in psychology and psychophysiology to evaluate the trait heart rate variability (HRV) of a given participant on a continuous domain, sometimes in conjunction with experimental manipulations. This approach requires relatively long recordings to give a reasonable estimate of the HRV (~5 minutes), and resting conditions are also required to let the nervous system returns to a baseline. In some cases, experimenters may want to also record and/or control for respiratory frequency as this has a known physiological impact on HRV, in particular in the lower frequency components.</p>
 <p>However, psychophysiological interactions can appear at much shorter time scales (as fast as 1-2 seconds following stimulation), and these effects can be examined using evoked heart rate analysis. Evoked heart rate refers to the fluctuation of instantaneous heart rate following stimulation and could be described as the cardiac equivalent of event-related potentials <a class="reference external" href="https://en.wikipedia.org/wiki/Event-related_potential">ERP</a>. These fast fluctuations in heart-rate have many sources, for example changes in noradrenaline and/or autonomic factors, emotional states, and other cognitive variables.</p>
@@ -631,7 +632,7 @@ if &#39;google.colab&#39; in sys.modules:
 </div>
 </div>
 </div>
-<div class="section" id="instantaneous-heart-rate">
+<section id="instantaneous-heart-rate">
 <h2>Instantaneous heart rate<a class="headerlink" href="#instantaneous-heart-rate" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -716,8 +717,8 @@ if &#39;google.colab&#39; in sys.modules:
 </div>
 </div>
 <p>Note that here the timing of the peaks detection matters. The artefact correction, if it is used, should take this into account and never interpolate RR times series directly but always try to infer the presence, or absence, of cardiac cycles.</p>
-</div>
-<div class="section" id="evoked-heart-rate">
+</section>
+<section id="evoked-heart-rate">
 <h2>Evoked heart rate<a class="headerlink" href="#evoked-heart-rate" title="Permalink to this headline">¶</a></h2>
 <p>Finding R peaks and extract instantaneous heart rate.</p>
 <div class="cell docutils container">
@@ -748,7 +749,7 @@ if &#39;google.colab&#39; in sys.modules:
 </div>
 </div>
 </div>
-<div class="section" id="event-plot">
+<section id="event-plot">
 <h3>Event plot<a class="headerlink" href="#event-plot" title="Permalink to this headline">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">plot_events</span></code> function can be usefull to visualize the distribution of events during the task.</p>
 <div class="cell docutils container">
@@ -817,8 +818,8 @@ if &#39;google.colab&#39; in sys.modules:
 })(window);</script></div>
 </div>
 <p>However, it is still difficult to see if a general tendency emerges from the time course of the heart rate following the stimulations, and if the two conditions differ from one another.</p>
-</div>
-<div class="section" id="evoked-plot">
+</section>
+<section id="evoked-plot">
 <h3>Evoked plot<a class="headerlink" href="#evoked-plot" title="Permalink to this headline">¶</a></h3>
 <p>Systole provides a function <code class="docutils literal notranslate"><span class="pre">to_epochs</span></code> that can easily convert raw signal and triggers vectors into the corresponding epochs array. An epoch is simply a 2d matrix containing the signal of interest sliced using some interval around the trigers. It is also common practice to baseline correct these signal using the value at <em>t</em>=<code class="docutils literal notranslate"><span class="pre">0</span></code> or some interval before the stimuli (e.g., the average interval from 1 second pre-baseline), so the evoked response can be more readily interpreted.</p>
 <p>This function accepts several arguments and can be used in a variety of ways (see documentation). Here, we provide the trigger idexes using the <code class="docutils literal notranslate"><span class="pre">triggers_idx</span></code> parameter (the sames where a trigger was recorded, here indicating that an image appeared on the screen). The <code class="docutils literal notranslate"><span class="pre">apply_baseline</span></code> parameter is set to <code class="docutils literal notranslate"><span class="pre">(-1.0,</span> <span class="pre">0.0)</span></code> to indicate that we want substract the average of the signal value one second before the triggers appear.</p>
@@ -906,9 +907,9 @@ if &#39;google.colab&#39; in sys.modules:
 <p>This concludes the tutorial on using systole for evoked HR analysis!</p>
 <p><strong>References</strong>*</p>
 <p><strong>[1]</strong> Legrand, N., Etard, O., Vandevelde, A., Pierre, M., Viader, F., Clochon, P., Doidy, F., Peschanski, D., Eustache, F., &amp; Gagnepain, P. (2020). Long-term modulation of cardiac activity induced by inhibitory control over emotional memories. <em>Scientific Reports, 10(1)</em>. https://doi.org/10.1038/s41598-020-71858-2</p>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
               </div>

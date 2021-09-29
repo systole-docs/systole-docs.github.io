@@ -4,7 +4,8 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Recording PPG signal &#8212; systole 0.2.0a documentation</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
@@ -52,8 +53,6 @@
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Heartbeat Evoked Arpeggios" href="plot_HeartBeatEvokedArpeggios.html" />
-    <link rel="prev" title="Detecting and correcting artefacts in peaks vector" href="plot_PeaksCorrection.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -93,7 +92,7 @@
  </a>
 </li>
 
-<li class="toctree-l1 current active nav-item">
+<li class="toctree-l1 nav-item">
  <a class="reference internal nav-link" href="index.html">
   Gallery
  </a>
@@ -164,49 +163,7 @@
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
   <div class="bd-toc-item active">
-    <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="plot_ArtefactsDetection.html">
-   Outliers and artefacts detection
-  </a>
- </li>
-</ul>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="plot_InstantaneousHeartRate.html">
-   Instantaneous Heart Rate
-  </a>
- </li>
-</ul>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="plot_PeaksCorrection.html">
-   Detecting and correcting artefacts in peaks vector
-  </a>
- </li>
-</ul>
-<ul class="current nav bd-sidenav">
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Recording PPG signal
-  </a>
- </li>
-</ul>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="plot_HeartBeatEvokedArpeggios.html">
-   Heartbeat Evoked Arpeggios
-  </a>
- </li>
-</ul>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="plot_RRCorrection.html">
-   Detecting and correcting artefacts in RR time series
-  </a>
- </li>
-</ul>
-
+    
   </div>
 </nav>
             </div>
@@ -266,7 +223,7 @@
 <p>Click <a class="reference internal" href="#sphx-glr-download-auto-examples-tutorial-recording-py"><span class="std std-ref">here</span></a>
 to download the full example code</p>
 </div>
-<div class="sphx-glr-example-title section" id="recording-ppg-signal">
+<section class="sphx-glr-example-title" id="recording-ppg-signal">
 <span id="sphx-glr-auto-examples-tutorial-recording-py"></span><h1>Recording PPG signal<a class="headerlink" href="#recording-ppg-signal" title="Permalink to this headline">¶</a></h1>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Author: Nicolas Legrand &lt;nicolas.legrand@cfin.au.dk&gt;</span>
 <span class="c1"># Licence: GPL v3</span>
@@ -281,7 +238,7 @@ to download the full example code</p>
 <span class="c1"># delivery with cardiac phases (e.g. systole or diastole).</span>
 </pre></div>
 </div>
-<div class="section" id="reading">
+<section id="reading">
 <h2>Reading<a class="headerlink" href="#reading" title="Permalink to this headline">¶</a></h2>
 <p>Recording and plotting your first time-series will only require 5 lines
 of code:</p>
@@ -302,8 +259,8 @@ of code:</p>
 <span class="n">oxi</span><span class="o">.</span><span class="n">plot_raw</span><span class="p">(</span><span class="n">show_heart_rate</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="interfacing-with-psychopy">
+</section>
+<section id="interfacing-with-psychopy">
 <h2>Interfacing with PsychoPy<a class="headerlink" href="#interfacing-with-psychopy" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># * The ``read()`` method will record for a predefined amount of time</span>
 <span class="c1"># (specified by the ``duration`` parameter, in seconds). This &#39;serial mode&#39;</span>
@@ -327,8 +284,8 @@ of code:</p>
     <span class="c1"># Insert code here {...}</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="online-detection">
+</section>
+<section id="online-detection">
 <h2>Online detection<a class="headerlink" href="#online-detection" title="Permalink to this headline">¶</a></h2>
 <p>Online heart beat detection, for cardiac-stimulus synchrony</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#ser = serial.Serial(&quot;COM4&quot;)  # Use this line for USB recording</span>
@@ -357,8 +314,8 @@ of code:</p>
 </div>
 </div>
 <p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
-</div>
-</div>
+</section>
+</section>
 
 
               </div>
@@ -366,8 +323,6 @@ of code:</p>
               
               <div class='prev-next-bottom'>
                 
-    <a class='left-prev' id="prev-link" href="plot_PeaksCorrection.html" title="previous page">Detecting and correcting artefacts in peaks vector</a>
-    <a class='right-next' id="next-link" href="plot_HeartBeatEvokedArpeggios.html" title="next page">Heartbeat Evoked Arpeggios</a>
 
               </div>
               

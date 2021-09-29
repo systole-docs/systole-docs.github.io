@@ -4,7 +4,8 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Outliers and artefacts detection &#8212; systole 0.2.0a documentation</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
@@ -52,8 +53,6 @@
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Instantaneous Heart Rate" href="plot_InstantaneousHeartRate.html" />
-    <link rel="prev" title="Example gallery" href="index.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -93,7 +92,7 @@
  </a>
 </li>
 
-<li class="toctree-l1 current active nav-item">
+<li class="toctree-l1 nav-item">
  <a class="reference internal nav-link" href="index.html">
   Gallery
  </a>
@@ -164,49 +163,7 @@
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
   <div class="bd-toc-item active">
-    <ul class="current nav bd-sidenav">
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Outliers and artefacts detection
-  </a>
- </li>
-</ul>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="plot_InstantaneousHeartRate.html">
-   Instantaneous Heart Rate
-  </a>
- </li>
-</ul>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="plot_PeaksCorrection.html">
-   Detecting and correcting artefacts in peaks vector
-  </a>
- </li>
-</ul>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="Tutorial_recording.html">
-   Recording PPG signal
-  </a>
- </li>
-</ul>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="plot_HeartBeatEvokedArpeggios.html">
-   Heartbeat Evoked Arpeggios
-  </a>
- </li>
-</ul>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="plot_RRCorrection.html">
-   Detecting and correcting artefacts in RR time series
-  </a>
- </li>
-</ul>
-
+    
   </div>
 </nav>
             </div>
@@ -276,7 +233,7 @@
 <p>Click <a class="reference internal" href="#sphx-glr-download-auto-examples-plot-artefactsdetection-py"><span class="std std-ref">here</span></a>
 to download the full example code</p>
 </div>
-<div class="sphx-glr-example-title section" id="outliers-and-artefacts-detection">
+<section class="sphx-glr-example-title" id="outliers-and-artefacts-detection">
 <span id="sphx-glr-auto-examples-plot-artefactsdetection-py"></span><h1>Outliers and artefacts detection<a class="headerlink" href="#outliers-and-artefacts-detection" title="Permalink to this headline">¶</a></h1>
 <p>This example shows how to detect ectopic, missed, extra, slow and long long
 from RR or pulse rate interval time series using the method proposed by
@@ -290,7 +247,7 @@ Lipponen &amp; Tarvainen (2019) <a class="footnote-reference brackets" href="#id
 <span class="kn">from</span> <span class="nn">systole.utils</span> <span class="kn">import</span> <span class="n">simulate_rr</span>
 </pre></div>
 </div>
-<div class="section" id="rr-artefacts">
+<section id="rr-artefacts">
 <h2>RR artefacts<a class="headerlink" href="#rr-artefacts" title="Permalink to this headline">¶</a></h2>
 <p>The proposed method will detect 4 kinds of artefacts in an RR time series:
 Missed R peaks, when an existing R component was erroneously NOT detected by
@@ -303,22 +260,22 @@ the resulting interval has extreme value in the overall time-series.
 either skip or add an extra beat.
 * The category in which the artefact belongs will have an influence on the
 correction procedure (see Artefact correction).</p>
-</div>
-<div class="section" id="simulate-rr-time-series">
+</section>
+<section id="simulate-rr-time-series">
 <h2>Simulate RR time series<a class="headerlink" href="#simulate-rr-time-series" title="Permalink to this headline">¶</a></h2>
 <p>This function will simulate RR time series containing ectopic, extra, missed,
 long and short artefacts.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">rr</span></a> <span class="o">=</span> <span class="n">simulate_rr</span><span class="p">()</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="artefact-detection">
+</section>
+<section id="artefact-detection">
 <h2>Artefact detection<a class="headerlink" href="#artefact-detection" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">outliers</span> <span class="o">=</span> <span class="n">rr_artefacts</span><span class="p">(</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">rr</span></a><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="subspaces-visualization">
+</section>
+<section id="subspaces-visualization">
 <h2>Subspaces visualization<a class="headerlink" href="#subspaces-visualization" title="Permalink to this headline">¶</a></h2>
 <p>You can visualize the two main subspaces and spot outliers. The left pamel
 plot subspaces that are more sensitive to ectopic beats detection. The right
@@ -337,8 +294,8 @@ comprizing the extra and missed beats.</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>(&lt;AxesSubplot:title={&#39;center&#39;:&#39;Subspace 1 \n (ectopic beats detection)&#39;}, xlabel=&#39;Subspace $S_{11}$&#39;, ylabel=&#39;Subspace $S_{12}$&#39;&gt;, &lt;AxesSubplot:title={&#39;center&#39;:&#39;Subspace 2 \n (long and short beats detection)&#39;}, xlabel=&#39;Subspace $S_{21}$&#39;, ylabel=&#39;Subspace $S_{22}$&#39;&gt;)
 </pre></div>
 </div>
-</div>
-<div class="section" id="references">
+</section>
+<section id="references">
 <h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
 <dl class="footnote brackets">
 <dt class="label" id="id2"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
@@ -358,8 +315,8 @@ beat classification. Journal of Medical Engineering &amp; Technology,
 </div>
 </div>
 <p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
-</div>
-</div>
+</section>
+</section>
 
 
               </div>
@@ -367,8 +324,6 @@ beat classification. Journal of Medical Engineering &amp; Technology,
               
               <div class='prev-next-bottom'>
                 
-    <a class='left-prev' id="prev-link" href="index.html" title="previous page">Example gallery</a>
-    <a class='right-next' id="next-link" href="plot_InstantaneousHeartRate.html" title="next page">Instantaneous Heart Rate</a>
 
               </div>
               
