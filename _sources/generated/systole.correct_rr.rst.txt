@@ -1,6 +1,0 @@
-﻿systole.correct\_rr
-===================
-
-.. currentmodule:: systole
-
-.. autofunction:: correct_rr

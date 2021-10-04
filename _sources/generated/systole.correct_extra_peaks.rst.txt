@@ -1,6 +1,0 @@
-﻿systole.correct\_extra\_peaks
-=============================
-
-.. currentmodule:: systole
-
-.. autofunction:: correct_extra_peaks

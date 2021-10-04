@@ -255,7 +255,7 @@ Downloading Stim channel: 100%|#################################################
 <a href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.show.html#matplotlib.pyplot.show" title="matplotlib.pyplot.show" class="sphx-glr-backref-module-matplotlib-pyplot sphx-glr-backref-type-py-function"><span class="n">plt</span><span class="o">.</span><span class="n">show</span></a><span class="p">()</span>
 </pre></div>
 </div>
-<img alt="Instantaneous heart rate" class="sphx-glr-single-img" src="../_images/sphx_glr_plot_PeaksCorrection_001.png" />
+<img alt="Instantaneous heart rate" class="sphx-glr-single-img" src="../_images/sphx_glr_plot_PeaksCorrection_0011.png" />
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://numpy.org/doc/stable/reference/random/generated/numpy.random.seed.html#numpy.random.seed" title="numpy.random.seed" class="sphx-glr-backref-module-numpy-random sphx-glr-backref-type-py-function"><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span></a><span class="p">(</span><span class="mi">123</span><span class="p">)</span>  <span class="c1"># For result reproductibility</span>
 
 <a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">corrupted_peaks</span></a> <span class="o">=</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">peaks</span></a><span class="o">.</span><span class="n">copy</span><span class="p">()</span>  <span class="c1"># Create a new RR intervals vector</span>
@@ -276,7 +276,7 @@ in the plot.</p>
 <a href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.show.html#matplotlib.pyplot.show" title="matplotlib.pyplot.show" class="sphx-glr-backref-module-matplotlib-pyplot sphx-glr-backref-type-py-function"><span class="n">plt</span><span class="o">.</span><span class="n">show</span></a><span class="p">()</span>
 </pre></div>
 </div>
-<img alt="Instantaneous heart rate" class="sphx-glr-single-img" src="../_images/sphx_glr_plot_PeaksCorrection_002.png" />
+<img alt="Instantaneous heart rate" class="sphx-glr-single-img" src="../_images/sphx_glr_plot_PeaksCorrection_0021.png" />
 <p>correction method. This function will automatically detect possible artefacts in the
 peaks vector and reconstruct the most coherent values using time series interpolation.
 The number of iteration is set to <cite>2</cite> by default, we add it here for clarity. Here,
@@ -302,7 +302,7 @@ corrected.</p>
 <a href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.show.html#matplotlib.pyplot.show" title="matplotlib.pyplot.show" class="sphx-glr-backref-module-matplotlib-pyplot sphx-glr-backref-type-py-function"><span class="n">plt</span><span class="o">.</span><span class="n">show</span></a><span class="p">()</span>
 </pre></div>
 </div>
-<img alt="Instantaneous heart rate" class="sphx-glr-single-img" src="../_images/sphx_glr_plot_PeaksCorrection_003.png" />
+<img alt="Instantaneous heart rate" class="sphx-glr-single-img" src="../_images/sphx_glr_plot_PeaksCorrection_0031.png" />
 <p>event-related analysis, where the evolution of the instantaneous heart rate is
 assessed after some experimental manipulation (see Tutorial 5). One way to control
 for the quality of the artefacts correction is to compare the evoked responses
@@ -327,7 +327,7 @@ with the recording (here the peaks vector), and produce the evoked plots.</p>
 <a href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.ylim.html#matplotlib.pyplot.ylim" title="matplotlib.pyplot.ylim" class="sphx-glr-backref-module-matplotlib-pyplot sphx-glr-backref-type-py-function"><span class="n">plt</span><span class="o">.</span><span class="n">ylim</span></a><span class="p">(</span><span class="o">-</span><span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">);</span>
 </pre></div>
 </div>
-<img alt="plot PeaksCorrection" class="sphx-glr-single-img" src="../_images/sphx_glr_plot_PeaksCorrection_004.png" />
+<img alt="plot PeaksCorrection" class="sphx-glr-single-img" src="../_images/sphx_glr_plot_PeaksCorrection_0041.png" />
 <p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>C:\ProgramData\Anaconda3\lib\site-packages\seaborn\cm.py:1582: UserWarning: Trying to register the cmap &#39;rocket&#39; which already exists.
   mpl_cm.register_cmap(_name, _cmap)

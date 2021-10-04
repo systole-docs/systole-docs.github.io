@@ -1,6 +1,0 @@
-﻿systole.ecg\_peaks
-==================
-
-.. currentmodule:: systole
-
-.. autofunction:: ecg_peaks

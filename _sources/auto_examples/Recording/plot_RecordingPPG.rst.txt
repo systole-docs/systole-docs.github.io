@@ -21,7 +21,7 @@
 Recording PPG signal
 ====================
 
-The py:class:systole.recording.Oximeter class can be used to read incoming PPG signal 
+The py:class:`systole.recording.Oximeter` class can be used to read incoming PPG signal 
 from `Nonin 3012LP Xpod USB pulse oximeter
 <https://www.nonin.com/products/xpod/>`_ together with the `Nonin 8000SM 'soft-clip' 
 fingertip sensors <https://www.nonin.com/products/8000s/>`_. This function can easily 
@@ -246,7 +246,7 @@ signal is delayed relative to the R peaks observed in the ECG signal.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  42.572 seconds)
+   **Total running time of the script:** ( 0 minutes  42.859 seconds)
 
 
 .. _sphx_glr_download_auto_examples_Recording_plot_RecordingPPG.py:

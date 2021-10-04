@@ -1,6 +1,0 @@
-﻿systole.plot\_timedomain
-========================
-
-.. currentmodule:: systole
-
-.. autofunction:: plot_timedomain

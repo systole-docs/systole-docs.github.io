@@ -125,7 +125,7 @@ comprizing the extra and missed beats.
 .. code-block:: default
 
 
-    plot_subspaces(rr)
+    plot_subspaces(rr, figsize=(12, 6))
 
 
 
@@ -169,7 +169,7 @@ References
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  1.284 seconds)
+   **Total running time of the script:** ( 0 minutes  0.617 seconds)
 
 
 .. _sphx_glr_download_auto_examples_Artefacts_plot_ArtefactsDetection.py:

@@ -1,6 +1,0 @@
-﻿systole.plot\_frequency
-=======================
-
-.. currentmodule:: systole
-
-.. autofunction:: plot_frequency

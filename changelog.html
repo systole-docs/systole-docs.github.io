@@ -184,9 +184,26 @@
 <nav id="bd-toc-nav">
     <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#v0-2-0-september-2021">
-   v0.2.0 (September 2021)
+  <a class="reference internal nav-link" href="#v0-2-0-october-2021">
+   v0.2.0 (October 2021)
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#highlights">
+     Highlights
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#changes">
+     Changes
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#contributors">
+     Contributors
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#v0-1-3-april-2021">
@@ -237,26 +254,65 @@
   <span class="target" id="whatsnew"></span><section id="what-s-new-in-each-version">
 <h1>What’s new in each version<a class="headerlink" href="#what-s-new-in-each-version" title="Permalink to this headline">¶</a></h1>
 <p>This page contains information about what has changed in each new version of <code class="docutils literal notranslate"><span class="pre">systole</span></code>.</p>
-<div class="col-md-9"><section id="v0-2-0-september-2021">
-<h2>v0.2.0 (September 2021)<a class="headerlink" href="#v0-2-0-september-2021" title="Permalink to this headline">¶</a></h2>
-<p>This is a major release that introduce a new plotting backend using Bokeh, remove support for Plotly and rename some functions for consistency.</p>
+<div class="col-md-9"><section id="v0-2-0-october-2021">
+<h2>v0.2.0 (October 2021)<a class="headerlink" href="#v0-2-0-october-2021" title="Permalink to this headline">¶</a></h2>
+<section id="highlights">
+<h3>Highlights<a class="headerlink" href="#highlights" title="Permalink to this headline">¶</a></h3>
+<p>This is a major release that introduce a new plotting backend using Bokeh instead of Plotly, several API changes and performance improvement (Numba).</p>
+<p>The <cite>plots</cite> submodule now includes the following functions:</p>
 <ul class="simple">
-<li><p><span class="raw-html"><span class="badge badge-api">API</span></span>  Remove support for Plotly. Add support for Bokeh. Merge interactive and non interactive modules into a unique <code class="xref py py-func docutils literal notranslate"><span class="pre">plots()</span></code> module.</p></li>
-<li><p><span class="raw-html"><span class="badge badge-docs">Docs</span></span>  Use PyData Sphinx theme.</p></li>
-<li><p><span class="raw-html"><span class="badge badge-docs">Docs</span></span>  Several additions to the tutorials pages.</p></li>
-<li><p><span class="raw-html"><span class="badge badge-enhancement">Enhancement</span></span>  <a class="reference internal" href="generated/utils/systole.utils.heart_rate.html#systole.utils.heart_rate" title="systole.utils.heart_rate"><code class="xref py py-func docutils literal notranslate"><span class="pre">systole.utils.heart_rate()</span></code></a>: now accepts peaks vectors as well as RR interval, either in milliseconds od in seconds.</p></li>
-<li><p><span class="raw-html"><span class="badge badge-enhancement">Enhancement</span></span>  <code class="xref py py-func docutils literal notranslate"><span class="pre">systole.utils.to_rr()</span></code> has been renamed to <a class="reference internal" href="generated/utils/systole.utils.input_conversion.html#systole.utils.input_conversion" title="systole.utils.input_conversion"><code class="xref py py-func docutils literal notranslate"><span class="pre">systole.utils.input_conversion()</span></code></a> and accepts input and outputs it the form of peaks, peaks indexes, RR invervals in seconds and in miliseconds.</p></li>
-<li><p><span class="raw-html"><span class="badge badge-fix">Fix</span></span>  <span class="raw-html"><span class="badge badge-enhancement">Enhancement</span></span>  <a class="reference internal" href="generated/detection/systole.detection.ppg_peaks.html#systole.detection.ppg_peaks" title="systole.detection.ppg_peaks"><code class="xref py py-func docutils literal notranslate"><span class="pre">systole.detection.ppg_peaks()</span></code></a> now handles negative values/ low sampling rate.</p></li>
+<li><p><a class="reference internal" href="generated/plots/systole.plots.plot_circular.html#systole.plots.plot_circular" title="systole.plots.plot_circular"><code class="xref py py-func docutils literal notranslate"><span class="pre">systole.plots.plot_circular()</span></code></a></p></li>
+<li><p><a class="reference internal" href="generated/plots/systole.plots.plot_ectopic.html#systole.plots.plot_ectopic" title="systole.plots.plot_ectopic"><code class="xref py py-func docutils literal notranslate"><span class="pre">systole.plots.plot_ectopic()</span></code></a></p></li>
+<li><p><a class="reference internal" href="generated/plots/systole.plots.plot_events.html#systole.plots.plot_events" title="systole.plots.plot_events"><code class="xref py py-func docutils literal notranslate"><span class="pre">systole.plots.plot_events()</span></code></a></p></li>
+<li><p><a class="reference internal" href="generated/plots/systole.plots.plot_evoked.html#systole.plots.plot_evoked" title="systole.plots.plot_evoked"><code class="xref py py-func docutils literal notranslate"><span class="pre">systole.plots.plot_evoked()</span></code></a></p></li>
+<li><p><a class="reference internal" href="generated/plots/systole.plots.plot_frequency.html#systole.plots.plot_frequency" title="systole.plots.plot_frequency"><code class="xref py py-func docutils literal notranslate"><span class="pre">systole.plots.plot_frequency()</span></code></a></p></li>
+<li><p><a class="reference internal" href="generated/plots/systole.plots.plot_pointcare.html#systole.plots.plot_pointcare" title="systole.plots.plot_pointcare"><code class="xref py py-func docutils literal notranslate"><span class="pre">systole.plots.plot_pointcare()</span></code></a></p></li>
+<li><p><a class="reference internal" href="generated/plots/systole.plots.plot_raw.html#systole.plots.plot_raw" title="systole.plots.plot_raw"><code class="xref py py-func docutils literal notranslate"><span class="pre">systole.plots.plot_raw()</span></code></a></p></li>
+<li><p><a class="reference internal" href="generated/plots/systole.plots.plot_rr.html#systole.plots.plot_rr" title="systole.plots.plot_rr"><code class="xref py py-func docutils literal notranslate"><span class="pre">systole.plots.plot_rr()</span></code></a></p></li>
+<li><p><a class="reference internal" href="generated/plots/systole.plots.plot_shortlong.html#systole.plots.plot_shortlong" title="systole.plots.plot_shortlong"><code class="xref py py-func docutils literal notranslate"><span class="pre">systole.plots.plot_shortlong()</span></code></a></p></li>
+<li><p><a class="reference internal" href="generated/plots/systole.plots.plot_subspaces.html#systole.plots.plot_subspaces" title="systole.plots.plot_subspaces"><code class="xref py py-func docutils literal notranslate"><span class="pre">systole.plots.plot_subspaces()</span></code></a></p></li>
 </ul>
-<p>The ECG detectors functions are now incorporated to Systole to add Numba support.</p>
+<p>These function can be called using Bokeh or Matplotlib as backend (<cite>plot_circular</cite> only accepts Matplotlib for now).</p>
+<p>All the methods available in <a class="reference internal" href="generated/detection/systole.detection.ecg_peaks.html#systole.detection.ecg_peaks" title="systole.detection.ecg_peaks"><code class="xref py py-func docutils literal notranslate"><span class="pre">systole.detection.ecg_peaks()</span></code></a> are now accelerated with Numba.</p>
 <ul class="simple">
 <li><p><span class="raw-html"><span class="badge badge-enhancement">Enhancement</span></span>  Add Numba support for <code class="xref py py-func docutils literal notranslate"><span class="pre">systole.detector.pan_tompkins()</span></code> (~7x faster)</p></li>
 <li><p><span class="raw-html"><span class="badge badge-enhancement">Enhancement</span></span>  Add Numba support for <code class="xref py py-func docutils literal notranslate"><span class="pre">systole.detector.hamilton()</span></code> (~10x faster)</p></li>
 <li><p><span class="raw-html"><span class="badge badge-enhancement">Enhancement</span></span>  Add Numba support for <code class="xref py py-func docutils literal notranslate"><span class="pre">systole.detector.christov()</span></code> (~30x faster)</p></li>
 <li><p><span class="raw-html"><span class="badge badge-enhancement">Enhancement</span></span>  Add Numba support for <code class="xref py py-func docutils literal notranslate"><span class="pre">systole.detector.engelse_zeelenberg()</span></code> (~20x faster)</p></li>
-<li><p><span class="raw-html"><span class="badge badge-enhancement">Enhancement</span></span>  The correct.peaks function has been refactored.</p></li>
-<li><p><span class="raw-html"><span class="badge badge-enhancement">Enhancement</span></span>  utils.to_epochs() now accept multiple condition (as list) and returns rejection vectors for each one. The code has also been simplified and should run faster.</p></li>
 </ul>
+<p>This also drops py-ecg-detectors dependency, and the refactored code is now included in Systole.</p>
+<p>This release also includes some API changes and renaming for consistency (<cite>oxi_peaks</cite> -&gt; <cite>ppg_peaks</cite>).</p>
+</section>
+<section id="changes">
+<h3>Changes<a class="headerlink" href="#changes" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><span class="raw-html"><span class="badge badge-api">API</span></span>  Remove support for Plotly. Add support for Bokeh. Merge interactive and non interactive modules into a unique <code class="xref py py-func docutils literal notranslate"><span class="pre">plots()</span></code> module.</p></li>
+<li><p><span class="raw-html"><span class="badge badge-docs">Docs</span></span>  Use PyData Sphinx theme.</p></li>
+<li><p><span class="raw-html"><span class="badge badge-docs">Docs</span></span>  Several additions to the tutorials pages, now divided into 5 Chapters:</p></li>
+</ul>
+<ol class="arabic simple">
+<li><p>Physiological signal analysis</p></li>
+<li><p>Detecting cycles</p></li>
+<li><p>Detecting and correcting artefacts</p></li>
+<li><p>Heart rate variability</p></li>
+<li><p>Instantaneous heart rate and evoked heart rate</p></li>
+</ol>
+<ul class="simple">
+<li><p><span class="raw-html"><span class="badge badge-docs">Docs</span></span>  Add examples for <a class="reference internal" href="generated/correction/systole.correction.correct_peaks.html#systole.correction.correct_peaks" title="systole.correction.correct_peaks"><code class="xref py py-func docutils literal notranslate"><span class="pre">systole.correction.correct_peaks()</span></code></a> and <a class="reference internal" href="generated/correction/systole.correction.correct_rr.html#systole.correction.correct_rr" title="systole.correction.correct_rr"><code class="xref py py-func docutils literal notranslate"><span class="pre">systole.correction.correct_rr()</span></code></a> in the gallery.</p></li>
+<li><p><span class="raw-html"><span class="badge badge-enhancement">Enhancement</span></span>  <span class="raw-html"><span class="badge badge-feature">Feature</span></span>  <span class="raw-html"><span class="badge badge-api">API</span></span>  Most of the functions now accept inputs as <cite>peaks</cite> (boolean vector), <cite>peaks_idx</cite> (int indexes vector), <cite>rr_ms</cite> (floats RR intervals in miliseconds) or <cite>rr_s</cite> (floats RR intervals in seconds). <code class="xref py py-func docutils literal notranslate"><span class="pre">systole.utils.to_rr()</span></code> has been renamed to <a class="reference internal" href="generated/utils/systole.utils.input_conversion.html#systole.utils.input_conversion" title="systole.utils.input_conversion"><code class="xref py py-func docutils literal notranslate"><span class="pre">systole.utils.input_conversion()</span></code></a> and support the conversion between data types.</p></li>
+<li><p><span class="raw-html"><span class="badge badge-fix">Fix</span></span>  <span class="raw-html"><span class="badge badge-enhancement">Enhancement</span></span>  <a class="reference internal" href="generated/detection/systole.detection.ppg_peaks.html#systole.detection.ppg_peaks" title="systole.detection.ppg_peaks"><code class="xref py py-func docutils literal notranslate"><span class="pre">systole.detection.ppg_peaks()</span></code></a> now handles negative values/ low sampling rate.</p></li>
+<li><p><span class="raw-html"><span class="badge badge-enhancement">Enhancement</span></span>  <a class="reference internal" href="generated/correction/systole.correction.correct_peaks.html#systole.correction.correct_peaks" title="systole.correction.correct_peaks"><code class="xref py py-func docutils literal notranslate"><span class="pre">systole.correction.correct_peaks()</span></code></a> and <a class="reference internal" href="generated/correction/systole.correction.correct_rr.html#systole.correction.correct_rr" title="systole.correction.correct_rr"><code class="xref py py-func docutils literal notranslate"><span class="pre">systole.correction.correct_rr()</span></code></a> have been improved for performances, allows <cite>n</cite> iterations and print results.</p></li>
+<li><p><span class="raw-html"><span class="badge badge-enhancement">Enhancement</span></span>  utils.to_epochs() now accept multiple condition (as list) and returns rejection vectors for each one. The code has also been simplified and runs faster.</p></li>
+<li><p><span class="raw-html"><span class="badge badge-fix">Fix</span></span>  Remove use of <cite>outdated</cite>.</p></li>
+</ul>
+</section>
+<section id="contributors">
+<h3>Contributors<a class="headerlink" href="#contributors" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Gidon Levakov (<a class="reference external" href="mailto:gidonlevakov&#37;&#52;&#48;gmail&#46;com">gidonlevakov<span>&#64;</span>gmail<span>&#46;</span>com</a>)</p></li>
+<li><p>Peter Doggart (<a class="reference external" href="mailto:peter&#46;doggart&#37;&#52;&#48;pulseai&#46;io">peter<span>&#46;</span>doggart<span>&#64;</span>pulseai<span>&#46;</span>io</a>)</p></li>
+</ul>
+</section>
 </section>
 <section id="v0-1-3-april-2021">
 <h2>v0.1.3 (April 2021)<a class="headerlink" href="#v0-1-3-april-2021" title="Permalink to this headline">¶</a></h2>

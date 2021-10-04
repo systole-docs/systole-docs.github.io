@@ -1,6 +1,0 @@
-﻿systole.correct\_missed
-=======================
-
-.. currentmodule:: systole
-
-.. autofunction:: correct_missed

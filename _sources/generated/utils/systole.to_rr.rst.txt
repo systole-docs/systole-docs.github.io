@@ -1,6 +1,0 @@
-﻿systole.to\_rr
-==============
-
-.. currentmodule:: systole
-
-.. autofunction:: to_rr

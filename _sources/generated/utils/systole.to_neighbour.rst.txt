@@ -1,6 +1,0 @@
-﻿systole.to\_neighbour
-=====================
-
-.. currentmodule:: systole
-
-.. autofunction:: to_neighbour
