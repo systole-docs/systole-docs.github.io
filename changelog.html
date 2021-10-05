@@ -258,7 +258,7 @@
 <h2>v0.2.0 (October 2021)<a class="headerlink" href="#v0-2-0-october-2021" title="Permalink to this headline">¶</a></h2>
 <section id="highlights">
 <h3>Highlights<a class="headerlink" href="#highlights" title="Permalink to this headline">¶</a></h3>
-<p>This is a major release that introduce a new plotting backend using Bokeh instead of Plotly, several API changes and performance improvement (Numba).</p>
+<p>This is a major release that introduces a new plotting backend using Bokeh instead of Plotly, several API changes and performance improvement (Numba).</p>
 <p>The <cite>plots</cite> submodule now includes the following functions:</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="generated/plots/systole.plots.plot_circular.html#systole.plots.plot_circular" title="systole.plots.plot_circular"><code class="xref py py-func docutils literal notranslate"><span class="pre">systole.plots.plot_circular()</span></code></a></p></li>
@@ -272,7 +272,7 @@
 <li><p><a class="reference internal" href="generated/plots/systole.plots.plot_shortlong.html#systole.plots.plot_shortlong" title="systole.plots.plot_shortlong"><code class="xref py py-func docutils literal notranslate"><span class="pre">systole.plots.plot_shortlong()</span></code></a></p></li>
 <li><p><a class="reference internal" href="generated/plots/systole.plots.plot_subspaces.html#systole.plots.plot_subspaces" title="systole.plots.plot_subspaces"><code class="xref py py-func docutils literal notranslate"><span class="pre">systole.plots.plot_subspaces()</span></code></a></p></li>
 </ul>
-<p>These function can be called using Bokeh or Matplotlib as backend (<cite>plot_circular</cite> only accepts Matplotlib for now).</p>
+<p>These functions can be called using Bokeh or Matplotlib as backend (<cite>plot_circular</cite> only accepts Matplotlib for now).</p>
 <p>All the methods available in <a class="reference internal" href="generated/detection/systole.detection.ecg_peaks.html#systole.detection.ecg_peaks" title="systole.detection.ecg_peaks"><code class="xref py py-func docutils literal notranslate"><span class="pre">systole.detection.ecg_peaks()</span></code></a> are now accelerated with Numba.</p>
 <ul class="simple">
 <li><p><span class="raw-html"><span class="badge badge-enhancement">Enhancement</span></span>  Add Numba support for <code class="xref py py-func docutils literal notranslate"><span class="pre">systole.detector.pan_tompkins()</span></code> (~7x faster)</p></li>
