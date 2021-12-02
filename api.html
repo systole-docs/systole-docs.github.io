@@ -245,11 +245,6 @@
    systole.hrv.frequency_domain
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="generated/hrv/systole.hrv.nonlinear.html">
-   systole.hrv.nonlinear
-  </a>
- </li>
 </ul>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
@@ -278,8 +273,8 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="generated/plots/systole.plots.plot_pointcare.html">
-   systole.plots.plot_pointcare
+  <a class="reference internal" href="generated/plots/systole.plots.plot_poincare.html">
+   systole.plots.plot_poincare
   </a>
  </li>
  <li class="toctree-l1">
@@ -509,23 +504,20 @@
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/hrv/systole.hrv.nnX.html#systole.hrv.nnX" title="systole.hrv.nnX"><code class="xref py py-obj docutils literal notranslate"><span class="pre">nnX</span></code></a>(x[, t, input_type])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/hrv/systole.hrv.nnX.html#systole.hrv.nnX" title="systole.hrv.nnX"><code class="xref py py-obj docutils literal notranslate"><span class="pre">nnX</span></code></a>(rr[, t, input_type])</p></td>
 <td><p>Number of difference in successive R-R interval &gt; t ms.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/hrv/systole.hrv.pnnX.html#systole.hrv.pnnX" title="systole.hrv.pnnX"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pnnX</span></code></a>(x[, t, input_type])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/hrv/systole.hrv.pnnX.html#systole.hrv.pnnX" title="systole.hrv.pnnX"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pnnX</span></code></a>(rr[, t, input_type])</p></td>
 <td><p>Number of successive differences larger than a value (def = 50ms).</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/hrv/systole.hrv.rmssd.html#systole.hrv.rmssd" title="systole.hrv.rmssd"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rmssd</span></code></a>(x[, input_type])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/hrv/systole.hrv.rmssd.html#systole.hrv.rmssd" title="systole.hrv.rmssd"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rmssd</span></code></a>(rr[, input_type])</p></td>
 <td><p>Root Mean Square of Successive Differences.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/hrv/systole.hrv.time_domain.html#systole.hrv.time_domain" title="systole.hrv.time_domain"><code class="xref py py-obj docutils literal notranslate"><span class="pre">time_domain</span></code></a>(x[, input_type])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/hrv/systole.hrv.time_domain.html#systole.hrv.time_domain" title="systole.hrv.time_domain"><code class="xref py py-obj docutils literal notranslate"><span class="pre">time_domain</span></code></a>(rr[, input_type])</p></td>
 <td><p>Extract all time domain parameters from R-R intervals.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/hrv/systole.hrv.frequency_domain.html#systole.hrv.frequency_domain" title="systole.hrv.frequency_domain"><code class="xref py py-obj docutils literal notranslate"><span class="pre">frequency_domain</span></code></a>(rr[, sfreq, method, ...])</p></td>
 <td><p>Extract the frequency domain features of heart rate variability.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/hrv/systole.hrv.nonlinear.html#systole.hrv.nonlinear" title="systole.hrv.nonlinear"><code class="xref py py-obj docutils literal notranslate"><span class="pre">nonlinear</span></code></a>(x[, input_type])</p></td>
-<td><p>Extract the non-linear features of heart rate variability.</p></td>
 </tr>
 </tbody>
 </table>
@@ -553,8 +545,8 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/plots/systole.plots.plot_frequency.html#systole.plots.plot_frequency" title="systole.plots.plot_frequency"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_frequency</span></code></a>(rr[, input_type, fbands, ...])</p></td>
 <td><p>Plot power spectral densty of RR time series.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/plots/systole.plots.plot_pointcare.html#systole.plots.plot_pointcare" title="systole.plots.plot_pointcare"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_pointcare</span></code></a>(rr[, input_type, figsize, ...])</p></td>
-<td><p>Pointcare plot.</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/plots/systole.plots.plot_poincare.html#systole.plots.plot_poincare" title="systole.plots.plot_poincare"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_poincare</span></code></a>(rr[, input_type, figsize, ...])</p></td>
+<td><p>Poincare plot.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/plots/systole.plots.plot_raw.html#systole.plots.plot_raw" title="systole.plots.plot_raw"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_raw</span></code></a>(signal[, sfreq, modality, ...])</p></td>
 <td><p>Visualization of PPG or ECG signal with systolic peaks or R wave detection.</p></td>

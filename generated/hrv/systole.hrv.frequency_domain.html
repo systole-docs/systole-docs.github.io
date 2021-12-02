@@ -53,7 +53,7 @@
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="systole.hrv.nonlinear" href="systole.hrv.nonlinear.html" />
+    <link rel="next" title="systole.plots.plot_circular" href="../plots/systole.plots.plot_circular.html" />
     <link rel="prev" title="systole.hrv.time_domain" href="systole.hrv.time_domain.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -245,11 +245,6 @@
    systole.hrv.frequency_domain
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="systole.hrv.nonlinear.html">
-   systole.hrv.nonlinear
-  </a>
- </li>
 </ul>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
@@ -278,8 +273,8 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../plots/systole.plots.plot_pointcare.html">
-   systole.plots.plot_pointcare
+  <a class="reference internal" href="../plots/systole.plots.plot_poincare.html">
+   systole.plots.plot_poincare
   </a>
  </li>
  <li class="toctree-l1">
@@ -406,7 +401,9 @@
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>rr</strong><span class="classifier">np.ndarray | list</span></dt><dd><p>Interval time-series (R-R in seconds or miliseconds, peaks or peaks indexes).</p>
+<dt><strong>rr</strong><span class="classifier">np.ndarray | list</span></dt><dd><p>R-R interval time-series, peaks or peaks index vectors. The default expected
+vector is R-R intervals in milliseconds. Other data format can be provided by
+specifying the <cite>“input_type”</cite> (can be <cite>“rr_s”</cite>, <cite>“peaks”</cite> or <cite>“peaks_idx”</cite>).</p>
 </dd>
 <dt><strong>sfreq</strong><span class="classifier">int</span></dt><dd><p>The sampling frequency (Hz).</p>
 </dd>
@@ -438,7 +435,7 @@
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <dl class="simple">
-<dt><a class="reference internal" href="systole.hrv.time_domain.html#systole.hrv.time_domain" title="systole.hrv.time_domain"><code class="xref py py-obj docutils literal notranslate"><span class="pre">time_domain</span></code></a>, <a class="reference internal" href="systole.hrv.nonlinear.html#systole.hrv.nonlinear" title="systole.hrv.nonlinear"><code class="xref py py-obj docutils literal notranslate"><span class="pre">nonlinear</span></code></a></dt><dd></dd>
+<dt><a class="reference internal" href="systole.hrv.time_domain.html#systole.hrv.time_domain" title="systole.hrv.time_domain"><code class="xref py py-obj docutils literal notranslate"><span class="pre">time_domain</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">nonlinear</span></code></dt><dd></dd>
 </dl>
 </div>
 <p class="rubric">Notes</p>
@@ -466,7 +463,7 @@ against another software.</p>
               <div class='prev-next-bottom'>
                 
     <a class='left-prev' id="prev-link" href="systole.hrv.time_domain.html" title="previous page">systole.hrv.time_domain</a>
-    <a class='right-next' id="next-link" href="systole.hrv.nonlinear.html" title="next page">systole.hrv.nonlinear</a>
+    <a class='right-next' id="next-link" href="../plots/systole.plots.plot_circular.html" title="next page">systole.plots.plot_circular</a>
 
               </div>
               

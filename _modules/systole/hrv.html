@@ -192,17 +192,19 @@
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">interpolate</span>
 <span class="kn">from</span> <span class="nn">scipy.signal</span> <span class="kn">import</span> <span class="n">welch</span>
-
+<span class="kn">from</span> <span class="nn">numba</span> <span class="kn">import</span> <span class="n">jit</span>
 <span class="kn">from</span> <span class="nn">systole.utils</span> <span class="kn">import</span> <span class="n">input_conversion</span>
 
 
-<div class="viewcode-block" id="nnX"><a class="viewcode-back" href="../../generated/hrv/systole.hrv.nnX.html#systole.hrv.nnX">[docs]</a><span class="k">def</span> <span class="nf">nnX</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span> <span class="n">t</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">50</span><span class="p">,</span> <span class="n">input_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;rr_ms&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<div class="viewcode-block" id="nnX"><a class="viewcode-back" href="../../generated/hrv/systole.hrv.nnX.html#systole.hrv.nnX">[docs]</a><span class="k">def</span> <span class="nf">nnX</span><span class="p">(</span><span class="n">rr</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span> <span class="n">t</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">50</span><span class="p">,</span> <span class="n">input_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;rr_ms&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Number of difference in successive R-R interval &gt; t ms.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    x : np.ndarray | list</span>
-<span class="sd">        Interval time-series (R-R in seconds or miliseconds, peaks or peaks indexes).</span>
+<span class="sd">    rr : np.ndarray | list</span>
+<span class="sd">        R-R interval time-series, peaks or peaks index vectors. The default expected</span>
+<span class="sd">        vector is R-R intervals in milliseconds. Other data format can be provided by</span>
+<span class="sd">        specifying the `&quot;input_type&quot;` (can be `&quot;rr_s&quot;`, `&quot;peaks&quot;` or `&quot;peaks_idx&quot;`).</span>
 <span class="sd">    t : int</span>
 <span class="sd">        Threshold value: Defaut is set to 50 ms to calculate the nn50 index.</span>
 <span class="sd">    input_type : str</span>
@@ -216,26 +218,29 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">rr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">rr</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">input_type</span> <span class="o">!=</span> <span class="s2">&quot;rr_ms&quot;</span><span class="p">:</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="n">input_conversion</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">input_type</span><span class="o">=</span><span class="n">input_type</span><span class="p">,</span> <span class="n">output_type</span><span class="o">=</span><span class="s2">&quot;rr_ms&quot;</span><span class="p">)</span>
+        <span class="n">rr</span> <span class="o">=</span> <span class="n">input_conversion</span><span class="p">(</span><span class="n">rr</span><span class="p">,</span> <span class="n">input_type</span><span class="o">=</span><span class="n">input_type</span><span class="p">,</span> <span class="n">output_type</span><span class="o">=</span><span class="s2">&quot;rr_ms&quot;</span><span class="p">)</span>
 
-    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">rr</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;X must be a 1darray&quot;</span><span class="p">)</span>
 
     <span class="c1"># NN50: number of successive differences larger than t ms</span>
-    <span class="n">nn</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> <span class="o">&gt;</span> <span class="n">t</span><span class="p">)</span>
+    <span class="n">nn</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">rr</span><span class="p">))</span> <span class="o">&gt;</span> <span class="n">t</span><span class="p">)</span>
+
     <span class="k">return</span> <span class="n">nn</span></div>
 
 
-<div class="viewcode-block" id="pnnX"><a class="viewcode-back" href="../../generated/hrv/systole.hrv.pnnX.html#systole.hrv.pnnX">[docs]</a><span class="k">def</span> <span class="nf">pnnX</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span> <span class="n">t</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">50</span><span class="p">,</span> <span class="n">input_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;rr_ms&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<div class="viewcode-block" id="pnnX"><a class="viewcode-back" href="../../generated/hrv/systole.hrv.pnnX.html#systole.hrv.pnnX">[docs]</a><span class="k">def</span> <span class="nf">pnnX</span><span class="p">(</span><span class="n">rr</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span> <span class="n">t</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">50</span><span class="p">,</span> <span class="n">input_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;rr_ms&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Number of successive differences larger than a value (def = 50ms).</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    x : np.ndarray | list</span>
-<span class="sd">        Interval time-series (R-R in seconds or miliseconds, peaks or peaks indexes).</span>
+<span class="sd">    rr : np.ndarray | list</span>
+<span class="sd">        R-R interval time-series, peaks or peaks index vectors. The default expected</span>
+<span class="sd">        vector is R-R intervals in milliseconds. Other data format can be provided by</span>
+<span class="sd">        specifying the `&quot;input_type&quot;` (can be `&quot;rr_s&quot;`, `&quot;peaks&quot;` or `&quot;peaks_idx&quot;`).</span>
 <span class="sd">    t : int</span>
 <span class="sd">        Threshold value: Defaut is set to 50 ms to calculate the nn50 index.</span>
 <span class="sd">    input_type : str</span>
@@ -249,30 +254,32 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">rr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">rr</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">input_type</span> <span class="o">!=</span> <span class="s2">&quot;rr_ms&quot;</span><span class="p">:</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="n">input_conversion</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">input_type</span><span class="o">=</span><span class="n">input_type</span><span class="p">,</span> <span class="n">output_type</span><span class="o">=</span><span class="s2">&quot;rr_ms&quot;</span><span class="p">)</span>
+        <span class="n">rr</span> <span class="o">=</span> <span class="n">input_conversion</span><span class="p">(</span><span class="n">rr</span><span class="p">,</span> <span class="n">input_type</span><span class="o">=</span><span class="n">input_type</span><span class="p">,</span> <span class="n">output_type</span><span class="o">=</span><span class="s2">&quot;rr_ms&quot;</span><span class="p">)</span>
 
-    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">rr</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;X must be a 1darray&quot;</span><span class="p">)</span>
 
     <span class="c1"># nnX: number of successive differences larger than t ms</span>
-    <span class="n">nn</span> <span class="o">=</span> <span class="n">nnX</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
+    <span class="n">nn</span> <span class="o">=</span> <span class="n">nnX</span><span class="p">(</span><span class="n">rr</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
 
     <span class="c1"># Proportion of successive differences larger than t ms</span>
-    <span class="n">pnnX</span> <span class="o">=</span> <span class="mi">100</span> <span class="o">*</span> <span class="n">nn</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+    <span class="n">pnnX</span> <span class="o">=</span> <span class="mi">100</span> <span class="o">*</span> <span class="n">nn</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">rr</span><span class="p">))</span>
 
     <span class="k">return</span> <span class="n">pnnX</span></div>
 
 
-<div class="viewcode-block" id="rmssd"><a class="viewcode-back" href="../../generated/hrv/systole.hrv.rmssd.html#systole.hrv.rmssd">[docs]</a><span class="k">def</span> <span class="nf">rmssd</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span> <span class="n">input_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;rr_ms&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<div class="viewcode-block" id="rmssd"><a class="viewcode-back" href="../../generated/hrv/systole.hrv.rmssd.html#systole.hrv.rmssd">[docs]</a><span class="k">def</span> <span class="nf">rmssd</span><span class="p">(</span><span class="n">rr</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span> <span class="n">input_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;rr_ms&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Root Mean Square of Successive Differences.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    x : np.ndarray | list</span>
-<span class="sd">        Interval time-series (R-R in seconds or miliseconds, peaks or peaks indexes).</span>
+<span class="sd">    rr : np.ndarray | list</span>
+<span class="sd">        R-R interval time-series, peaks or peaks index vectors. The default expected</span>
+<span class="sd">        vector is R-R intervals in milliseconds. Other data format can be provided by</span>
+<span class="sd">        specifying the `&quot;input_type&quot;` (can be `&quot;rr_s&quot;`, `&quot;peaks&quot;` or `&quot;peaks_idx&quot;`).</span>
 <span class="sd">    input_type : str</span>
 <span class="sd">        The type of input provided. Can be `&quot;peaks&quot;`, `&quot;peaks_idx&quot;`, `&quot;rr_ms&quot;` or</span>
 <span class="sd">        `&quot;rr_s&quot;`. Defaults to `&quot;rr_ms&quot;`.</span>
@@ -290,26 +297,28 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">rr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">rr</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">input_type</span> <span class="o">!=</span> <span class="s2">&quot;rr_ms&quot;</span><span class="p">:</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="n">input_conversion</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">input_type</span><span class="o">=</span><span class="n">input_type</span><span class="p">,</span> <span class="n">output_type</span><span class="o">=</span><span class="s2">&quot;rr_ms&quot;</span><span class="p">)</span>
+        <span class="n">rr</span> <span class="o">=</span> <span class="n">input_conversion</span><span class="p">(</span><span class="n">rr</span><span class="p">,</span> <span class="n">input_type</span><span class="o">=</span><span class="n">input_type</span><span class="p">,</span> <span class="n">output_type</span><span class="o">=</span><span class="s2">&quot;rr_ms&quot;</span><span class="p">)</span>
 
-    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">rr</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;X must be a 1darray&quot;</span><span class="p">)</span>
 
-    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">x</span><span class="p">))))</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">rr</span><span class="p">))))</span>
 
     <span class="k">return</span> <span class="n">y</span></div>
 
 
-<div class="viewcode-block" id="time_domain"><a class="viewcode-back" href="../../generated/hrv/systole.hrv.time_domain.html#systole.hrv.time_domain">[docs]</a><span class="k">def</span> <span class="nf">time_domain</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span> <span class="n">input_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;rr_ms&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+<div class="viewcode-block" id="time_domain"><a class="viewcode-back" href="../../generated/hrv/systole.hrv.time_domain.html#systole.hrv.time_domain">[docs]</a><span class="k">def</span> <span class="nf">time_domain</span><span class="p">(</span><span class="n">rr</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span> <span class="n">input_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;rr_ms&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Extract all time domain parameters from R-R intervals.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    x : np.ndarray | list</span>
-<span class="sd">        Interval time-series (R-R in seconds or miliseconds, peaks or peaks indexes).</span>
+<span class="sd">    rr : np.ndarray | list</span>
+<span class="sd">        R-R interval time-series, peaks or peaks index vectors. The default expected</span>
+<span class="sd">        vector is R-R intervals in milliseconds. Other data format can be provided by</span>
+<span class="sd">        specifying the `&quot;input_type&quot;` (can be `&quot;rr_s&quot;`, `&quot;peaks&quot;` or `&quot;peaks_idx&quot;`).</span>
 <span class="sd">    input_type : str</span>
 <span class="sd">        The type of input provided. Can be `&quot;peaks&quot;`, `&quot;peaks_idx&quot;`, `&quot;rr_ms&quot;` or</span>
 <span class="sd">        `&quot;rr_s&quot;`. Defaults to `&quot;rr_ms&quot;`.</span>
@@ -349,49 +358,49 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">rr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">rr</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">input_type</span> <span class="o">!=</span> <span class="s2">&quot;rr_ms&quot;</span><span class="p">:</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="n">input_conversion</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">input_type</span><span class="o">=</span><span class="n">input_type</span><span class="p">,</span> <span class="n">output_type</span><span class="o">=</span><span class="s2">&quot;rr_ms&quot;</span><span class="p">)</span>
+        <span class="n">rr</span> <span class="o">=</span> <span class="n">input_conversion</span><span class="p">(</span><span class="n">rr</span><span class="p">,</span> <span class="n">input_type</span><span class="o">=</span><span class="n">input_type</span><span class="p">,</span> <span class="n">output_type</span><span class="o">=</span><span class="s2">&quot;rr_ms&quot;</span><span class="p">)</span>
 
-    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">rr</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;X must be a 1darray&quot;</span><span class="p">)</span>
 
     <span class="c1"># Mean R-R intervals</span>
-    <span class="n">mean_rr</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="mi">6</span><span class="p">)</span>  <span class="c1"># type: ignore</span>
+    <span class="n">mean_rr</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">rr</span><span class="p">),</span> <span class="mi">6</span><span class="p">)</span>  <span class="c1"># type: ignore</span>
 
     <span class="c1"># Mean BPM</span>
-    <span class="n">mean_bpm</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="mi">60000</span> <span class="o">/</span> <span class="n">x</span><span class="p">),</span> <span class="mi">6</span><span class="p">)</span>  <span class="c1"># type: ignore</span>
+    <span class="n">mean_bpm</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="mi">60000</span> <span class="o">/</span> <span class="n">rr</span><span class="p">),</span> <span class="mi">6</span><span class="p">)</span>  <span class="c1"># type: ignore</span>
 
     <span class="c1"># Median BPM</span>
-    <span class="n">median_rr</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="mi">6</span><span class="p">)</span>
+    <span class="n">median_rr</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">rr</span><span class="p">),</span> <span class="mi">6</span><span class="p">)</span>
 
     <span class="c1"># Median BPM</span>
-    <span class="n">median_bpm</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="mi">60000</span> <span class="o">/</span> <span class="n">x</span><span class="p">),</span> <span class="mi">6</span><span class="p">)</span>
+    <span class="n">median_bpm</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="mi">60000</span> <span class="o">/</span> <span class="n">rr</span><span class="p">),</span> <span class="mi">6</span><span class="p">)</span>
 
     <span class="c1"># Minimum RR</span>
-    <span class="n">min_rr</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="mi">6</span><span class="p">)</span>
+    <span class="n">min_rr</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">rr</span><span class="p">),</span> <span class="mi">6</span><span class="p">)</span>
 
     <span class="c1"># Minimum BPM</span>
-    <span class="n">min_bpm</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="mi">60000</span> <span class="o">/</span> <span class="n">x</span><span class="p">),</span> <span class="mi">6</span><span class="p">)</span>
+    <span class="n">min_bpm</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="mi">60000</span> <span class="o">/</span> <span class="n">rr</span><span class="p">),</span> <span class="mi">6</span><span class="p">)</span>
 
     <span class="c1"># Maximum RR</span>
-    <span class="n">max_rr</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="mi">6</span><span class="p">)</span>
+    <span class="n">max_rr</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">rr</span><span class="p">),</span> <span class="mi">6</span><span class="p">)</span>
 
     <span class="c1"># Maximum BPM</span>
-    <span class="n">max_bpm</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="mi">60000</span> <span class="o">/</span> <span class="n">x</span><span class="p">),</span> <span class="mi">6</span><span class="p">)</span>
+    <span class="n">max_bpm</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="mi">60000</span> <span class="o">/</span> <span class="n">rr</span><span class="p">),</span> <span class="mi">6</span><span class="p">)</span>
 
     <span class="c1"># Standard deviation of R-R intervals</span>
-    <span class="n">sdnn</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">ddof</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="mi">6</span><span class="p">)</span>  <span class="c1"># type: ignore</span>
+    <span class="n">sdnn</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">rr</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">ddof</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="mi">6</span><span class="p">)</span>  <span class="c1"># type: ignore</span>
 
     <span class="c1"># Root Mean Square of Successive Differences (RMSSD)</span>
-    <span class="n">rms</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">rmssd</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="mi">6</span><span class="p">)</span>
+    <span class="n">rms</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">rmssd</span><span class="p">(</span><span class="n">rr</span><span class="p">),</span> <span class="mi">6</span><span class="p">)</span>
 
     <span class="c1"># NN50: number of successive differences larger than 50ms</span>
-    <span class="n">nn</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">nnX</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">50</span><span class="p">),</span> <span class="mi">6</span><span class="p">)</span>
+    <span class="n">nn</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">nnX</span><span class="p">(</span><span class="n">rr</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">50</span><span class="p">),</span> <span class="mi">6</span><span class="p">)</span>
 
     <span class="c1"># pNN50: Proportion of successive differences larger than 50ms</span>
-    <span class="n">pnn</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">pnnX</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">50</span><span class="p">),</span> <span class="mi">6</span><span class="p">)</span>
+    <span class="n">pnn</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">pnnX</span><span class="p">(</span><span class="n">rr</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">50</span><span class="p">),</span> <span class="mi">6</span><span class="p">)</span>
 
     <span class="c1"># Create summary dataframe</span>
     <span class="n">values</span> <span class="o">=</span> <span class="p">[</span>
@@ -439,7 +448,9 @@
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    rr : np.ndarray | list</span>
-<span class="sd">        Interval time-series (R-R in seconds or miliseconds, peaks or peaks indexes).</span>
+<span class="sd">        R-R interval time-series, peaks or peaks index vectors. The default expected</span>
+<span class="sd">        vector is R-R intervals in milliseconds. Other data format can be provided by</span>
+<span class="sd">        specifying the `&quot;input_type&quot;` (can be `&quot;rr_s&quot;`, `&quot;peaks&quot;` or `&quot;peaks_idx&quot;`).</span>
 <span class="sd">    sfreq : int</span>
 <span class="sd">        The sampling frequency (Hz) of the interpolated instantaneous heart</span>
 <span class="sd">        rate.</span>
@@ -497,7 +508,9 @@
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    rr : np.ndarray | list</span>
-<span class="sd">        Interval time-series (R-R in seconds or miliseconds, peaks or peaks indexes).</span>
+<span class="sd">        R-R interval time-series, peaks or peaks index vectors. The default expected</span>
+<span class="sd">        vector is R-R intervals in milliseconds. Other data format can be provided by</span>
+<span class="sd">        specifying the `&quot;input_type&quot;` (can be `&quot;rr_s&quot;`, `&quot;peaks&quot;` or `&quot;peaks_idx&quot;`).</span>
 <span class="sd">    sfreq : int</span>
 <span class="sd">        The sampling frequency (Hz).</span>
 <span class="sd">    method : str</span>
@@ -605,13 +618,15 @@
     <span class="k">return</span> <span class="n">stats</span></div>
 
 
-<div class="viewcode-block" id="nonlinear"><a class="viewcode-back" href="../../generated/hrv/systole.hrv.nonlinear.html#systole.hrv.nonlinear">[docs]</a><span class="k">def</span> <span class="nf">nonlinear</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span> <span class="n">input_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;rr_ms&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+<span class="k">def</span> <span class="nf">nonlinear_domain</span><span class="p">(</span><span class="n">rr</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span> <span class="n">input_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;rr_ms&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Extract the non-linear features of heart rate variability.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    x : list | np.ndarray</span>
-<span class="sd">        Interval time-series (R-R, beat-to-beat...), in miliseconds.</span>
+<span class="sd">    rr : list | np.ndarray</span>
+<span class="sd">        R-R interval time-series, peaks or peaks index vectors. The default expected</span>
+<span class="sd">        vector is R-R intervals in milliseconds. Other data format can be provided by</span>
+<span class="sd">        specifying the `&quot;input_type&quot;` (can be `&quot;rr_s&quot;`, `&quot;peaks&quot;` or `&quot;peaks_idx&quot;`).</span>
 <span class="sd">    input_type : str</span>
 <span class="sd">        The type of input provided. Can be `&quot;peaks&quot;`, `&quot;peaks_idx&quot;`, `&quot;rr_ms&quot;` or</span>
 <span class="sd">        `&quot;rr_s&quot;`. Defaults to `&quot;rr_ms&quot;`.</span>
@@ -625,7 +640,7 @@
 
 <span class="sd">    See also</span>
 <span class="sd">    --------</span>
-<span class="sd">    time_domain, frequency_domain</span>
+<span class="sd">    time_domain, frequency_domain, poincare</span>
 
 <span class="sd">    Notes</span>
 <span class="sd">    -----</span>
@@ -641,20 +656,91 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">rr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">rr</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">input_type</span> <span class="o">!=</span> <span class="s2">&quot;rr_ms&quot;</span><span class="p">:</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="n">input_conversion</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">input_type</span><span class="o">=</span><span class="n">input_type</span><span class="p">,</span> <span class="n">output_type</span><span class="o">=</span><span class="s2">&quot;rr_ms&quot;</span><span class="p">)</span>
+        <span class="n">rr</span> <span class="o">=</span> <span class="n">input_conversion</span><span class="p">(</span><span class="n">rr</span><span class="p">,</span> <span class="n">input_type</span><span class="o">=</span><span class="n">input_type</span><span class="p">,</span> <span class="n">output_type</span><span class="o">=</span><span class="s2">&quot;rr_ms&quot;</span><span class="p">)</span>
 
-    <span class="n">diff_rr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-    <span class="n">sd1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">diff_rr</span><span class="p">,</span> <span class="n">ddof</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">*</span> <span class="mf">0.5</span><span class="p">)</span>
-    <span class="n">sd2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">ddof</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">-</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">diff_rr</span><span class="p">,</span> <span class="n">ddof</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">sd1</span><span class="p">,</span> <span class="n">sd2</span> <span class="o">=</span> <span class="n">poincare</span><span class="p">(</span><span class="n">rr</span><span class="p">,</span> <span class="n">input_type</span><span class="o">=</span><span class="s2">&quot;rr_ms&quot;</span><span class="p">)</span>
+
     <span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="n">sd1</span><span class="p">,</span> <span class="n">sd2</span><span class="p">]</span>
     <span class="n">metrics</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;SD1&quot;</span><span class="p">,</span> <span class="s2">&quot;SD2&quot;</span><span class="p">]</span>
 
     <span class="n">stats</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;Values&quot;</span><span class="p">:</span> <span class="n">values</span><span class="p">,</span> <span class="s2">&quot;Metric&quot;</span><span class="p">:</span> <span class="n">metrics</span><span class="p">})</span>
 
-    <span class="k">return</span> <span class="n">stats</span></div>
+    <span class="k">return</span> <span class="n">stats</span>
+
+
+<span class="k">def</span> <span class="nf">poincare</span><span class="p">(</span><span class="n">rr</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span> <span class="n">input_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;rr_ms&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
+    <span class="sd">&quot;&quot;&quot;Compute SD1 and SD2 from the Poincaré nonlinear method for heart rate variability.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    rr : list | np.ndarray</span>
+<span class="sd">        R-R interval time-series, peaks or peaks index vectors. The default expected</span>
+<span class="sd">        vector is R-R intervals in milliseconds. Other data format can be provided by</span>
+<span class="sd">        specifying the `&quot;input_type&quot;` (can be `&quot;rr_s&quot;`, `&quot;peaks&quot;` or `&quot;peaks_idx&quot;`).</span>
+<span class="sd">    input_type : str</span>
+<span class="sd">        The type of input provided. Can be `&quot;peaks&quot;`, `&quot;peaks_idx&quot;`, `&quot;rr_ms&quot;` or</span>
+<span class="sd">        `&quot;rr_s&quot;`. Defaults to `&quot;rr_ms&quot;`.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    sd1 : float</span>
+<span class="sd">        The standard deviation of the points perpendicular to the identity line. This</span>
+<span class="sd">        metric is thought to be influenced mainly by the respiratory sinus arythmia</span>
+<span class="sd">        (RSA) and reflect short-term heart rate variability.</span>
+<span class="sd">    sd2 : float</span>
+<span class="sd">        The standard deviation of the points along the identity line. This metric is</span>
+<span class="sd">        thought to reflect the long-term heart rate variability.</span>
+
+<span class="sd">    See also</span>
+<span class="sd">    --------</span>
+<span class="sd">    nonlinear_domain</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    The Poincare plot is a commonly used nonlinear method that is based on the</span>
+<span class="sd">    graphical representation of the correlation between lagged successive RR intervals</span>
+<span class="sd">    (the :math:`\\RR_{n}` intervals are plotted as a function of the :math:`\\RR_{n+1}`)</span>
+<span class="sd">    intervals. The shape of the resulting plot is then analyzed and two metrics are</span>
+<span class="sd">    extracted, representing the standard deviation of the distribution perpendicular to</span>
+<span class="sd">    the identity line (SD1) and along the identity line (SD2).</span>
+
+<span class="sd">    SD1, which corresponds to the standard deviation of the points perpendicular to the</span>
+<span class="sd">    identity line, reflects short-term variability and is thought to be caused by</span>
+<span class="sd">    respiratory sinus arrhythmia (RSA). SD2, on the other side, the standard deviation</span>
+<span class="sd">    along the identity line, corresponds to the long-term heart rate variability.</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+<span class="sd">    .. [1] https://en.wikipedia.org/wiki/Poincar%C3%A9_plot</span>
+
+<span class="sd">    .. [2] M. Brennan, M. Palaniswami, and P. Kamen. Do existing measures of Poincaré</span>
+<span class="sd">       plot geometry reflect nonlinear features of heart rate variability. IEEE Trans</span>
+<span class="sd">       Biomed Eng, 48(11):1342–1347, 2001.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">rr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">rr</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">input_type</span> <span class="o">!=</span> <span class="s2">&quot;rr_ms&quot;</span><span class="p">:</span>
+        <span class="n">rr</span> <span class="o">=</span> <span class="n">input_conversion</span><span class="p">(</span><span class="n">rr</span><span class="p">,</span> <span class="n">input_type</span><span class="o">=</span><span class="n">input_type</span><span class="p">,</span> <span class="n">output_type</span><span class="o">=</span><span class="s2">&quot;rr_ms&quot;</span><span class="p">)</span>
+
+    <span class="n">sd1</span><span class="p">,</span> <span class="n">sd2</span> <span class="o">=</span> <span class="n">_poincare</span><span class="p">(</span><span class="n">rr</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">sd1</span><span class="p">,</span> <span class="n">sd2</span>
+
+
+<span class="nd">@jit</span><span class="p">(</span><span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">_poincare</span><span class="p">(</span><span class="n">rr</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
+    <span class="sd">&quot;&quot;&quot;Compute SD1 and SD2 from the Poincaré nonlinear method for heart rate variability.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">diff_rr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">rr</span><span class="p">)</span>
+    <span class="n">sd1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">diff_rr</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">*</span> <span class="mf">0.5</span><span class="p">)</span>
+    <span class="n">sd2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">rr</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">-</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">diff_rr</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">sd1</span><span class="p">,</span> <span class="n">sd2</span>
 </pre></div>
 
               </div>

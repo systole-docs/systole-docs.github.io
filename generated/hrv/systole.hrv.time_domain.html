@@ -245,11 +245,6 @@
    systole.hrv.frequency_domain
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="systole.hrv.nonlinear.html">
-   systole.hrv.nonlinear
-  </a>
- </li>
 </ul>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
@@ -278,8 +273,8 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../plots/systole.plots.plot_pointcare.html">
-   systole.plots.plot_pointcare
+  <a class="reference internal" href="../plots/systole.plots.plot_poincare.html">
+   systole.plots.plot_poincare
   </a>
  </li>
  <li class="toctree-l1">
@@ -401,12 +396,14 @@
 <h1>systole.hrv.time_domain<a class="headerlink" href="#systole-hrv-time-domain" title="Permalink to this headline">¶</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="systole.hrv.time_domain">
-<span class="sig-prename descclassname"><span class="pre">systole.hrv.</span></span><span class="sig-name descname"><span class="pre">time_domain</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">,</span> </span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.21)"><span class="pre">numpy.ndarray</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_type</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'rr_ms'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.3.4)"><span class="pre">pandas.core.frame.DataFrame</span></a></span></span><a class="reference internal" href="../../_modules/systole/hrv.html#time_domain"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#systole.hrv.time_domain" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">systole.hrv.</span></span><span class="sig-name descname"><span class="pre">time_domain</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rr</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">,</span> </span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.21)"><span class="pre">numpy.ndarray</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_type</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'rr_ms'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.3.4)"><span class="pre">pandas.core.frame.DataFrame</span></a></span></span><a class="reference internal" href="../../_modules/systole/hrv.html#time_domain"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#systole.hrv.time_domain" title="Permalink to this definition">¶</a></dt>
 <dd><p>Extract all time domain parameters from R-R intervals.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>x</strong><span class="classifier">np.ndarray | list</span></dt><dd><p>Interval time-series (R-R in seconds or miliseconds, peaks or peaks indexes).</p>
+<dt><strong>rr</strong><span class="classifier">np.ndarray | list</span></dt><dd><p>R-R interval time-series, peaks or peaks index vectors. The default expected
+vector is R-R intervals in milliseconds. Other data format can be provided by
+specifying the <cite>“input_type”</cite> (can be <cite>“rr_s”</cite>, <cite>“peaks”</cite> or <cite>“peaks_idx”</cite>).</p>
 </dd>
 <dt><strong>input_type</strong><span class="classifier">str</span></dt><dd><p>The type of input provided. Can be <cite>“peaks”</cite>, <cite>“peaks_idx”</cite>, <cite>“rr_ms”</cite> or
 <cite>“rr_s”</cite>. Defaults to <cite>“rr_ms”</cite>.</p>
@@ -435,7 +432,7 @@
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <dl class="simple">
-<dt><a class="reference internal" href="systole.hrv.frequency_domain.html#systole.hrv.frequency_domain" title="systole.hrv.frequency_domain"><code class="xref py py-obj docutils literal notranslate"><span class="pre">frequency_domain</span></code></a>, <a class="reference internal" href="systole.hrv.nonlinear.html#systole.hrv.nonlinear" title="systole.hrv.nonlinear"><code class="xref py py-obj docutils literal notranslate"><span class="pre">nonlinear</span></code></a></dt><dd></dd>
+<dt><a class="reference internal" href="systole.hrv.frequency_domain.html#systole.hrv.frequency_domain" title="systole.hrv.frequency_domain"><code class="xref py py-obj docutils literal notranslate"><span class="pre">frequency_domain</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">nonlinear</span></code></dt><dd></dd>
 </dl>
 </div>
 <p class="rubric">Notes</p>
