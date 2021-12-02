@@ -358,40 +358,40 @@
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;X must be a 1darray&quot;</span><span class="p">)</span>
 
     <span class="c1"># Mean R-R intervals</span>
-    <span class="n">mean_rr</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>  <span class="c1"># type: ignore</span>
+    <span class="n">mean_rr</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="mi">6</span><span class="p">)</span>  <span class="c1"># type: ignore</span>
 
     <span class="c1"># Mean BPM</span>
-    <span class="n">mean_bpm</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="mi">60000</span> <span class="o">/</span> <span class="n">x</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span>  <span class="c1"># type: ignore</span>
+    <span class="n">mean_bpm</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="mi">60000</span> <span class="o">/</span> <span class="n">x</span><span class="p">),</span> <span class="mi">6</span><span class="p">)</span>  <span class="c1"># type: ignore</span>
 
     <span class="c1"># Median BPM</span>
-    <span class="n">median_rr</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">median_rr</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="mi">6</span><span class="p">)</span>
 
     <span class="c1"># Median BPM</span>
-    <span class="n">median_bpm</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="mi">60000</span> <span class="o">/</span> <span class="n">x</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">median_bpm</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="mi">60000</span> <span class="o">/</span> <span class="n">x</span><span class="p">),</span> <span class="mi">6</span><span class="p">)</span>
 
     <span class="c1"># Minimum RR</span>
-    <span class="n">min_rr</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">min_rr</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="mi">6</span><span class="p">)</span>
 
     <span class="c1"># Minimum BPM</span>
-    <span class="n">min_bpm</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="mi">60000</span> <span class="o">/</span> <span class="n">x</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">min_bpm</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="mi">60000</span> <span class="o">/</span> <span class="n">x</span><span class="p">),</span> <span class="mi">6</span><span class="p">)</span>
 
     <span class="c1"># Maximum RR</span>
-    <span class="n">max_rr</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">max_rr</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="mi">6</span><span class="p">)</span>
 
     <span class="c1"># Maximum BPM</span>
-    <span class="n">max_bpm</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="mi">60000</span> <span class="o">/</span> <span class="n">x</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">max_bpm</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="mi">60000</span> <span class="o">/</span> <span class="n">x</span><span class="p">),</span> <span class="mi">6</span><span class="p">)</span>
 
     <span class="c1"># Standard deviation of R-R intervals</span>
-    <span class="n">sdnn</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">ddof</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span>  <span class="c1"># type: ignore</span>
+    <span class="n">sdnn</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">ddof</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="mi">6</span><span class="p">)</span>  <span class="c1"># type: ignore</span>
 
     <span class="c1"># Root Mean Square of Successive Differences (RMSSD)</span>
-    <span class="n">rms</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">rmssd</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">rms</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">rmssd</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="mi">6</span><span class="p">)</span>
 
     <span class="c1"># NN50: number of successive differences larger than 50ms</span>
-    <span class="n">nn</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">nnX</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">50</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">nn</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">nnX</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">50</span><span class="p">),</span> <span class="mi">6</span><span class="p">)</span>
 
     <span class="c1"># pNN50: Proportion of successive differences larger than 50ms</span>
-    <span class="n">pnn</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">pnnX</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">50</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">pnn</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">pnnX</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">50</span><span class="p">),</span> <span class="mi">6</span><span class="p">)</span>
 
     <span class="c1"># Create summary dataframe</span>
     <span class="n">values</span> <span class="o">=</span> <span class="p">[</span>
@@ -565,7 +565,7 @@
         <span class="n">this_freq</span> <span class="o">=</span> <span class="n">freq</span><span class="p">[(</span><span class="n">freq</span> <span class="o">&gt;=</span> <span class="n">fbands</span><span class="p">[</span><span class="n">band</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">freq</span> <span class="o">&lt;</span> <span class="n">fbands</span><span class="p">[</span><span class="n">band</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">])]</span>
 
         <span class="c1"># Peaks (Hz)</span>
-        <span class="n">peak</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">this_freq</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">this_psd</span><span class="p">)],</span> <span class="mi">4</span><span class="p">)</span>
+        <span class="n">peak</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">this_freq</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">this_psd</span><span class="p">)],</span> <span class="mi">6</span><span class="p">)</span>
         <span class="n">stats</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
             <span class="p">{</span><span class="s2">&quot;Values&quot;</span><span class="p">:</span> <span class="n">peak</span><span class="p">,</span> <span class="s2">&quot;Metric&quot;</span><span class="p">:</span> <span class="n">band</span> <span class="o">+</span> <span class="s2">&quot;_peak&quot;</span><span class="p">},</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span>
         <span class="p">)</span>
@@ -586,16 +586,16 @@
     <span class="n">power_per_hf</span> <span class="o">=</span> <span class="n">hf</span> <span class="o">/</span> <span class="p">(</span><span class="n">vlf</span> <span class="o">+</span> <span class="n">lf</span> <span class="o">+</span> <span class="n">hf</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span>
 
     <span class="c1"># Power (n.u.)</span>
-    <span class="n">power_nu_hf</span> <span class="o">=</span> <span class="n">hf</span> <span class="o">/</span> <span class="p">(</span><span class="n">hf</span> <span class="o">+</span> <span class="n">lf</span><span class="p">)</span>
-    <span class="n">power_nu_lf</span> <span class="o">=</span> <span class="n">lf</span> <span class="o">/</span> <span class="p">(</span><span class="n">hf</span> <span class="o">+</span> <span class="n">lf</span><span class="p">)</span>
+    <span class="n">power_nu_hf</span> <span class="o">=</span> <span class="n">hf</span> <span class="o">/</span> <span class="p">(</span><span class="n">hf</span> <span class="o">+</span> <span class="n">lf</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span>
+    <span class="n">power_nu_lf</span> <span class="o">=</span> <span class="n">lf</span> <span class="o">/</span> <span class="p">(</span><span class="n">hf</span> <span class="o">+</span> <span class="n">lf</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span>
 
-    <span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="n">power_per_vlf</span><span class="p">,</span> <span class="n">power_per_lf</span><span class="p">,</span> <span class="n">power_per_hf</span><span class="p">,</span> <span class="n">power_nu_hf</span><span class="p">,</span> <span class="n">power_nu_lf</span><span class="p">]</span>
+    <span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="n">power_per_vlf</span><span class="p">,</span> <span class="n">power_per_lf</span><span class="p">,</span> <span class="n">power_per_hf</span><span class="p">,</span> <span class="n">power_nu_lf</span><span class="p">,</span> <span class="n">power_nu_hf</span><span class="p">]</span>
     <span class="n">metrics</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="s2">&quot;power_vlf_per&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;power_lf_per&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;power_hf_per&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;power_lf_nu&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;power_hf_nu&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;vlf_power_per&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;lf_power_per&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;hf_power_per&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;lf_power_nu&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;hf_power_nu&quot;</span><span class="p">,</span>
     <span class="p">]</span>
 
     <span class="n">stats</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>

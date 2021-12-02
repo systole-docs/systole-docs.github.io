@@ -222,7 +222,7 @@
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    x : np.ndarray or list</span>
+<span class="sd">    x : np.ndarray | list</span>
 <span class="sd">        The pulse oximeter time series.</span>
 <span class="sd">    sfreq : int</span>
 <span class="sd">        The sampling frequency. Default is set to 75 Hz.</span>
@@ -350,8 +350,8 @@
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    x : np.ndarray or list</span>
-<span class="sd">        The oxi signal.</span>
+<span class="sd">    x : np.ndarray | list</span>
+<span class="sd">        The ECG signal.</span>
 <span class="sd">    sfreq : int</span>
 <span class="sd">        The sampling frequency. Default is set to 75 Hz.</span>
 <span class="sd">    method : str</span>
@@ -426,6 +426,72 @@
         <span class="n">peaks</span> <span class="o">=</span> <span class="n">to_neighbour</span><span class="p">(</span><span class="n">resampled_signal</span><span class="p">,</span> <span class="n">peaks</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">win_size</span> <span class="o">*</span> <span class="n">new_sfreq</span><span class="p">))</span>
 
     <span class="k">return</span> <span class="n">resampled_signal</span><span class="p">,</span> <span class="n">peaks</span></div>
+
+
+<span class="k">def</span> <span class="nf">res_peaks</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span>
+    <span class="n">sfreq</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">,</span>
+    <span class="n">win</span> <span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.025</span><span class="p">,</span>
+    <span class="n">kind</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;peaks-trough&quot;</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]]:</span>
+    <span class="sd">&quot;&quot;&quot;Identify peaks and/or troughs in respiratory signal. </span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    x : np.ndarray | list</span>
+<span class="sd">        The respiratory signal. Peaks are considered to represent end of inspiration,</span>
+<span class="sd">        trough represent end of expiration.</span>
+<span class="sd">    sfreq : int</span>
+<span class="sd">        The sampling frequency. Default is set to 1000 Hz.</span>
+<span class="sd">    win : int</span>
+<span class="sd">        Window size (in seconds). Default is set to 25ms, following recommandation</span>
+<span class="sd">        from [1]_.</span>
+<span class="sd">    kind : str</span>
+<span class="sd">        What kind of detection to perform. Peak detection (`&quot;peaks&quot;`), trough detection</span>
+<span class="sd">        (`&quot;troughs&quot;`) or both (`&quot;peaks-troughs&quot;`, default).</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    peaks | trough | (peaks, trough) : np.ndarray | np.ndarray | (np.ndarray, np.ndarray)</span>
+<span class="sd">        The peaks and/ troughs indexes vectors.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+<span class="sd">    .. [1] Torben Noto, Guangyu Zhou, Stephan Schuele, Jessica Templer, Christina</span>
+<span class="sd">       Zelano,Automated analysis of breathing waveforms using BreathMetrics: a</span>
+<span class="sd">       respiratory signal processing toolbox, Chemical Senses, Volume 43, Issue 8,</span>
+<span class="sd">       October 2018, Pages 583–597, https://doi.org/10.1093/chemse/bjy045</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+    <span class="c1"># Soothing using rolling mean</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;signal&quot;</span><span class="p">:</span> <span class="n">x</span><span class="p">})</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">sfreq</span> <span class="o">*</span> <span class="n">win</span><span class="p">),</span> <span class="n">center</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>\
+        <span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;bfill&#39;</span><span class="p">)</span>\
+        <span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;ffill&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+
+    <span class="c1"># Normalize (z-score) the respiration signal</span>
+    <span class="n">x</span> <span class="o">-=</span> <span class="n">x</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+    <span class="n">x</span> <span class="o">/=</span> <span class="n">x</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+
+    <span class="c1"># Peak enhancement</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">**</span><span class="mi">3</span>
+
+    <span class="c1"># Find peaks and trough in preprocessed signal</span>
+    <span class="k">if</span> <span class="s2">&quot;peaks&quot;</span> <span class="ow">in</span> <span class="n">kind</span><span class="p">:</span>
+        <span class="n">peaks</span> <span class="o">=</span> <span class="n">find_peaks</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">distance</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">sfreq</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">if</span> <span class="s2">&quot;troughs&quot;</span> <span class="ow">in</span> <span class="n">kind</span><span class="p">:</span>
+        <span class="n">troughs</span> <span class="o">=</span> <span class="n">find_peaks</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">distance</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">sfreq</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="k">if</span> <span class="n">kind</span> <span class="o">==</span> <span class="s2">&quot;peaks-troughs&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">peaks</span><span class="p">,</span> <span class="n">troughs</span>
+    <span class="k">elif</span> <span class="n">kind</span> <span class="o">==</span> <span class="s2">&quot;peaks&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">peaks</span>
+    <span class="k">elif</span> <span class="n">kind</span> <span class="o">==</span> <span class="s2">&quot;trough&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">troughs</span>
 
 
 <div class="viewcode-block" id="rr_artefacts"><a class="viewcode-back" href="../../generated/detection/systole.detection.rr_artefacts.html#systole.detection.rr_artefacts">[docs]</a><span class="k">def</span> <span class="nf">rr_artefacts</span><span class="p">(</span>

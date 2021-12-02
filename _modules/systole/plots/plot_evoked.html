@@ -300,15 +300,23 @@
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
 
-<span class="sd">    Plot evoked heart rate across two conditions using the Matplotlib backend.</span>
+<span class="sd">    Plot evoked heart rate across two conditions using the Matplotlib backend. Here,</span>
+<span class="sd">    for the sake of example, we are going to create the same plot three time using</span>
+<span class="sd">    three kind of input data:</span>
+
+<span class="sd">    * The raw signal + the triggers timing (or a list of in case of multiple conditions).</span>
+<span class="sd">    * The peaks detection + the triggers timing (or a list of in case of multiple conditions)</span>
+<span class="sd">    * The epoched signal as a 2d NumPy array (or a list of in case of multiple conditions)</span>
 
 <span class="sd">    .. jupyter-execute::</span>
 
 <span class="sd">       import numpy as np</span>
 <span class="sd">       import seaborn as sns</span>
+<span class="sd">       import matplotlib.pyplot as plt</span>
 <span class="sd">       from systole.detection import ecg_peaks</span>
 <span class="sd">       from systole.plots import plot_evoked</span>
 <span class="sd">       from systole import import_dataset1</span>
+<span class="sd">       from systole.utils import heart_rate, to_epochs</span>
 
 <span class="sd">       ecg_df = import_dataset1(modalities=[&#39;ECG&#39;, &quot;Stim&quot;])</span>
 
@@ -321,26 +329,82 @@
 <span class="sd">       # Peak detection in the ECG signal using the Pan-Tompkins method</span>
 <span class="sd">       signal, peaks = ecg_peaks(ecg_df.ecg, method=&#39;pan-tompkins&#39;, sfreq=1000)</span>
 
-<span class="sd">       plot_evoked(</span>
-<span class="sd">           rr=peaks, triggers_idx=triggers_idx, input_type=&quot;peaks&quot;,</span>
-<span class="sd">           palette=[sns.xkcd_rgb[&quot;pale red&quot;], sns.xkcd_rgb[&quot;denim blue&quot;]],</span>
-<span class="sd">           apply_baseline=(-1.0, 0.0), decim=100, figsize=(400, 400)</span>
-<span class="sd">       )</span>
+<span class="sd">       # Convert to instantaneous heart rate</span>
+<span class="sd">       rr, _ = heart_rate(peaks, kind=&quot;cubic&quot;, unit=&quot;bpm&quot;, input_type=&quot;peaks&quot;)</span>
 
-<span class="sd">    Plot evoked heart rate across two conditions using the Bokeh backend.</span>
+<span class="sd">       # Create list epochs arrays for each condition</span>
+<span class="sd">       epochs, _ = to_epochs(</span>
+<span class="sd">           signal=rr, triggers_idx=triggers_idx, tmin=-1.0, tmax=10.0,</span>
+<span class="sd">           apply_baseline=(-1.0, 0.0)</span>
+<span class="sd">           )</span>
+
+<span class="sd">       fig, axs = plt.subplots(ncols=3, figsize=(15, 5), sharey=True)</span>
+
+<span class="sd">       # Using the raw signal and events triggers</span>
+<span class="sd">       plot_evoked(</span>
+<span class="sd">            signal=ecg_df.ecg.to_numpy(), triggers_idx=triggers_idx, modality=&quot;ecg&quot;,</span>
+<span class="sd">            tmin=-1.0, tmax=10.0, apply_baseline=(-1.0, 0.0), backend=&quot;matplotlib&quot;,</span>
+<span class="sd">            palette=[sns.xkcd_rgb[&quot;denim blue&quot;], sns.xkcd_rgb[&quot;pale red&quot;]],</span>
+<span class="sd">            ax=axs[0]</span>
+<span class="sd">            )</span>
+
+<span class="sd">       # Using the detected peaks and events triggers</span>
+<span class="sd">       plot_evoked(</span>
+<span class="sd">           rr=peaks, triggers_idx=triggers_idx, input_type=&quot;peaks&quot;, tmin=-1.0,</span>
+<span class="sd">           tmax=10.0, apply_baseline=(-1.0, 0.0), backend=&quot;matplotlib&quot;,</span>
+<span class="sd">           palette=[sns.xkcd_rgb[&quot;denim blue&quot;], sns.xkcd_rgb[&quot;pale red&quot;]],</span>
+<span class="sd">           ax=axs[1]</span>
+<span class="sd">           )</span>
+
+<span class="sd">       # Using the list of epochs arrays</span>
+<span class="sd">       plot_evoked(</span>
+<span class="sd">           epochs=epochs,</span>
+<span class="sd">           palette=[sns.xkcd_rgb[&quot;denim blue&quot;], sns.xkcd_rgb[&quot;pale red&quot;]],</span>
+<span class="sd">           backend=&quot;matplotlib&quot;,</span>
+<span class="sd">           ax=axs[2]</span>
+<span class="sd">           )</span>
+
+<span class="sd">    Plot evoked heart rate across two conditions using the Bokeh backend. Here,</span>
+<span class="sd">    for the sake of example, we are going to create the same plot three times using</span>
+<span class="sd">    three kind of input data:</span>
+
+<span class="sd">    * The raw signal + the triggers timing (or a list of in case of multiple conditions).</span>
+<span class="sd">    * The peaks detection + the triggers timing (or a list of in case of multiple conditions)</span>
+<span class="sd">    * The epoched signal as a 2d NumPy array (or a list of in case of multiple conditions)</span>
 
 <span class="sd">    .. jupyter-execute::</span>
 
 <span class="sd">       from bokeh.io import output_notebook</span>
 <span class="sd">       from bokeh.plotting import show</span>
+<span class="sd">       from bokeh.layouts import row</span>
 <span class="sd">       output_notebook()</span>
 
-<span class="sd">       show(</span>
-<span class="sd">           plot_evoked(</span>
-<span class="sd">               rr=peaks, triggers_idx=triggers_idx, input_type=&quot;peaks&quot;, backend=&quot;bokeh&quot;,</span>
-<span class="sd">               palette=[sns.xkcd_rgb[&quot;pale red&quot;], sns.xkcd_rgb[&quot;denim blue&quot;]],</span>
-<span class="sd">               apply_baseline=(-1.0, 0.0), decim=100, figsize=(400, 400))</span>
-<span class="sd">        )</span>
+<span class="sd">       # Using the raw signal and events triggers</span>
+<span class="sd">       raw_plot = plot_evoked(</span>
+<span class="sd">            signal=ecg_df.ecg.to_numpy(), triggers_idx=triggers_idx, modality=&quot;ecg&quot;,</span>
+<span class="sd">            tmin=-1.0, tmax=10.0, apply_baseline=(-1.0, 0.0), backend=&quot;bokeh&quot;,</span>
+<span class="sd">            palette=[sns.xkcd_rgb[&quot;denim blue&quot;], sns.xkcd_rgb[&quot;pale red&quot;]],</span>
+<span class="sd">            figsize=(400, 400)</span>
+<span class="sd">            )</span>
+
+<span class="sd">       # Using the detected peaks and events triggers</span>
+<span class="sd">       peaks_plot = plot_evoked(</span>
+<span class="sd">           rr=peaks, triggers_idx=triggers_idx, input_type=&quot;peaks&quot;, tmin=-1.0,</span>
+<span class="sd">           tmax=10.0, apply_baseline=(-1.0, 0.0), backend=&quot;bokeh&quot;,</span>
+<span class="sd">           palette=[sns.xkcd_rgb[&quot;denim blue&quot;], sns.xkcd_rgb[&quot;pale red&quot;]],</span>
+<span class="sd">           figsize=(400, 400)</span>
+<span class="sd">           )</span>
+
+<span class="sd">       # Using the list of epochs arrays</span>
+<span class="sd">       epochs_plots = plot_evoked(</span>
+<span class="sd">           epochs=epochs,</span>
+<span class="sd">           palette=[sns.xkcd_rgb[&quot;denim blue&quot;], sns.xkcd_rgb[&quot;pale red&quot;]],</span>
+<span class="sd">           backend=&quot;bokeh&quot;,</span>
+<span class="sd">           figsize=(400, 400)</span>
+<span class="sd">           )</span>
+
+<span class="sd">       # Create a Bokeh layout and plot the figures side by side</span>
+<span class="sd">       show(row(raw_plot, peaks_plot, epochs_plots))</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># Define color palette</span>
@@ -358,18 +422,27 @@
         <span class="k">elif</span> <span class="n">backend</span> <span class="o">==</span> <span class="s2">&quot;bokeh&quot;</span><span class="p">:</span>
             <span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="mi">400</span><span class="p">)</span>
 
-    <span class="c1"># Extract instantaneous heart rate</span>
-    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+    <span class="c1"># Extract instantaneous heart rate from raw signal</span>
+    <span class="k">if</span> <span class="n">signal</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">signal</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">signal</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">signal</span><span class="o">.</span><span class="n">ndim</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The signal should be a 1d array, list or pandas serie&quot;</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">modality</span> <span class="o">==</span> <span class="s2">&quot;ppg&quot;</span><span class="p">:</span>
             <span class="n">_</span><span class="p">,</span> <span class="n">peaks</span> <span class="o">=</span> <span class="n">ppg_peaks</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">sfreq</span><span class="o">=</span><span class="n">sfreq</span><span class="p">)</span>
         <span class="k">elif</span> <span class="n">modality</span> <span class="o">==</span> <span class="s2">&quot;ecg&quot;</span><span class="p">:</span>
             <span class="n">_</span><span class="p">,</span> <span class="n">peaks</span> <span class="o">=</span> <span class="n">ecg_peaks</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">sfreq</span><span class="o">=</span><span class="n">sfreq</span><span class="p">)</span>
         <span class="n">rr</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">heart_rate</span><span class="p">(</span><span class="n">peaks</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="n">kind</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="n">unit</span><span class="p">,</span> <span class="n">input_type</span><span class="o">=</span><span class="s2">&quot;peaks&quot;</span><span class="p">)</span>
 
-    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">rr</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+    <span class="c1"># Extract instantaneous heart rate from peaks detection vector</span>
+    <span class="k">elif</span> <span class="n">rr</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">rr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">rr</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">rr</span><span class="o">.</span><span class="n">ndim</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;The RR intervals (rr) should be a 1d array, list or pandas serie&quot;</span>
+            <span class="p">)</span>
         <span class="n">rr</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">heart_rate</span><span class="p">(</span><span class="n">rr</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="n">kind</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="n">unit</span><span class="p">,</span> <span class="n">input_type</span><span class="o">=</span><span class="n">input_type</span><span class="p">,</span> <span class="n">sfreq</span><span class="o">=</span><span class="n">sfreq</span><span class="p">)</span>
 
-    <span class="c1"># Epoching</span>
+    <span class="c1"># Epoching instantaneous heart rate</span>
     <span class="k">if</span> <span class="n">epochs</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">epochs</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">to_epochs</span><span class="p">(</span>
             <span class="n">signal</span><span class="o">=</span><span class="n">rr</span><span class="p">,</span>
@@ -381,8 +454,10 @@
             <span class="n">tmin</span><span class="o">=</span><span class="n">tmin</span><span class="p">,</span>
             <span class="n">tmax</span><span class="o">=</span><span class="n">tmax</span><span class="p">,</span>
         <span class="p">)</span>
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">epochs</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
-            <span class="n">epochs</span> <span class="o">=</span> <span class="p">[</span><span class="n">epochs</span><span class="p">]</span>
+
+    <span class="c1"># Format epochs if already provided</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">epochs</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+        <span class="n">epochs</span> <span class="o">=</span> <span class="p">[</span><span class="n">epochs</span><span class="p">]</span>
 
     <span class="c1"># Define labels</span>
     <span class="k">if</span> <span class="n">labels</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
