@@ -293,10 +293,13 @@
 <section id="changes">
 <h3>Changes<a class="headerlink" href="#changes" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
+<li><p><span class="raw-html"><span class="badge badge-feature">Feature</span></span>  HRV module: Add a function py:func:<cite>systole.hrv.all_domain()</cite> to easily compute all possible HRV indices.</p></li>
 <li><p><span class="raw-html"><span class="badge badge-feature">Feature</span></span>  HRV module: Add recurence plot analysis and fast recurrence matrix computation (thanks to Dominique Makowski), and basic quantitative metrics (recurrence rate, l_max, l_mean, determinism rate, Shannon entropy). These metrics are now part of the nonlinear reports (py:func:<cite>systole.hrv.nonlinear_domain()</cite>) or can be called separately (py:func:<cite>systole.hrv.recurrence()</cite>).</p></li>
-<li><p><span class="raw-html"><span class="badge badge-feature">Feature</span></span>  HRV module: The time domain function (py:func:<cite>systole.hrv.time_domain()</cite>) also reports the SDSD by default.</p></li>
-<li><p><span class="raw-html"><span class="badge badge-feature">Feature</span></span>  HRV module: The frequency domain function (py:func:<cite>systole.hrv.frequency_domain()</cite>) now returns the total power and LF/HF ratio by default.</p></li>
+<li><p><span class="raw-html"><span class="badge badge-feature">Feature</span></span>  <span class="raw-html"><span class="badge badge-enhancement">Enhancement</span></span>  HRV module: The time domain function (py:func:<cite>systole.hrv.time_domain()</cite>) also reports the SDSD by default.</p></li>
+<li><p><span class="raw-html"><span class="badge badge-feature">Feature</span></span>  <span class="raw-html"><span class="badge badge-enhancement">Enhancement</span></span>  HRV module: The frequency domain function (py:func:<cite>systole.hrv.frequency_domain()</cite>) now returns the total power and LF/HF ratio by default.</p></li>
 <li><p><span class="raw-html"><span class="badge badge-feature">Feature</span></span>  Plotting module: Add nicer rendering for table output for time_domain, frequency_domain and nonlinear_domain functions, working either with Tabulate or Bokeh.</p></li>
+<li><p><span class="raw-html"><span class="badge badge-feature">Feature</span></span>  Add a respiratory peaks detection function (py:func:<cite>systole.detection.res_peaks()</cite>). VEry simple for now, will be improved in the future.</p></li>
+<li><p><span class="raw-html"><span class="badge badge-docs">Docs</span></span>  <span class="raw-html"><span class="badge badge-enhancement">Enhancement</span></span>  Improve tutorial notebook on HRV.</p></li>
 </ul>
 </section>
 <section id="contributors">
