@@ -1,0 +1,6 @@
+﻿systole.detection.res\_peaks
+============================
+
+.. currentmodule:: systole.detection
+
+.. autofunction:: res_peaks

@@ -53,7 +53,7 @@
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="systole.hrv.frequency_domain" href="systole.hrv.frequency_domain.html" />
+    <link rel="next" title="systole.hrv.psd" href="systole.hrv.psd.html" />
     <link rel="prev" title="systole.hrv.rmssd" href="systole.hrv.rmssd.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -209,6 +209,11 @@
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="../detection/systole.detection.res_peaks.html">
+   systole.detection.res_peaks
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="../detection/systole.detection.rr_artefacts.html">
    systole.detection.rr_artefacts
   </a>
@@ -241,8 +246,38 @@
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="systole.hrv.psd.html">
+   systole.hrv.psd
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="systole.hrv.frequency_domain.html">
    systole.hrv.frequency_domain
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="systole.hrv.nonlinear_domain.html">
+   systole.hrv.nonlinear_domain
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="systole.hrv.poincare.html">
+   systole.hrv.poincare
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="systole.hrv.recurrence.html">
+   systole.hrv.recurrence
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="systole.hrv.recurrence_matrix.html">
+   systole.hrv.recurrence_matrix
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="systole.hrv.all_domain.html">
+   systole.hrv.all_domain
   </a>
  </li>
 </ul>
@@ -396,7 +431,7 @@
 <h1>systole.hrv.time_domain<a class="headerlink" href="#systole-hrv-time-domain" title="Permalink to this headline">¶</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="systole.hrv.time_domain">
-<span class="sig-prename descclassname"><span class="pre">systole.hrv.</span></span><span class="sig-name descname"><span class="pre">time_domain</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rr</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">,</span> </span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.21)"><span class="pre">numpy.ndarray</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_type</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'rr_ms'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.3.4)"><span class="pre">pandas.core.frame.DataFrame</span></a></span></span><a class="reference internal" href="../../_modules/systole/hrv.html#time_domain"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#systole.hrv.time_domain" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">systole.hrv.</span></span><span class="sig-name descname"><span class="pre">time_domain</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rr</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">,</span> </span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.21)"><span class="pre">numpy.ndarray</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_type</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'rr_ms'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.3.5)"><span class="pre">pandas.core.frame.DataFrame</span></a></span></span><a class="reference internal" href="../../_modules/systole/hrv.html#time_domain"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#systole.hrv.time_domain" title="Permalink to this definition">¶</a></dt>
 <dd><p>Extract all time domain parameters from R-R intervals.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
@@ -412,19 +447,20 @@ specifying the <cite>“input_type”</cite> (can be <cite>“rr_s”</cite>, <c
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><dl>
-<dt><strong>stats</strong><span class="classifier"><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.3.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code></a></span></dt><dd><p>Time domain summary statistics.
-- <code class="docutils literal notranslate"><span class="pre">'Mean</span> <span class="pre">RR'</span></code> : Mean of R-R intervals.
-- <code class="docutils literal notranslate"><span class="pre">'Mean</span> <span class="pre">BPM'</span></code> : Mean of beats per minutes.
-- <code class="docutils literal notranslate"><span class="pre">'Median</span> <span class="pre">RR'</span></code> : Median of R-R intervals’.
-- <code class="docutils literal notranslate"><span class="pre">'Median</span> <span class="pre">BPM'</span></code> : Meidan of beats per minutes.
-- <code class="docutils literal notranslate"><span class="pre">'MinRR'</span></code> : Minimum R-R intervals.
-- <code class="docutils literal notranslate"><span class="pre">'MinBPM'</span></code> : Minimum beats per minutes.
-- <code class="docutils literal notranslate"><span class="pre">'MaxRR'</span></code> : Maximum R-R intervals.
-- <code class="docutils literal notranslate"><span class="pre">'MaxBPM'</span></code> : Maximum beats per minutes.
-- <code class="docutils literal notranslate"><span class="pre">'SDNN'</span></code> : Standard deviation of successive differences.
-- <code class="docutils literal notranslate"><span class="pre">'RMSSD'</span></code> : Root Mean Square of the Successive Differences.
-- <code class="docutils literal notranslate"><span class="pre">'NN50'</span></code> : number of successive differences larger than 50ms.
-- <code class="docutils literal notranslate"><span class="pre">'pNN50'</span></code> : Proportion of successive difference larger than 50ms.</p>
+<dt><strong>stats</strong><span class="classifier"><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.3.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code></a></span></dt><dd><p>Time domain summary statistics.
+* ‘MeanRR’ : Mean of R-R intervals (ms).
+* ‘MeanBPM’ : Mean of beats per minutes (bpm).
+* ‘MedianRR’ : Median of R-R intervals’ (ms).
+* ‘MedianBPM’ : Median of beats per minutes (bpm).
+* ‘MinRR’ : Minimum R-R intervals (ms).
+* ‘MinBPM’ : Minimum beats per minutes (bpm).
+* ‘MaxRR’ : Maximum R-R intervals (ms).
+* ‘MaxBPM’ : Maximum beats per minutes (bpm).
+* ‘SDNN’ : Standard deviation of RR intervals (ms).
+* ‘SDSD’ : Standard deviation of the Successive difference (ms).
+* ‘RMSSD’ : Root Mean Square of the Successive Differences (ms).
+* ‘nn50’ : number of successive differences larger than 50ms (count).
+* ‘pnn50’ : Proportion of successive difference larger than 50ms (%).</p>
 </dd>
 </dl>
 </dd>
@@ -432,7 +468,7 @@ specifying the <cite>“input_type”</cite> (can be <cite>“rr_s”</cite>, <c
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <dl class="simple">
-<dt><a class="reference internal" href="systole.hrv.frequency_domain.html#systole.hrv.frequency_domain" title="systole.hrv.frequency_domain"><code class="xref py py-obj docutils literal notranslate"><span class="pre">frequency_domain</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">nonlinear</span></code></dt><dd></dd>
+<dt><a class="reference internal" href="systole.hrv.frequency_domain.html#systole.hrv.frequency_domain" title="systole.hrv.frequency_domain"><code class="xref py py-obj docutils literal notranslate"><span class="pre">frequency_domain</span></code></a>, <a class="reference internal" href="systole.hrv.nonlinear_domain.html#systole.hrv.nonlinear_domain" title="systole.hrv.nonlinear_domain"><code class="xref py py-obj docutils literal notranslate"><span class="pre">nonlinear_domain</span></code></a></dt><dd></dd>
 </dl>
 </div>
 <p class="rubric">Notes</p>
@@ -455,7 +491,7 @@ using the py:func:<cite>pandas.pivot_table</cite> function:
               <div class='prev-next-bottom'>
                 
     <a class='left-prev' id="prev-link" href="systole.hrv.rmssd.html" title="previous page">systole.hrv.rmssd</a>
-    <a class='right-next' id="next-link" href="systole.hrv.frequency_domain.html" title="next page">systole.hrv.frequency_domain</a>
+    <a class='right-next' id="next-link" href="systole.hrv.psd.html" title="next page">systole.hrv.psd</a>
 
               </div>
               

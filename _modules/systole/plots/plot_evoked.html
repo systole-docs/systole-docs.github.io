@@ -200,11 +200,11 @@
 
 
 <div class="viewcode-block" id="plot_evoked"><a class="viewcode-back" href="../../../generated/plots/systole.plots.plot_evoked.html#systole.plots.plot_evoked">[docs]</a><span class="k">def</span> <span class="nf">plot_evoked</span><span class="p">(</span>
-    <span class="n">epochs</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="n">signal</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">epochs</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">signal</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">triggers</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">triggers_idx</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="n">rr</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">rr</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">List</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">input_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;peaks&quot;</span><span class="p">,</span>
     <span class="n">reject</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">modality</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;ppg&quot;</span><span class="p">,</span>
@@ -227,10 +227,11 @@
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    epochs : np.ndarray</span>
-<span class="sd">        A 2d (trial * time) numpy array containing the time series of the epoched</span>
-<span class="sd">        signal.</span>
-<span class="sd">    signal : np.ndarray</span>
+<span class="sd">    epochs : list of np.ndarray</span>
+<span class="sd">        A list of 2d (trial * time) numpy array containing the time series of the</span>
+<span class="sd">        epoched signal. When multiple arrays are provided, will be plotted separately</span>
+<span class="sd">        as different conditions.</span>
+<span class="sd">    signal : np.ndarray | list</span>
 <span class="sd">        A 1d numpy array containing the physiological signal (can be PPG or</span>
 <span class="sd">        ECG). The modality of the signal is parametrized using the `modality`</span>
 <span class="sd">        parameter.</span>
@@ -445,7 +446,7 @@
     <span class="c1"># Epoching instantaneous heart rate</span>
     <span class="k">if</span> <span class="n">epochs</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">epochs</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">to_epochs</span><span class="p">(</span>
-            <span class="n">signal</span><span class="o">=</span><span class="n">rr</span><span class="p">,</span>
+            <span class="n">signal</span><span class="o">=</span><span class="n">rr</span><span class="p">,</span>  <span class="c1"># type: ignore</span>
             <span class="n">triggers</span><span class="o">=</span><span class="n">triggers</span><span class="p">,</span>
             <span class="n">triggers_idx</span><span class="o">=</span><span class="n">triggers_idx</span><span class="p">,</span>
             <span class="n">reject</span><span class="o">=</span><span class="n">reject</span><span class="p">,</span>

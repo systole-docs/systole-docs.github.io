@@ -158,16 +158,7 @@
       <div class="row">
           
             
-            <!-- Only show if we have sidebars configured, else just a small margin  -->
-            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-  <div class="bd-toc-item active">
-    
-  </div>
-</nav>
-            </div>
+            <div class="col-12 col-md-1 col-xl-2 bd-sidebar no-sidebar"></div>
             
           
 
@@ -184,8 +175,8 @@
 <nav id="bd-toc-nav">
     <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#v0-2-1-december-2021">
-   v0.2.1 - December 2021
+  <a class="reference internal nav-link" href="#v0-2-2-december-2021">
+   v0.2.2 (December 2021)
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -198,11 +189,16 @@
      Changes
     </a>
    </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#contributors">
+     Contributors
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#v0-2-0-october-2021">
-   v0.2.0 (October 2021)
+  <a class="reference internal nav-link" href="#v0-2-1-december-2021">
+   v0.2.1 - December 2021
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -215,8 +211,25 @@
      Changes
     </a>
    </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#v0-2-0-october-2021">
+   v0.2.0 (October 2021)
+  </a>
+  <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#contributors">
+    <a class="reference internal nav-link" href="#id3">
+     Highlights
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     Changes
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id5">
      Contributors
     </a>
    </li>
@@ -264,36 +277,59 @@
           
             
           
-          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+          <main class="col-12 col-md-11 col-xl-8 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
               
               <div>
                 
   <span class="target" id="whatsnew"></span><section id="what-s-new-in-each-version">
 <h1>What’s new in each version<a class="headerlink" href="#what-s-new-in-each-version" title="Permalink to this headline">¶</a></h1>
 <p>This page contains information about what has changed in each new version of <code class="docutils literal notranslate"><span class="pre">systole</span></code>.</p>
-<div class="col-md-9"><section id="v0-2-1-december-2021">
-<h2>v0.2.1 - December 2021<a class="headerlink" href="#v0-2-1-december-2021" title="Permalink to this headline">¶</a></h2>
+<div class="col-md-9"><section id="v0-2-2-december-2021">
+<h2>v0.2.2 (December 2021)<a class="headerlink" href="#v0-2-2-december-2021" title="Permalink to this headline">¶</a></h2>
 <section id="highlights">
 <h3>Highlights<a class="headerlink" href="#highlights" title="Permalink to this headline">¶</a></h3>
-<p>This release fixes dependencies and import errors pointed during the review of the JOSS Systole paper and add the paper to the main repository. It also adds several bug fixes and functionality improvements.</p>
-<p>We recommend all users upgrade to this new version.</p>
+<p>This release seeks to improve the heart rate variability module and will be the reference version for the JOSS publication.</p>
 </section>
 <section id="changes">
 <h3>Changes<a class="headerlink" href="#changes" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><span class="raw-html"><span class="badge badge-feature">Feature</span></span>  HRV module: Add recurence plot analysis and fast recurrence matrix computation (thanks to Dominique Makowski), and basic quantitative metrics (recurrence rate, l_max, l_mean, determinism rate, Shannon entropy). These metrics are now part of the nonlinear reports (py:func:<cite>systole.hrv.nonlinear_domain()</cite>) or can be called separately (py:func:<cite>systole.hrv.recurrence()</cite>).</p></li>
+<li><p><span class="raw-html"><span class="badge badge-feature">Feature</span></span>  HRV module: The time domain function (py:func:<cite>systole.hrv.time_domain()</cite>) also reports the SDSD by default.</p></li>
+<li><p><span class="raw-html"><span class="badge badge-feature">Feature</span></span>  HRV module: The frequency domain function (py:func:<cite>systole.hrv.frequency_domain()</cite>) now returns the total power and LF/HF ratio by default.</p></li>
+<li><p><span class="raw-html"><span class="badge badge-feature">Feature</span></span>  Plotting module: Add nicer rendering for table output for time_domain, frequency_domain and nonlinear_domain functions, working either with Tabulate or Bokeh.</p></li>
+</ul>
+</section>
+<section id="contributors">
+<h3>Contributors<a class="headerlink" href="#contributors" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Dominique Makowski (<a class="reference external" href="https://github.com/DominiqueMakowski">https://github.com/DominiqueMakowski</a>)</p></li>
+<li><p>Bertrand Hermann (<a class="reference external" href="mailto:bertrand&#46;hermann&#37;&#52;&#48;ghu-paris&#46;fr">bertrand<span>&#46;</span>hermann<span>&#64;</span>ghu-paris<span>&#46;</span>fr</a>)</p></li>
+</ul>
+</section>
+</section>
+<section id="v0-2-1-december-2021">
+<h2>v0.2.1 - December 2021<a class="headerlink" href="#v0-2-1-december-2021" title="Permalink to this headline">¶</a></h2>
+<section id="id1">
+<h3>Highlights<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>This release fixes dependencies and import errors pointed during the review of the JOSS Systole paper and add the paper to the main repository. It also adds several bug fixes and functionality improvements.</p>
+<p>We recommend all users upgrade to this new version.</p>
+</section>
+<section id="id2">
+<h3>Changes<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p><span class="raw-html"><span class="badge badge-fix">Fix</span></span>  Important BUGFIX: <a class="reference internal" href="generated/hrv/systole.hrv.frequency_domain.html#systole.hrv.frequency_domain" title="systole.hrv.frequency_domain"><code class="xref py py-func docutils literal notranslate"><span class="pre">systole.hrv.frequency_domain()</span></code></a> switched the variables <cite>“power_hf_nu”</cite> and <cite>“power_lf_nu”</cite> before returning.</p></li>
 <li><p><span class="raw-html"><span class="badge badge-fix">Fix</span></span>  Important BUGFIX: <a class="reference internal" href="generated/hrv/systole.hrv.frequency_domain.html#systole.hrv.frequency_domain" title="systole.hrv.frequency_domain"><code class="xref py py-func docutils literal notranslate"><span class="pre">systole.hrv.frequency_domain()</span></code></a> the variables <cite>“power_hf_nu”</cite> and <cite>“power_lf_nu”</cite> were not properly scalled (x100) before returning.</p></li>
 <li><p><span class="raw-html"><span class="badge badge-fix">Fix</span></span>  <span class="raw-html"><span class="badge badge-enhancement">Enhancement</span></span>  Fix <a class="reference internal" href="generated/plots/systole.plots.plot_evoked.html#systole.plots.plot_evoked" title="systole.plots.plot_evoked"><code class="xref py py-func docutils literal notranslate"><span class="pre">systole.plots.plot_evoked()</span></code></a> so it works with the three inputs types and improve documentation.</p></li>
 <li><p><span class="raw-html"><span class="badge badge-enhancement">Enhancement</span></span>  Fix <a class="reference internal" href="generated/utils/systole.utils.norm_triggers.html#systole.utils.norm_triggers" title="systole.utils.norm_triggers"><code class="xref py py-func docutils literal notranslate"><span class="pre">systole.utils.norm_triggers()</span></code></a> is now using Numba’s jit by default.</p></li>
-<li><p><span class="raw-html"><span class="badge badge-enhancement">Enhancement</span></span>  <span class="raw-html"><span class="badge badge-defaults">Defaults</span></span>  The <code class="xref py py-func docutils literal notranslate"><span class="pre">systole.plot.plot_frequency()</span></code> function clip power to be &gt;= 0 by default.</p></li>
+<li><p><span class="raw-html"><span class="badge badge-enhancement">Enhancement</span></span>  <span class="raw-html"><span class="badge badge-defaults">Defaults</span></span>  The <a class="reference internal" href="generated/plots/systole.plots.plot_frequency.html#systole.plots.plot_frequency" title="systole.plots.plot_frequency"><code class="xref py py-func docutils literal notranslate"><span class="pre">systole.plots.plot_frequency()</span></code></a> function clip power to be &gt;= 0 by default.</p></li>
 <li><p><span class="raw-html"><span class="badge badge-defaults">Defaults</span></span>  The <a class="reference internal" href="generated/hrv/systole.hrv.frequency_domain.html#systole.hrv.frequency_domain" title="systole.hrv.frequency_domain"><code class="xref py py-func docutils literal notranslate"><span class="pre">systole.hrv.frequency_domain()</span></code></a> <a class="reference internal" href="generated/hrv/systole.hrv.time_domain.html#systole.hrv.time_domain" title="systole.hrv.time_domain"><code class="xref py py-func docutils literal notranslate"><span class="pre">systole.hrv.time_domain()</span></code></a> functions rounds with the same parameter (<cite>6</cite>).</p></li>
 </ul>
 </section>
 </section>
 <section id="v0-2-0-october-2021">
 <h2>v0.2.0 (October 2021)<a class="headerlink" href="#v0-2-0-october-2021" title="Permalink to this headline">¶</a></h2>
-<section id="id1">
-<h3>Highlights<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<section id="id3">
+<h3>Highlights<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
 <p>This is a major release that introduces a new plotting backend using Bokeh instead of Plotly, several API changes and performance improvement (Numba).</p>
 <p>The <cite>plots</cite> submodule now includes the following functions:</p>
 <ul class="simple">
@@ -311,16 +347,16 @@
 <p>These functions can be called using Bokeh or Matplotlib as backend (<cite>plot_circular</cite> only accepts Matplotlib for now).</p>
 <p>All the methods available in <a class="reference internal" href="generated/detection/systole.detection.ecg_peaks.html#systole.detection.ecg_peaks" title="systole.detection.ecg_peaks"><code class="xref py py-func docutils literal notranslate"><span class="pre">systole.detection.ecg_peaks()</span></code></a> are now accelerated with Numba.</p>
 <ul class="simple">
-<li><p><span class="raw-html"><span class="badge badge-enhancement">Enhancement</span></span>  Add Numba support for <code class="xref py py-func docutils literal notranslate"><span class="pre">systole.detector.pan_tompkins()</span></code> (~7x faster)</p></li>
-<li><p><span class="raw-html"><span class="badge badge-enhancement">Enhancement</span></span>  Add Numba support for <code class="xref py py-func docutils literal notranslate"><span class="pre">systole.detector.hamilton()</span></code> (~10x faster)</p></li>
-<li><p><span class="raw-html"><span class="badge badge-enhancement">Enhancement</span></span>  Add Numba support for <code class="xref py py-func docutils literal notranslate"><span class="pre">systole.detector.christov()</span></code> (~30x faster)</p></li>
-<li><p><span class="raw-html"><span class="badge badge-enhancement">Enhancement</span></span>  Add Numba support for <code class="xref py py-func docutils literal notranslate"><span class="pre">systole.detector.engelse_zeelenberg()</span></code> (~20x faster)</p></li>
+<li><p><span class="raw-html"><span class="badge badge-enhancement">Enhancement</span></span>  Add Numba support for <code class="xref py py-func docutils literal notranslate"><span class="pre">systole.detectors.pan_tompkins()</span></code> (~7x faster)</p></li>
+<li><p><span class="raw-html"><span class="badge badge-enhancement">Enhancement</span></span>  Add Numba support for <code class="xref py py-func docutils literal notranslate"><span class="pre">systole.detectors.hamilton()</span></code> (~10x faster)</p></li>
+<li><p><span class="raw-html"><span class="badge badge-enhancement">Enhancement</span></span>  Add Numba support for <code class="xref py py-func docutils literal notranslate"><span class="pre">systole.detectors.christov()</span></code> (~30x faster)</p></li>
+<li><p><span class="raw-html"><span class="badge badge-enhancement">Enhancement</span></span>  Add Numba support for <code class="xref py py-func docutils literal notranslate"><span class="pre">systole.detectors.engelse_zeelenberg()</span></code> (~20x faster)</p></li>
 </ul>
 <p>This also drops py-ecg-detectors dependency, and the refactored code is now included in Systole.</p>
 <p>This release also includes some API changes and renaming for consistency (<cite>oxi_peaks</cite> -&gt; <cite>ppg_peaks</cite>).</p>
 </section>
-<section id="id2">
-<h3>Changes<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<section id="id4">
+<h3>Changes<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p><span class="raw-html"><span class="badge badge-api">API</span></span>  Remove support for Plotly. Add support for Bokeh. Merge interactive and non interactive modules into a unique <code class="xref py py-func docutils literal notranslate"><span class="pre">plots()</span></code> module.</p></li>
 <li><p><span class="raw-html"><span class="badge badge-docs">Docs</span></span>  Use PyData Sphinx theme.</p></li>
@@ -342,8 +378,8 @@
 <li><p><span class="raw-html"><span class="badge badge-fix">Fix</span></span>  Remove use of <cite>outdated</cite>.</p></li>
 </ul>
 </section>
-<section id="contributors">
-<h3>Contributors<a class="headerlink" href="#contributors" title="Permalink to this headline">¶</a></h3>
+<section id="id5">
+<h3>Contributors<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Gidon Levakov (<a class="reference external" href="mailto:gidonlevakov&#37;&#52;&#48;gmail&#46;com">gidonlevakov<span>&#64;</span>gmail<span>&#46;</span>com</a>)</p></li>
 <li><p>Peter Doggart (<a class="reference external" href="mailto:peter&#46;doggart&#37;&#52;&#48;pulseai&#46;io">peter<span>&#46;</span>doggart<span>&#64;</span>pulseai<span>&#46;</span>io</a>)</p></li>
